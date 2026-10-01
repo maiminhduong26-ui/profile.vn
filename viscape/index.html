@@ -44,6 +44,21 @@
             background: #C99A4A;
             border-radius: 4px;
         }
+        /* VISCAPE AI chatbot */
+        .viscape-ai-launcher{position:fixed;right:22px;bottom:22px;z-index:60;width:64px;height:64px;border-radius:50%;background:#0E2545;color:#fff;border:1px solid #C99A4A;box-shadow:0 12px 34px rgba(14,37,69,.3);display:flex;align-items:center;justify-content:center;cursor:pointer;animation:viscapePulse 3s infinite}
+        .viscape-ai-launcher:hover{transform:translateY(-3px)}
+        .viscape-ai-ball{width:30px;height:30px;border:2px solid #C99A4A;border-radius:50%;position:relative}
+        .viscape-ai-ball:before,.viscape-ai-ball:after{content:"";position:absolute;background:#C99A4A;width:18px;height:2px;left:4px}.viscape-ai-ball:before{top:8px;transform:rotate(32deg)}.viscape-ai-ball:after{top:17px;transform:rotate(-32deg)}
+        .viscape-ai-tooltip{position:absolute;right:0;bottom:74px;white-space:nowrap;background:#0E2545;color:#fff;padding:9px 12px;border-radius:10px;font-size:10px;opacity:0;pointer-events:none;transition:.2s}.viscape-ai-launcher:hover .viscape-ai-tooltip{opacity:1}
+        @keyframes viscapePulse{0%,70%,100%{box-shadow:0 12px 34px rgba(14,37,69,.3),0 0 0 0 rgba(201,154,74,.2)}85%{box-shadow:0 12px 34px rgba(14,37,69,.3),0 0 0 10px rgba(201,154,74,0)}}
+        .viscape-ai-window{position:fixed;right:22px;bottom:98px;z-index:61;width:410px;max-width:calc(100vw - 28px);height:680px;max-height:calc(100vh - 120px);background:#f7f8f6;border:1px solid rgba(14,37,69,.12);border-radius:24px;box-shadow:0 24px 70px rgba(5,20,35,.28);overflow:hidden;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(15px) scale(.97);transition:.25s}
+        .viscape-ai-window.is-open{opacity:1;visibility:visible;transform:none}
+        .viscape-ai-header{background:linear-gradient(135deg,#0E2545,#193f52);color:#fff;padding:16px}.viscape-ai-head{display:flex;justify-content:space-between;align-items:center}.viscape-ai-brand{display:flex;gap:10px;align-items:center}.viscape-ai-avatar{width:42px;height:42px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid #C99A4A}.viscape-ai-title{font:bold 15px "Space Grotesk",sans-serif}.viscape-ai-sub{font-size:10px;color:#cbd4dc}.viscape-ai-online{font-size:9px;color:#bfe77b;margin-top:3px}.viscape-ai-actions{display:flex;gap:4px}.viscape-ai-actions button{width:32px;height:32px;border-radius:9px;background:#ffffff12;border:1px solid #ffffff1f;color:#fff;cursor:pointer}.viscape-ai-context{margin-top:11px;padding:8px 10px;border-radius:10px;background:#ffffff0e;font-size:10px;color:#dce3e8}
+        .viscape-ai-messages{flex:1;overflow:auto;padding:15px 13px;background:linear-gradient(#f6f7f5,#edf0ec)}.viscape-ai-msg{display:flex;margin-bottom:11px}.viscape-ai-msg.user{justify-content:flex-end}.viscape-ai-bubble{max-width:85%;padding:10px 12px;border-radius:16px 16px 16px 5px;background:#fff;border:1px solid #0e254512;color:#26313b;font-size:12px;line-height:1.55}.viscape-ai-msg.user .viscape-ai-bubble{background:#0E2545;color:#fff;border-radius:16px 16px 5px 16px}
+        .viscape-ai-quick{display:flex;flex-wrap:wrap;gap:6px;margin:-3px 0 12px}.viscape-ai-quick button{border:1px solid #0e25451c;background:#fff;color:#0E2545;border-radius:999px;padding:7px 9px;font-size:10px;font-weight:700;cursor:pointer}.viscape-ai-quick button:hover{border-color:#C99A4A;background:#fff9ed}
+        .viscape-ai-product{margin-top:8px;background:#fff;border:1px solid #0e25451c;border-radius:15px;overflow:hidden}.viscape-ai-product-top{display:flex;gap:10px;padding:9px}.viscape-ai-product-img{width:68px;height:68px;object-fit:cover;border-radius:10px;background:#f1f1ee}.viscape-ai-product-name{font:bold 12px "Space Grotesk",sans-serif;color:#0E2545}.viscape-ai-price{font:bold 13px "Space Grotesk",sans-serif;margin-top:5px}.viscape-ai-badge{display:inline-block;background:#C99A4A;color:#fff;font-size:8px;font-weight:800;padding:3px 6px;border-radius:999px;margin-bottom:4px}.viscape-ai-features{display:flex;flex-wrap:wrap;gap:5px;padding:0 9px 9px}.viscape-ai-feature{font-size:8px;background:#f2f4f1;padding:5px 7px;border-radius:999px;color:#5c6670}.viscape-ai-product-actions{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #edf0ed}.viscape-ai-product-actions button{border:0;padding:9px;font-size:9px;font-weight:800;background:#fff;color:#0E2545;cursor:pointer}.viscape-ai-product-actions button+button{background:#0E2545;color:#fff;border-left:1px solid #edf0ed}
+        .viscape-ai-inputbar{padding:10px;background:#fff;border-top:1px solid #0e254512}.viscape-ai-input-row{display:flex;gap:6px;padding:5px 6px 5px 11px;border:1px solid #dce2dc;border-radius:13px;background:#f3f5f2}.viscape-ai-input{flex:1;border:0;outline:0;background:transparent;font-size:11px}.viscape-ai-send{width:34px;height:34px;border:0;border-radius:9px;background:#0E2545;color:#fff}.viscape-ai-note{text-align:center;font-size:8px;color:#8a9299;margin-top:5px}
+        @media(max-width:640px){.viscape-ai-launcher{right:15px;bottom:15px;width:58px;height:58px}.viscape-ai-tooltip{display:none}.viscape-ai-window{inset:8px;width:auto;height:auto;max-height:none}}
     </style>
 </head>
 <body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white">
@@ -226,6 +241,13 @@
         <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
         <span id="toast-message" class="text-xs font-medium">Added to cart successfully</span>
     </div>
+    <button id="viscape-ai-launcher" class="viscape-ai-launcher" onclick="toggleViscapeAI()" aria-label="Mở VISCAPE AI"><span class="viscape-ai-ball"></span><span class="viscape-ai-tooltip">VISCAPE AI – Hỏi tôi về Pickleball</span></button>
+    <section id="viscape-ai-window" class="viscape-ai-window">
+      <header class="viscape-ai-header"><div class="viscape-ai-head"><div class="viscape-ai-brand"><div class="viscape-ai-avatar"><span class="viscape-ai-ball" style="width:22px;height:22px"></span></div><div><div class="viscape-ai-title">VISCAPE AI</div><div class="viscape-ai-sub">Your Pickleball Shopping Assistant</div><div class="viscape-ai-online">● Online</div></div></div><div class="viscape-ai-actions"><button onclick="closeViscapeAI()">−</button><button onclick="closeViscapeAI()">×</button></div></div><div id="viscape-ai-context" class="viscape-ai-context"></div></header>
+      <div id="viscape-ai-messages" class="viscape-ai-messages"></div>
+      <div class="viscape-ai-inputbar"><div class="viscape-ai-input-row"><input id="viscape-ai-input" class="viscape-ai-input" placeholder="Hỏi về vợt, size, ngân sách..." onkeydown="if(event.key==='Enter')sendViscapeAI()"><button class="viscape-ai-send" onclick="sendViscapeAI()">➤</button></div><div class="viscape-ai-note">VISCAPE AI dùng dữ liệu sản phẩm hiện có trên website.</div></div>
+    </section>
+
 
     <script>
         const PRODUCTS = [
@@ -978,6 +1000,41 @@
             router.navigate('home');
             showToast("Order placed successfully! Thank you for choosing VISCAPE Sport.");
         }
+            /* ================= VISCAPE AI ================= */
+        let viscapeAIHistory=[];
+        function toggleViscapeAI(){var w=document.getElementById('viscape-ai-window');w.classList.toggle('is-open');renderViscapeAIContext();if(w.classList.contains('is-open')&&!viscapeAIHistory.length)initViscapeAI();setTimeout(function(){var i=document.getElementById('viscape-ai-input');if(i)i.focus()},150)}
+        function closeViscapeAI(){document.getElementById('viscape-ai-window').classList.remove('is-open')}
+        function renderViscapeAIContext(){var e=document.getElementById('viscape-ai-context');var p=currentRoute==='product'?PRODUCTS.find(function(x){return x.id===routeParam}):null;e.innerHTML=p?'Bạn đang xem <strong>'+p.name+'</strong> 👀':'<strong>VISCAPE Sport</strong> · Mình có thể giúp bạn chọn vợt, bóng, trang phục, phụ kiện, size và ngân sách.'}
+        function aiMsg(t,u){var b=document.getElementById('viscape-ai-messages');var r=document.createElement('div');r.className='viscape-ai-msg'+(u?' user':'');r.innerHTML='<div class="viscape-ai-bubble">'+t+'</div>';b.appendChild(r);b.scrollTop=b.scrollHeight;viscapeAIHistory.push(t)}
+        function aiQuick(items){var b=document.getElementById('viscape-ai-messages'),w=document.createElement('div');w.className='viscape-ai-quick';items.forEach(function(x){var q=document.createElement('button');q.innerText=x[0];q.onclick=function(){aiAction(x[1])};w.appendChild(q)});b.appendChild(w);b.scrollTop=b.scrollHeight}
+        function aiCard(p,badge){var f=[p.description,p.details&&p.details.level,p.details&&p.details.material].filter(Boolean).slice(0,3);return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img class="viscape-ai-product-img" src="'+p.image+'"><div><span class="viscape-ai-badge">'+(badge||'Best Match')+'</span><div class="viscape-ai-product-name">'+p.name+'</div><div>★★★★★ '+p.rating+'</div><div class="viscape-ai-price">
+</html>+p.price.toFixed(2)+'</div></div></div><div class="viscape-ai-features">'+f.map(function(x){return '<span class="viscape-ai-feature">'+x+'</span>'}).join('')+'</div><div class="viscape-ai-product-actions"><button onclick="router.navigate(\'product\',\''+p.id+'\');closeViscapeAI()">Xem sản phẩm</button><button onclick="viscapeAIAdd(\''+p.id+'\')">+ Thêm vào giỏ</button></div></div>'}
+        function aiRecommend(ps,intro){aiMsg((intro||'Mình tìm được lựa chọn phù hợp:')+'<div>'+ps.map(function(p,i){return aiCard(p,i?'Gợi ý':'Best Match')}).join('')+'</div>')}
+        function viscapeAIAdd(id){addToCart(id);aiMsg('✓ Đã thêm sản phẩm vào giỏ hàng.')}
+        function initViscapeAI(){aiMsg('Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball phù hợp với nhu cầu và ngân sách.');aiQuick([['🏓 Chọn vợt cho tôi','paddle'],['👕 Tìm trang phục','apparel'],['🎯 Tôi là người mới chơi','beginner'],['💰 Tìm theo ngân sách','budget'],['📏 Tư vấn size','size'],['🛒 Sản phẩm nổi bật','bestseller'],['🎯 Pickleball Quiz','quiz']])}
+        function aiAction(a){
+          if(a==='paddle'){aiMsg('Bạn đang ở trình độ nào?');aiQuick([['🟢 Mới bắt đầu','level-beginner'],['🔵 Đã chơi một thời gian','level-intermediate'],['🟣 Trung cấp','level-mid'],['🔴 Nâng cao','level-advanced']]);return}
+          if(a.indexOf('level-')===0){aiMsg('Bạn thường chơi theo phong cách nào?');aiQuick([['⚡ Tấn công','style-attack'],['🛡️ Phòng thủ','style-defense'],['⚖️ Cân bằng','style-balance'],['🤷 Chưa biết','style-balance']]);return}
+          if(a.indexOf('style-')===0){aiMsg('Ngân sách của bạn khoảng bao nhiêu?');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
+          if(a.indexOf('budget-')===0){aiMsg('Bạn ưu tiên điều gì?');aiQuick([['Nhẹ','priority-light'],['Kiểm soát bóng','priority-control'],['Sức mạnh','priority-power'],['Độ bền','priority-durable'],['Thiết kế đẹp','priority-design']]);return}
+          if(a.indexOf('priority-')===0){var pp=PRODUCTS.find(function(x){return x.category==='paddles'});aiMsg('Dựa trên lựa chọn của bạn, đây là mẫu vợt hiện có trong catalog để tham khảo:');if(pp)aiRecommend([pp]);return}
+          if(a==='apparel'){aiMsg('Để tư vấn size, bạn gửi <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Ví dụ: “Nam, 1m70, 65kg, thường mặc L”.');return}
+          if(a==='beginner'){aiMsg('Nếu mới chơi, mình có thể giúp bạn chọn vợt hoặc combo theo nhu cầu.');aiQuick([['🏓 Chọn vợt','paddle'],['💰 Chọn theo ngân sách','budget']]);return}
+          if(a==='budget'){aiMsg('Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
+          if(a==='size'){aiMsg('Bạn gửi mình <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Nếu website chưa có bảng size chi tiết, mình sẽ nói rõ thay vì đoán.');return}
+          if(a==='bestseller'){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps,'Theo rating và số review đang có trên website, đây là các sản phẩm nổi bật:');return}
+          if(a==='quiz'){aiMsg('<strong>🎯 PICKLEBALL QUIZ</strong><br>Chọn nhanh trình độ của bạn:');aiQuick([['🟢 Beginner','quiz-beginner'],['🔵 Intermediate','quiz-intermediate'],['🔴 Advanced','quiz-advanced']]);return}
+        }
+        function sendViscapeAI(){var i=document.getElementById('viscape-ai-input'),t=i.value.trim();if(!t)return;i.value='';aiMsg(t,true);processViscapeAI(t)}
+        function processViscapeAI(t){var s=t.toLowerCase();setTimeout(function(){
+          if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới|beginner/.test(s)?'beginner':'paddle');return}
+          if(/áo|quần|outfit|trang phục|size/.test(s)){aiAction(s.indexOf('size')>=0?'size':'apparel');return}
+          if(/ngân sách|triệu|combo|bao nhiêu|budget/.test(s)){aiAction('budget');return}
+          if(/bán chạy|nổi bật|best/.test(s)){aiAction('bestseller');return}
+          if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg('Mình đã mở giỏ hàng cho bạn.');return}
+          if(/đơn hàng|giao hàng|đổi trả|bảo hành/.test(s)){aiMsg('Thông tin chính sách chi tiết chưa được kết nối vào dữ liệu chatbot, nên mình không muốn tự bịa. Bạn có thể liên hệ VISCAPE để được xác nhận.');return}
+          aiMsg('Mình hiểu rồi. Bạn có thể hỏi tự nhiên, ví dụ: <strong>“Vợt nào phù hợp người mới?”</strong>, <strong>“Có sản phẩm dưới 2 triệu không?”</strong> hoặc <strong>“Tôi mặc size gì?”</strong>.');aiQuick([['🏓 Chọn vợt','paddle'],['👕 Tư vấn size','size'],['💰 Theo ngân sách','budget'],['🎯 Quiz','quiz']])
+        },350)}
     </script>
-</body>
+</body
 </html>
