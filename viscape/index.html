@@ -1007,62 +1007,23 @@
         function renderViscapeAIContext(){var e=document.getElementById('viscape-ai-context');var p=currentRoute==='product'?PRODUCTS.find(function(x){return x.id===routeParam}):null;e.innerHTML=p?'Bạn đang xem <strong>'+p.name+'</strong> 👀':'<strong>VISCAPE Sport</strong> · Mình có thể giúp bạn chọn vợt, bóng, trang phục, phụ kiện, size và ngân sách.'}
         function aiMsg(t,u){var b=document.getElementById('viscape-ai-messages');var r=document.createElement('div');r.className='viscape-ai-msg'+(u?' user':'');r.innerHTML='<div class="viscape-ai-bubble">'+t+'</div>';b.appendChild(r);b.scrollTop=b.scrollHeight;viscapeAIHistory.push(t)}
         function aiQuick(items){var b=document.getElementById('viscape-ai-messages'),w=document.createElement('div');w.className='viscape-ai-quick';items.forEach(function(x){var q=document.createElement('button');q.innerText=x[0];q.onclick=function(){aiAction(x[1])};w.appendChild(q)});b.appendChild(w);b.scrollTop=b.scrollHeight}
-        function aiCard(p,badge){var f=[p.description,p.details&&p.details.level,p.details&&p.details.material].filter(Boolean).slice(0,3);return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img class="viscape-ai-product-img" src="'+p.image+'"><div><span class="viscape-ai-badge">'+(badge||'Best Match')+'</span><div class="viscape-ai-product-name">'+p.name+'</div><div>★★★★★ '+p.rating+'</div><div class="viscape-ai-price">+'</div></div></div><div class="viscape-ai-features">'+f.map(function(x){return '<span class="viscape-ai-feature">'+x+'</span>'}).join('')+'</div><div class="viscape-ai-product-actions"><button onclick="router.navigate(\'product\',\''+p.id+'\');closeViscapeAI()">Xem sản phẩm</button><button onclick="viscapeAIAdd(\''+p.id+'\')">+ Thêm vào giỏ</button></div></div>'}
-        function aiRecommend(ps,intro){aiMsg((intro||'Mình tìm được lựa chọn phù hợp:')+'<div>'+ps.map(function(p,i){return aiCard(p,i?'Gợi ý':'Best Match')}).join('')+'</div>')}
-        function viscapeAIAdd(id){addToCart(id);aiMsg('✓ Đã thêm sản phẩm vào giỏ hàng.')}
-        function initViscapeAI(){aiMsg('Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball phù hợp với nhu cầu và ngân sách.');aiQuick([['🏓 Chọn vợt cho tôi','paddle'],['👕 Tìm trang phục','apparel'],['🎯 Tôi là người mới chơi','beginner'],['💰 Tìm theo ngân sách','budget'],['📏 Tư vấn size','size'],['🛒 Sản phẩm nổi bật','bestseller'],['🎯 Pickleball Quiz','quiz']])}
-        function aiAction(a){
-          if(a==='paddle'){aiMsg('Bạn đang ở trình độ nào?');aiQuick([['🟢 Mới bắt đầu','level-beginner'],['🔵 Đã chơi một thời gian','level-intermediate'],['🟣 Trung cấp','level-mid'],['🔴 Nâng cao','level-advanced']]);return}
-          if(a.indexOf('level-')===0){aiMsg('Bạn thường chơi theo phong cách nào?');aiQuick([['⚡ Tấn công','style-attack'],['🛡️ Phòng thủ','style-defense'],['⚖️ Cân bằng','style-balance'],['🤷 Chưa biết','style-balance']]);return}
-          if(a.indexOf('style-')===0){aiMsg('Ngân sách của bạn khoảng bao nhiêu?');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
-          if(a.indexOf('budget-')===0){aiMsg('Bạn ưu tiên điều gì?');aiQuick([['Nhẹ','priority-light'],['Kiểm soát bóng','priority-control'],['Sức mạnh','priority-power'],['Độ bền','priority-durable'],['Thiết kế đẹp','priority-design']]);return}
-          if(a.indexOf('priority-')===0){var pp=PRODUCTS.find(function(x){return x.category==='paddles'});aiMsg('Dựa trên lựa chọn của bạn, đây là mẫu vợt hiện có trong catalog để tham khảo:');if(pp)aiRecommend([pp]);return}
-          if(a==='apparel'){aiMsg('Để tư vấn size, bạn gửi <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Ví dụ: “Nam, 1m70, 65kg, thường mặc L”.');return}
-          if(a==='beginner'){aiMsg('Nếu mới chơi, mình có thể giúp bạn chọn vợt hoặc combo theo nhu cầu.');aiQuick([['🏓 Chọn vợt','paddle'],['💰 Chọn theo ngân sách','budget']]);return}
-          if(a==='budget'){aiMsg('Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
-          if(a==='size'){aiMsg('Bạn gửi mình <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Nếu website chưa có bảng size chi tiết, mình sẽ nói rõ thay vì đoán.');return}
-          if(a==='bestseller'){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps,'Theo rating và số review đang có trên website, đây là các sản phẩm nổi bật:');return}
-          if(a==='quiz'){aiMsg('<strong>🎯 PICKLEBALL QUIZ</strong><br>Chọn nhanh trình độ của bạn:');aiQuick([['🟢 Beginner','quiz-beginner'],['🔵 Intermediate','quiz-intermediate'],['🔴 Advanced','quiz-advanced']]);return}
-        }
-        function sendViscapeAI(){var i=document.getElementById('viscape-ai-input'),t=i.value.trim();if(!t)return;i.value='';aiMsg(t,true);processViscapeAI(t)}
-        function processViscapeAI(t){var s=t.toLowerCase();setTimeout(function(){
-          if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới|beginner/.test(s)?'beginner':'paddle');return}
-          if(/áo|quần|outfit|trang phục|size/.test(s)){aiAction(s.indexOf('size')>=0?'size':'apparel');return}
-          if(/ngân sách|triệu|combo|bao nhiêu|budget/.test(s)){aiAction('budget');return}
-          if(/bán chạy|nổi bật|best/.test(s)){aiAction('bestseller');return}
-          if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg('Mình đã mở giỏ hàng cho bạn.');return}
-          if(/đơn hàng|giao hàng|đổi trả|bảo hành/.test(s)){aiMsg('Thông tin chính sách chi tiết chưa được kết nối vào dữ liệu chatbot, nên mình không muốn tự bịa. Bạn có thể liên hệ VISCAPE để được xác nhận.');return}
-          aiMsg('Mình hiểu rồi. Bạn có thể hỏi tự nhiên, ví dụ: <strong>“Vợt nào phù hợp người mới?”</strong>, <strong>“Có sản phẩm dưới 2 triệu không?”</strong> hoặc <strong>“Tôi mặc size gì?”</strong>.');aiQuick([['🏓 Chọn vợt','paddle'],['👕 Tư vấn size','size'],['💰 Theo ngân sách','budget'],['🎯 Quiz','quiz']])
-        },350)}
+        function aiCard(p){
+return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img class="viscape-ai-product-img" src="'+p.image+'" alt="'+p.name+'"><div><div class="viscape-ai-badge">BEST MATCH</div><div class="viscape-ai-product-name">'+p.name+'</div><div>★★★★★ '+p.rating+'</div><div class="viscape-ai-price">$'+p.price.toFixed(2)+'</div></div></div><div class="viscape-ai-features"><span class="viscape-ai-feature">'+p.description+'</span></div><div class="viscape-ai-product-actions"><button class="viscape-ai-view" data-id="'+p.id+'">Xem sản phẩm</button><button class="viscape-ai-add" data-id="'+p.id+'">+ Thêm vào giỏ</button></div></div>';
+}
+function bindAIProductButtons(){document.querySelectorAll(".viscape-ai-view").forEach(function(b){b.onclick=function(){router.navigate("product",b.dataset.id);closeViscapeAI();}});document.querySelectorAll(".viscape-ai-add").forEach(function(b){b.onclick=function(){addToCart(b.dataset.id);aiMsg("✓ Đã thêm sản phẩm vào giỏ hàng.");}});}
+function aiRecommend(ps){aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");bindAIProductButtons();}
+function initViscapeAI(){aiMsg("Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball.");aiQuick([["🏓 Chọn vợt","paddle"],["👕 Tìm trang phục","apparel"],["🎯 Người mới chơi","beginner"],["💰 Theo ngân sách","budget"],["📏 Tư vấn size","size"],["🛒 Sản phẩm nổi bật","bestseller"]]);}
+function aiAction(a){
+if(a==="paddle"){aiMsg("Bạn đang ở trình độ nào?");aiQuick([["🟢 Mới bắt đầu","beginner"],["🔵 Đã chơi một thời gian","intermediate"],["🔴 Nâng cao","advanced"]]);return;}
+if(a==="beginner"){var p=PRODUCTS.find(function(x){return x.category==="paddles";});if(p)aiRecommend([p]);return;}
+if(a==="intermediate"||a==="advanced"){var p2=PRODUCTS.find(function(x){return x.category==="paddles";});if(p2)aiRecommend([p2]);return;}
+if(a==="apparel"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc để mình tư vấn.");return;}
+if(a==="size"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc. Nếu catalog chưa có bảng size chi tiết, mình sẽ nói rõ.");return;}
+if(a==="budget"){aiMsg("Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.");return;}
+if(a==="bestseller"){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps);return;}
+}
+function sendViscapeAI(){var i=document.getElementById("viscape-ai-input"),t=i.value.trim();if(!t)return;i.value="";aiMsg(t,true);setTimeout(function(){var s=t.toLowerCase();if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới/.test(s)?"beginner":"paddle");return;}if(/áo|quần|trang phục/.test(s)){aiAction("apparel");return;}if(/size/.test(s)){aiAction("size");return;}if(/ngân sách|triệu|combo/.test(s)){aiAction("budget");return;}if(/bán chạy|nổi bật/.test(s)){aiAction("bestseller");return;}if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg("Mình đã mở giỏ hàng cho bạn.");return;}aiMsg("Mình hiểu rồi. Bạn có thể hỏi về vợt, trang phục, size, ngân sách hoặc sản phẩm nổi bật.");},350);}
+
     </script>
 </body>
-</html>+p.price.toFixed(2)+'</div></div></div><div class="viscape-ai-features">'+f.map(function(x){return '<span class="viscape-ai-feature">'+x+'</span>'}).join('')+'</div><div class="viscape-ai-product-actions"><button onclick="router.navigate(\'product\',\''+p.id+'\');closeViscapeAI()">Xem sản phẩm</button><button onclick="viscapeAIAdd(\''+p.id+'\')">+ Thêm vào giỏ</button></div></div>'}
-        function aiRecommend(ps,intro){aiMsg((intro||'Mình tìm được lựa chọn phù hợp:')+'<div>'+ps.map(function(p,i){return aiCard(p,i?'Gợi ý':'Best Match')}).join('')+'</div>')}
-        function viscapeAIAdd(id){addToCart(id);aiMsg('✓ Đã thêm sản phẩm vào giỏ hàng.')}
-        function initViscapeAI(){aiMsg('Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball phù hợp với nhu cầu và ngân sách.');aiQuick([['🏓 Chọn vợt cho tôi','paddle'],['👕 Tìm trang phục','apparel'],['🎯 Tôi là người mới chơi','beginner'],['💰 Tìm theo ngân sách','budget'],['📏 Tư vấn size','size'],['🛒 Sản phẩm nổi bật','bestseller'],['🎯 Pickleball Quiz','quiz']])}
-        function aiAction(a){
-          if(a==='paddle'){aiMsg('Bạn đang ở trình độ nào?');aiQuick([['🟢 Mới bắt đầu','level-beginner'],['🔵 Đã chơi một thời gian','level-intermediate'],['🟣 Trung cấp','level-mid'],['🔴 Nâng cao','level-advanced']]);return}
-          if(a.indexOf('level-')===0){aiMsg('Bạn thường chơi theo phong cách nào?');aiQuick([['⚡ Tấn công','style-attack'],['🛡️ Phòng thủ','style-defense'],['⚖️ Cân bằng','style-balance'],['🤷 Chưa biết','style-balance']]);return}
-          if(a.indexOf('style-')===0){aiMsg('Ngân sách của bạn khoảng bao nhiêu?');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
-          if(a.indexOf('budget-')===0){aiMsg('Bạn ưu tiên điều gì?');aiQuick([['Nhẹ','priority-light'],['Kiểm soát bóng','priority-control'],['Sức mạnh','priority-power'],['Độ bền','priority-durable'],['Thiết kế đẹp','priority-design']]);return}
-          if(a.indexOf('priority-')===0){var pp=PRODUCTS.find(function(x){return x.category==='paddles'});aiMsg('Dựa trên lựa chọn của bạn, đây là mẫu vợt hiện có trong catalog để tham khảo:');if(pp)aiRecommend([pp]);return}
-          if(a==='apparel'){aiMsg('Để tư vấn size, bạn gửi <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Ví dụ: “Nam, 1m70, 65kg, thường mặc L”.');return}
-          if(a==='beginner'){aiMsg('Nếu mới chơi, mình có thể giúp bạn chọn vợt hoặc combo theo nhu cầu.');aiQuick([['🏓 Chọn vợt','paddle'],['💰 Chọn theo ngân sách','budget']]);return}
-          if(a==='budget'){aiMsg('Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.');aiQuick([['Dưới 1 triệu','budget-under'],['1–2 triệu','budget-mid'],['2–3 triệu','budget-high'],['Trên 3 triệu','budget-pro']]);return}
-          if(a==='size'){aiMsg('Bạn gửi mình <strong>nam/nữ + chiều cao + cân nặng + size thường mặc</strong>. Nếu website chưa có bảng size chi tiết, mình sẽ nói rõ thay vì đoán.');return}
-          if(a==='bestseller'){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps,'Theo rating và số review đang có trên website, đây là các sản phẩm nổi bật:');return}
-          if(a==='quiz'){aiMsg('<strong>🎯 PICKLEBALL QUIZ</strong><br>Chọn nhanh trình độ của bạn:');aiQuick([['🟢 Beginner','quiz-beginner'],['🔵 Intermediate','quiz-intermediate'],['🔴 Advanced','quiz-advanced']]);return}
-        }
-        function sendViscapeAI(){var i=document.getElementById('viscape-ai-input'),t=i.value.trim();if(!t)return;i.value='';aiMsg(t,true);processViscapeAI(t)}
-        function processViscapeAI(t){var s=t.toLowerCase();setTimeout(function(){
-          if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới|beginner/.test(s)?'beginner':'paddle');return}
-          if(/áo|quần|outfit|trang phục|size/.test(s)){aiAction(s.indexOf('size')>=0?'size':'apparel');return}
-          if(/ngân sách|triệu|combo|bao nhiêu|budget/.test(s)){aiAction('budget');return}
-          if(/bán chạy|nổi bật|best/.test(s)){aiAction('bestseller');return}
-          if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg('Mình đã mở giỏ hàng cho bạn.');return}
-          if(/đơn hàng|giao hàng|đổi trả|bảo hành/.test(s)){aiMsg('Thông tin chính sách chi tiết chưa được kết nối vào dữ liệu chatbot, nên mình không muốn tự bịa. Bạn có thể liên hệ VISCAPE để được xác nhận.');return}
-          aiMsg('Mình hiểu rồi. Bạn có thể hỏi tự nhiên, ví dụ: <strong>“Vợt nào phù hợp người mới?”</strong>, <strong>“Có sản phẩm dưới 2 triệu không?”</strong> hoặc <strong>“Tôi mặc size gì?”</strong>.');aiQuick([['🏓 Chọn vợt','paddle'],['👕 Tư vấn size','size'],['💰 Theo ngân sách','budget'],['🎯 Quiz','quiz']])
-        },350)}
-    </script>
-</body
 </html>
