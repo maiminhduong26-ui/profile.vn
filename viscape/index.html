@@ -619,12 +619,12 @@
             return `
                 <!-- Background Banner / Hero -->
                 <section class="relative bg-navy text-white min-h-[650px] md:min-h-[780px] flex items-center px-6 md:px-12 lg:px-16 overflow-hidden">
-                    <!-- Full-bleed, crisp photo. Top alignment keeps the complete paddle visible. -->
-                    <div class="absolute inset-0 bg-cover bg-no-repeat"
-                         style="background-image:url('assets/hero-pickleball.jpg?v=20261001-5'); background-size:115% auto; background-position:65% top;"></div>
+                    <!-- Full-frame hero: the original photo is fitted to the entire hero so the complete paddle and athlete remain visible. -->
+                    <div class="absolute inset-0 bg-no-repeat"
+                         style="background-image:url('assets/hero-pickleball.jpg?v=20261001-6'); background-size:125% 100%; background-position:left top;"></div>
 
-                    <!-- Left text zone: readable without washing out the photograph -->
-                    <div class="absolute inset-y-0 left-0 w-[46%] bg-gradient-to-r from-navy/90 via-navy/62 to-transparent"></div>
+                    <!-- Minimal readability gradient; no blur or opacity wash over the photograph. -->
+                    <div class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-navy/72 via-navy/28 to-transparent"></div>
 
                     <div class="max-w-7xl mx-auto relative z-10 py-24 w-full">
                         <div class="max-w-[420px]">
