@@ -642,18 +642,15 @@
                 <!-- Background Banner / Hero -->
                 <section class="relative bg-navy text-white min-h-[720px] md:min-h-[780px] flex items-center px-6 md:px-12 lg:px-16 overflow-hidden">
                     <!-- Hero image is intentionally positioned on the RIGHT so the copy stays clear of the athlete. -->
-                    <div class="absolute inset-y-0 right-0 w-full md:w-[68%] lg:w-[66%] overflow-hidden">
+                    <div class="absolute inset-0 overflow-hidden">
                         <img
-                            src="assets/hero-pickleball.jpg?v=20261001-9"
+                            src="assets/hero-pickleball.jpg?v=20261002-10"
                             alt="VISCAPE Sport pickleball athlete"
                             class="w-full h-full object-cover object-[58%_center]"
                         >
-                        <!-- Wide feathered transition: no hard vertical seam between navy and photography. -->
-                        <!-- No overlay: preserve the full athlete, paddle and ball without fading or hiding body parts. -->
+                        <!-- Full-bleed image. A single soft overlay keeps the copy readable without creating a vertical seam. -->
+                        <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-navy/90 via-navy/55 via-[24%] via-navy/15 via-[43%] to-transparent"></div>
                     </div>
-
-                    <!-- Solid base behind the copy; the image gradient feathers naturally over this area. -->
-                    <div class="absolute inset-y-0 left-0 w-full md:w-[43%] bg-navy"></div>
 
                     <div class="max-w-7xl mx-auto relative z-10 py-24 w-full">
                         <div class="max-w-[420px]">
