@@ -419,6 +419,32 @@
                 inStock: true
             },
             {
+                id: 'viscape-dong-son-performance-tee',
+                name: 'VISCAPE Đông Sơn Performance Tee',
+                category: 'apparel',
+                collection: 'Dong Son',
+                price: 750000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/b4f9fe3f-5f95-493d-83a2-e5c3c168d270.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/0acf4792-3c65-4536-b683-639f41d202a5.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/b4f9fe3f-5f95-493d-83a2-e5c3c168d270.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/0acf4792-3c65-4536-b683-639f41d202a5.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/eea0e226-1315-450c-a1bd-938aac05814e.png'
+                ],
+                description: 'VISCAPE Đông Sơn Performance Tee - Áo thun thể thao VISCAPE Hoạ tiết Đông Sơn. VISCAPE Đông Sơn Performance Tee kết hợp họa tiết Đông Sơn mang đậm dấu ấn văn hóa Việt với chất liệu thể thao co giãn 4 chiều, mềm mại và thoáng khí. Thiết kế nhẹ, linh hoạt, hỗ trợ tối đa từng chuyển động trên sân pickleball, đồng thời tạo nên diện mạo hiện đại, tinh tế và khác biệt cho người mặc.',
+                details: {
+                    material: '92% Polyester + 8% Elastane',
+                    stretch: '4 chiều',
+                    sizeGuide: 'M: 40–55kg • L: 56–65kg • XL: 66–73kg • XXL: 74–82kg • XXXL: 83–90kg'
+                },
+                variants: ['Black'],
+                sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+                inStock: true
+            },
+            {
                 id: 'viscape-performance-tee',
                 name: 'VISCAPE Performance Tee',
                 category: 'apparel',
@@ -964,6 +990,10 @@
                                         <img src="${product.altImage}" class="w-full h-full object-contain p-2">
                                     </div>
                                 </div>
+                                    ${product.galleryImages && product.galleryImages[2] ? `
+                                    <div onclick="document.getElementById('main-image').src='${product.galleryImages[2]}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.galleryImages[2]}" class="w-full h-full object-contain p-2">
+                                    </div>` : ''}
                             </div>
                             <div class="space-y-8">
                                 <div>
