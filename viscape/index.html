@@ -419,6 +419,31 @@
                 inStock: true
             },
             {
+                id: 'viscape-polyester-performance-tee',
+                name: 'VISCAPE Polyester Performance Tee',
+                category: 'apparel',
+                collection: 'Performance Collection',
+                price: 550000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                galleryImages: ['https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png','https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png'],
+                colors: ['Đen', 'Trắng', 'Xanh đen', 'Xám'],
+                colorImages: {
+                    'Đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png',
+                    'Trắng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                    'Xanh đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                    'Xám': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png'
+                },
+                variants: ['Đen', 'Trắng', 'Xanh đen', 'Xám'],
+                sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+                description: 'VISCAPE Polyester Performance Tee - Áo thun thể thao VISCAPE chất liệu Polyester. Thiết kế tối giản với chất liệu Polyester nhẹ, mềm, co giãn tốt và thoáng khí, giúp thấm hút mồ hôi và nhanh khô trong suốt quá trình vận động. Phù hợp cho pickleball và nhiều hoạt động thể thao khác.',
+                details: { material: '92% Polyester + 8% Elastane', stretch: '4 chiều', colors: 'Đen • Trắng • Xanh đen • Xám', sizeGuide: 'M: 40–55kg • L: 56–65kg • XL: 66–73kg • XXL: 74–82kg • XXXL: 83–90kg' },
+                inStock: true
+            },
+            {
                 id: 'viscape-lotus-performance-tee',
                 name: 'VISCAPE Lotus Performance Tee',
                 category: 'apparel',
@@ -651,6 +676,14 @@
         function addToCart(productId, variant = null, size = null) {
             const product = PRODUCTS.find(p => p.id === productId);
             if(!product) return;
+            if (variant === null) {
+                const activeVariant = document.querySelector('.variant-btn.border-navy');
+                variant = activeVariant ? activeVariant.textContent.trim() : (product.variants ? product.variants[0] : null);
+            }
+            if (size === null && product.sizes) {
+                const activeSize = document.querySelector('.size-btn.border-navy');
+                size = activeSize ? activeSize.textContent.trim() : product.sizes[0];
+            }
             const existingItem = cart.find(item => item.id === productId && item.variant === variant && item.size === size);
             if(existingItem) {
                 existingItem.quantity += 1;
@@ -1034,9 +1067,9 @@
                                     <span>(${product.reviewsCount} verified reviews)</span>
                                 </div>
                                 <div class="space-y-3">
-                                    <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">Color Variant</label>
-                                    <div class="flex gap-3">
-                                        ${product.variants.map((v, i) => `<button onclick="selectVariant(this)" class="variant-btn px-4 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold uppercase tracking-wider transition-all">${v}</button>`).join('')}
+                                    <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">${product.colors ? 'Màu sắc' : 'Color Variant'}</label>
+                                    <div class="flex flex-wrap gap-3">
+                                        ${(product.colors || product.variants).map((v, i) => product.colors ? `<button type="button" onclick="selectVariant(this, '${v}', '${product.colorImages ? (product.colorImages[v] || product.image) : product.image}')" title="${v}" class="variant-btn flex items-center gap-2 px-3 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold transition-all"><span class="w-4 h-4 rounded-full border border-black/10 ${v === 'Đen' ? 'bg-black' : v === 'Trắng' ? 'bg-white' : v === 'Xám' ? 'bg-gray-400' : 'bg-blue-950'}"></span>${v}</button>` : `<button type="button" onclick="selectVariant(this)" class="variant-btn px-4 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold uppercase tracking-wider transition-all">${v}</button>`).join('')}
                                     </div>
                                 </div>
                                 ${product.sizes ? `
@@ -1066,9 +1099,15 @@
             `;
         }
 
-        function selectVariant(btn) {
-            document.querySelectorAll('.variant-btn').forEach(b => b.className = 'variant-btn px-4 py-2 rounded-xl border border-gray-200 bg-white text-dark text-xs font-bold uppercase tracking-wider transition-all');
-            btn.className = 'variant-btn px-4 py-2 rounded-xl border border-navy bg-navy text-white text-xs font-bold uppercase tracking-wider transition-all';
+        function selectVariant(btn, variantName = null, imageUrl = null) {
+            document.querySelectorAll('.variant-btn').forEach(b => {
+                b.className = b.className.replace('border-navy bg-navy text-white', 'border-gray-200 bg-white text-dark');
+            });
+            btn.className = btn.className.replace('border-gray-200 bg-white text-dark', 'border-navy bg-navy text-white');
+            if (variantName && imageUrl) {
+                const mainImage = document.getElementById('main-image');
+                if (mainImage) mainImage.src = imageUrl;
+            }
         }
 
         function selectSize(btn) {
