@@ -250,28 +250,832 @@
 
 
     <script>
-        const PRODUCTS = [
+        function formatProductPrice(price, currency = 'USD') {
+            return currency === 'VND'
+                ? price.toLocaleString('vi-VN') + ' VNĐ'
+                : '
             {
-                id: 'viscape-heritage',
-                name: 'VISCAPE Pro Paddle',
+                id: 'viscape-vietnam-kham-vang',
+                name: 'Việt Nam Khảm Vàng',
                 category: 'paddles',
-                collection: 'Dong Son',
-                price: 185.00,
+                collection: 'Legacy Collection',
+                price: 3100000,
+                currency: 'VND',
                 rating: 4.9,
                 reviewsCount: 128,
-                image: 'assets/products/viscape-pro-paddle.jpg?v=20261001',
-                altImage: 'assets/products/viscape-pro-paddle.jpg?v=20261001',
-                description: 'Premium carbon fiber paddle • 16mm core.',
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/de75cb36-4c96-49c0-9968-c8839ac482d6.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/de75cb36-4c96-49c0-9968-c8839ac482d6.png',
+                description: 'Vợt pickleball cảm hứng Việt Nam với họa tiết khảm vàng, định hướng control, stability và spin.',
                 details: {
-                    material: 'Toray T700 Raw Carbon Fiber',
-                    weight: '7.9 - 8.2 oz',
-                    grip: '4.25 inch Cushioned Perforated',
-                    length: '16.5 inch',
-                    core: '16mm Polymer Honeycomb',
-                    surface: 'Raw Textured Spin Friction',
-                    level: 'Advanced / Tournament Player'
+                    material: 'T700 Carbon Fiber',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: '399 × 198 mm face • 135 mm handle',
+                    core: 'Polypropylene Honeycomb Core',
+                    surface: 'Textured Raw Carbon',
+                    level: 'Advanced / All-Court'
                 },
-                variants: ['Black & Gold', 'Matte Bronze'],
+                specs: {
+                    thickness: '16 mm',
+                    construction: 'Hybrid / Elongated',
+                    gripMaterial: 'PU Perforated Grip',
+                    protection: 'Edge Guard',
+                    vibration: 'Vibration Dampening'
+                },
+                variants: ['Việt Nam Khảm Vàng'],
+                inStock: true
+            },
+            {
+                id: 'viscape-lotus',
+                name: 'VISCAPE Pickleball Balls',
+                category: 'balls',
+                collection: 'Lotus',
+                price: 175.00,
+                rating: 4.8,
+                reviewsCount: 94,
+                image: 'assets/products/viscape-pickleball-balls.svg',
+                altImage: 'assets/products/viscape-pickleball-balls.svg',
+                description: 'Indoor & Outdoor • 3-Pack.',
+                details: {
+                    material: 'Carbon Fiber & Fiberglass Blend',
+                    weight: '7.7 - 8.0 oz',
+                    grip: '4.25 inch Ivory White Grip',
+                    length: '16.0 inch',
+                    core: '14mm Precision Polymer',
+                    surface: 'Smooth Matte UV Shield',
+                    level: 'Intermediate / All-Court'
+                },
+                variants: ['Ivory & Gold', 'Emerald'],
+                inStock: true
+            },
+            {
+                id: 'viscape-saigon',
+                name: 'VISCAPE Court Shoes',
+                category: 'shoes',
+                collection: 'Saigon',
+                price: 190.00,
+                rating: 5.0,
+                reviewsCount: 156,
+                image: 'assets/products/viscape-court-shoes.svg',
+                altImage: 'assets/products/viscape-court-shoes.svg',
+                description: 'Lightweight • Breathable.',
+                details: {
+                    material: 'Aerospace Grade Carbon Fiber',
+                    weight: '8.0 - 8.3 oz',
+                    grip: '4.375 inch Perforated Black',
+                    length: '16.75 inch',
+                    core: '16mm Power Core',
+                    surface: 'Carbon Friction Surface Gen-2',
+                    level: 'Elite / Pro Tournament'
+                },
+                variants: ['Midnight Black', 'Urban Blue'],
+                inStock: true
+            },
+            {
+                id: 'viscape-performance-tee',
+                name: 'VISCAPE Performance Tee',
+                category: 'apparel',
+                collection: 'Dong Son',
+                price: 68.00,
+                rating: 4.8,
+                reviewsCount: 72,
+                image: 'assets/products/viscape-performance-tee.svg',
+                altImage: 'assets/products/viscape-performance-tee.svg',
+                description: 'Quick Dry • UV Protection.',
+                details: {
+                    material: '88% Recycled Poly, 12% Elastane',
+                    weight: '140 GSM Lightweight',
+                    fit: 'Athletic Tailored Fit',
+                    care: 'Machine wash cold, tumble dry low',
+                    origin: 'Made in Vietnam'
+                },
+                variants: ['Navy', 'Ivory', 'Black'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true
+            },
+            {
+                id: 'viscape-court-shirt',
+                name: 'VISCAPE Flex Shorts',
+                category: 'apparel',
+                collection: 'Lotus',
+                price: 82.00,
+                rating: 4.9,
+                reviewsCount: 110,
+                image: 'assets/products/viscape-flex-shorts.svg',
+                altImage: 'assets/products/viscape-flex-shorts.svg',
+                description: '4-Way Stretch • Breathable.',
+                details: {
+                    material: '92% Performance Poly, 8% Spandex',
+                    weight: '160 GSM Breathable Tech',
+                    fit: 'Modern Athletic',
+                    care: 'Wash with similar colors',
+                    origin: 'Made in Vietnam'
+                },
+                variants: ['Ivory', 'Sky Blue', 'Deep Navy'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true
+            },
+            {
+                id: 'viscape-training-shorts',
+                name: 'VISCAPE Sports Cap',
+                category: 'accessories',
+                collection: 'Saigon',
+                price: 75.00,
+                rating: 4.7,
+                reviewsCount: 64,
+                image: 'assets/products/viscape-sports-cap.svg',
+                altImage: 'assets/products/viscape-sports-cap.svg',
+                description: 'Lightweight • Adjustable.',
+                details: {
+                    material: '86% Polyester, 14% Spandex',
+                    weight: '130 GSM Ultralight',
+                    fit: '7-inch Inseam, Athletic Cut',
+                    care: 'Do not bleach',
+                    origin: 'Made in Vietnam'
+                },
+                variants: ['Navy', 'Dark Green', 'Black'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                inStock: true
+            },
+            {
+                id: 'viscape-pro-bag',
+                name: 'VISCAPE Wristband',
+                category: 'accessories',
+                collection: 'Dong Son',
+                price: 140.00,
+                rating: 4.9,
+                reviewsCount: 45,
+                image: 'assets/products/viscape-wristband.svg',
+                altImage: 'assets/products/viscape-wristband.svg',
+                description: 'Soft Cotton • Absorbent.',
+                details: {
+                    material: 'Water-Resistant Ballistic Nylon',
+                    dimensions: '20" x 14" x 9"',
+                    capacity: 'Holds up to 6 paddles',
+                    hardware: 'Gold-finished custom zippers'
+                },
+                variants: ['Matte Black', 'Navy Gold'],
+                inStock: true
+            },
+            {
+                id: 'viscape-cap',
+                name: 'VISCAPE Sports Bag',
+                category: 'accessories',
+                collection: 'Lotus',
+                price: 42.00,
+                rating: 4.8,
+                reviewsCount: 88,
+                image: 'assets/products/viscape-sports-bag.svg',
+                altImage: 'assets/products/viscape-sports-bag.svg',
+                description: 'Multi-compartment • Durable.',
+                details: {
+                    material: '100% Technical Performance Fabric',
+                    closure: 'Adjustable strap with metal buckle',
+                    sweatband: 'Quick-dry absorbent mesh'
+                },
+                variants: ['Ivory', 'Navy', 'Olive'],
+                inStock: true
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('viscape_cart')) || [];
+        let currentRoute = 'home';
+        let routeParam = null;
+        let selectedFilter = 'all';
+
+        const router = {
+            navigate: (route, param = null) => {
+                currentRoute = route;
+                routeParam = param;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                render();
+                if(window.innerWidth < 1024) {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+                        toggleMobileMenu();
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 700);
+            }, 800);
+            const bar = document.getElementById('loader-bar');
+            if(bar) bar.style.width = '100%';
+            updateCartUI();
+            render();
+            lucide.createIcons();
+        });
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const panel = document.getElementById('cart-panel');
+            if(drawer.classList.contains('pointer-events-none')) {
+                drawer.classList.remove('opacity-0', 'pointer-events-none');
+                panel.classList.remove('translate-x-full');
+                renderCartItems();
+            } else {
+                drawer.classList.add('opacity-0', 'pointer-events-none');
+                panel.classList.add('translate-x-full');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        function openSearch() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearch() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-32');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3000);
+        }
+
+        function addToCart(productId, variant = null, size = null) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if(!product) return;
+            const existingItem = cart.find(item => item.id === productId && item.variant === variant && item.size === size);
+            if(existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    currency: product.currency || 'USD',
+                    image: product.image,
+                    variant: variant || product.variants[0],
+                    size: size || (product.sizes ? product.sizes[0] : null),
+                    quantity: 1
+                });
+            }
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast(`Added ${product.name} to cart`);
+            toggleCart();
+        }
+
+        function updateQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if(cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            renderCartItems();
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badges = document.querySelectorAll('#cart-badge, #cart-count-badge');
+            badges.forEach(badge => {
+                badge.innerText = totalItems;
+                if(totalItems > 0) {
+                    badge.classList.remove('scale-0');
+                    badge.classList.add('scale-100');
+                } else {
+                    badge.classList.remove('scale-100');
+                    badge.classList.add('scale-0');
+                }
+            });
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-400">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 stroke-[1]"></i>
+                        <p class="font-display font-medium text-lg text-dark">Your cart is empty</p>
+                        <p class="text-xs text-gray-500 mt-1">Explore our collections and elevate your game.</p>
+                        <button onclick="toggleCart(); router.navigate('shop');" class="mt-6 bg-navy text-white text-xs px-6 py-3 rounded-lg uppercase tracking-wider font-bold">Start Shopping</button>
+                    </div>
+                `;
+                subtotalEl.innerText = '$0.00';
+                totalEl.innerText = '$0.00';
+                lucide.createIcons();
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, index) => {
+                subtotal += item.price * item.quantity;
+                return `
+                    <div class="flex gap-4 py-4 items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg bg-ivory">
+                        <div class="flex-1">
+                            <h4 class="font-display font-bold text-sm text-dark">${item.name}</h4>
+                            <p class="text-xs text-gray-500 mt-0.5">${item.variant} ${item.size ? '• Size: ' + item.size : ''}</p>
+                            <p class="text-sm font-bold text-navy mt-1">${formatProductPrice(item.price, item.currency)}</p>
+                            <div class="flex items-center gap-3 mt-2">
+                                <div class="flex items-center border border-gray-200 rounded-md">
+                                    <button onclick="updateQuantity(${index}, -1)" class="px-2 py-0.5 text-gray-500 hover:text-dark">-</button>
+                                    <span class="px-2 text-xs font-bold">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${index}, 1)" class="px-2 py-0.5 text-gray-500 hover:text-dark">+</button>
+                                </div>
+                                <button onclick="updateQuantity(${index}, -item.quantity)" class="text-xs text-red-500 hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            totalEl.innerText = `$${subtotal.toFixed(2)}`;
+            lucide.createIcons();
+        }
+
+        function handleSearch(query) {
+            const container = document.getElementById('search-results');
+            if(!query.trim()) {
+                container.innerHTML = '';
+                return;
+            }
+            const results = PRODUCTS.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.description.toLowerCase().includes(query.toLowerCase()));
+            if(results.length === 0) {
+                container.innerHTML = `<p class="text-white/60 text-sm col-span-2">No products found matching "${query}"</p>`;
+                return;
+            }
+            container.innerHTML = results.map(p => `
+                <div onclick="closeSearch(); router.navigate('product', '${p.id}')" class="flex gap-4 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors cursor-pointer items-center">
+                    <img src="${p.image}" alt="${p.name}" class="w-16 h-16 object-cover rounded-lg">
+                    <div>
+                        <span class="text-gold text-[10px] uppercase tracking-wider block">${p.category}</span>
+                        <h4 class="font-display font-bold text-white text-sm">${p.name}</h4>
+                        <p class="text-white/70 text-xs font-semibold mt-1">${formatProductPrice(p.price, p.currency)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function render() {
+            const container = document.getElementById('app-container');
+            if(currentRoute === 'home') {
+                container.innerHTML = renderHome();
+            } else if(currentRoute === 'shop') {
+                container.innerHTML = renderShop(routeParam);
+            } else if(currentRoute === 'product') {
+                container.innerHTML = renderProductDetail(routeParam);
+            } else if(currentRoute === 'collections') {
+                container.innerHTML = renderCollections();
+            } else if(currentRoute === 'about') {
+                container.innerHTML = renderAbout();
+            } else if(currentRoute === 'checkout') {
+                container.innerHTML = renderCheckout();
+            }
+            lucide.createIcons();
+        }
+
+        // Homepage structured exactly according to wireframe Image 1:
+        // Top Header -> Hero Background banner -> 4x4 Grid in Main area -> Box 1, Box 2, Box 3 -> Footer
+        function renderHome() {
+            return `
+                <!-- Background Banner / Hero -->
+                <section class="relative bg-navy text-white min-h-[720px] md:min-h-[780px] flex items-center px-6 md:px-12 lg:px-16 overflow-hidden">
+                    <!-- Hero image is intentionally positioned on the RIGHT so the copy stays clear of the athlete. -->
+                    <div class="absolute inset-0 overflow-hidden">
+                        <img
+                            src="assets/hero-pickleball.jpg?v=20261002-10"
+                            alt="VISCAPE Sport pickleball athlete"
+                            class="w-full h-full object-cover object-[58%_center]"
+                        >
+                        <!-- Full-bleed image. A single soft overlay keeps the copy readable without creating a vertical seam. -->
+                        <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-navy/90 via-navy/55 via-[24%] via-navy/15 via-[43%] to-transparent"></div>
+                    </div>
+
+                    <div class="max-w-7xl mx-auto relative z-10 py-24 w-full">
+                        <div class="max-w-[420px]">
+                            <span class="text-gold text-[11px] md:text-xs font-mono tracking-[0.28em] uppercase block mb-5">10° 46' N / 106° 41' E — SAIGON</span>
+                            <h1 class="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.1rem] uppercase leading-[0.9] tracking-[-0.035em] mb-7">
+                                PLAY.<br>YOUR WAY.
+                            </h1>
+                            <p class="text-white text-base md:text-lg leading-relaxed max-w-[430px] font-light mb-9">
+                                International sport. Vietnamese soul. Engineered for precision and style on the pickleball court.
+                            </p>
+                            <button onclick="router.navigate('shop')" class="inline-flex items-center gap-3 bg-gold text-navy px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider hover:bg-white transition-all shadow-xl">
+                                Shop Collections
+                                <span aria-hidden="true" class="text-lg">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4x4 Grid Section (Main Grid layout matching Wireframe Image 1) -->
+                <section class="py-20 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex justify-between items-end mb-12">
+                            <div>
+                                <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">Featured Catalog</span>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl text-navy uppercase mt-2">THE 4X4 GRID EDITION</h2>
+                            </div>
+                            <button onclick="router.navigate('shop')" class="text-navy font-display font-bold uppercase text-xs hover:text-gold transition-colors">View All Products →</button>
+                        </div>
+                        
+                        <!-- 16 Items representing the 4x4 Grid from Wireframe Image 1 -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            ${[...PRODUCTS, ...PRODUCTS].map((p, i) => `
+                                <div class="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                                    <div class="relative aspect-square bg-gray-100 overflow-hidden cursor-pointer" onclick="router.navigate('product', '${p.id}')">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <span class="absolute top-3 left-3 bg-navy/90 text-white text-[9px] uppercase px-2 py-0.5 rounded font-mono">${p.collection}</span>
+                                        <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-3 left-3 right-3 bg-navy text-white py-2.5 rounded-lg font-display font-bold text-[11px] uppercase tracking-wider opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-gold shadow">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                    <div class="p-4">
+                                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">${p.category}</span>
+                                        <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-sm text-dark truncate cursor-pointer hover:text-gold">${p.name} #${i+1}</h3>
+                                        <p class="text-xs font-bold text-navy mt-1">${formatProductPrice(p.price, p.currency)}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Box 1, Box 2, Box 3 Section matching Wireframe Image 1 Bottom layout -->
+                <section class="py-20 px-6 md:px-16 bg-white border-t border-gray-200">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-center max-w-xl mx-auto mb-16">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Core Pillars</span>
+                            <h2 class="font-display font-bold text-3xl md:text-4xl text-navy uppercase mt-2">VISCAPE EXPERIENCE</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Box 1 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">BOX 1</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Đông Sơn Heritage</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Sacred bronze drum motifs and crane line art fused into advanced Toray T700 raw carbon pickleball paddles.</p>
+                                </div>
+                                <button onclick="router.navigate('shop', 'paddles')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Explore Paddles →</button>
+                            </div>
+                            <!-- Box 2 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">BOX 2</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Vietnamese Motion Apparel</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Breathable, moisture-wicking technical fabrics designed with understated elegance for maximum court mobility.</p>
+                                </div>
+                                <button onclick="router.navigate('shop', 'apparel')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Explore Apparel →</button>
+                            </div>
+                            <!-- Box 3 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">BOX 3</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Saigon Soul & Culture</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">A contemporary sportswear brand born in Saigon, standing proudly alongside international sport icons.</p>
+                                </div>
+                                <button onclick="router.navigate('about')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Our Story →</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderProductCard(p) {
+            return `
+                <div class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden bg-ivory aspect-[4/5] cursor-pointer" onclick="router.navigate('product', '${p.id}')">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-navy/80 backdrop-blur-sm text-white text-[10px] uppercase font-mono tracking-widest px-2.5 py-1 rounded-md">
+                            ${p.collection}
+                        </span>
+                        <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-4 left-4 right-4 bg-navy text-white py-3 rounded-xl font-display font-bold text-xs uppercase tracking-wider opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold flex items-center justify-center gap-2 shadow-lg">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Cart
+                        </button>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs text-gray-400 uppercase tracking-widest">${p.category}</span>
+                                <div class="flex items-center gap-1 text-xs text-gold font-bold">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> ${p.rating}
+                                </div>
+                            </div>
+                            <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-lg text-dark hover:text-gold transition-colors cursor-pointer">${p.name}</h3>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                            <span class="font-display font-bold text-lg text-navy">${formatProductPrice(p.price, p.currency)}</span>
+                            <div class="flex gap-1.5">
+                                ${p.variants.map(v => `<span class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${v.includes('Gold') ? '#C99A4A' : v.includes('Ivory') ? '#F5F1E8' : '#0E2545'}"></span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderShop(initialCategory = 'all') {
+            selectedFilter = initialCategory;
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="mb-12 space-y-4">
+                            <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">VISCAPE Catalog</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase">FIND YOUR GAME.</h1>
+                            <p class="text-gray-600 max-w-xl text-lg font-light">Engineered for absolute dominance. Explore high-performance paddles, technical apparel, and court accessories.</p>
+                        </div>
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12 pb-6 border-b border-gray-200">
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="filterProducts('all')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'all' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">All</button>
+                                <button onclick="filterProducts('paddles')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'paddles' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Paddles</button>
+                                <button onclick="filterProducts('balls')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'balls' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Balls</button>
+                                <button onclick="filterProducts('shoes')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'shoes' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Shoes</button>
+                                <button onclick="filterProducts('apparel')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'apparel' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Apparel</button>
+                                <button onclick="filterProducts('accessories')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'accessories' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Accessories</button>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto justify-between">
+                                <span class="text-xs text-gray-500 font-mono" id="product-count">${PRODUCTS.length} products</span>
+                                <select id="sort-select" onchange="sortProducts(this.value)" class="bg-white border border-gray-200 px-4 py-2 rounded-xl text-xs font-medium text-dark outline-none cursor-pointer">
+                                    <option value="featured">Featured</option>
+                                    <option value="newest">Newest</option>
+                                    <option value="low-high">Price: Low to High</option>
+                                    <option value="high-low">Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            ${(selectedFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === selectedFilter)).map(p => renderProductCard(p)).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterProducts(category) {
+            selectedFilter = category;
+            const grid = document.getElementById('shop-grid');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText === 'All')) {
+                    btn.className = 'filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all bg-navy text-white shadow-md';
+                } else {
+                    btn.className = 'filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all bg-white text-gray-600 hover:bg-gray-100';
+                }
+            });
+            const filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
+            document.getElementById('product-count').innerText = `${filtered.length} products`;
+            grid.innerHTML = filtered.map(p => renderProductCard(p)).join('');
+            lucide.createIcons();
+        }
+
+        function sortProducts(criteria) {
+            let sorted = [...PRODUCTS];
+            if(selectedFilter !== 'all') sorted = sorted.filter(p => p.category === selectedFilter);
+            if(criteria === 'low-high') sorted.sort((a,b) => a.price - b.price);
+            if(criteria === 'high-low') sorted.sort((a,b) => b.price - a.price);
+            if(criteria === 'newest') sorted.reverse();
+            const grid = document.getElementById('shop-grid');
+            grid.innerHTML = sorted.map(p => renderProductCard(p)).join('');
+            lucide.createIcons();
+        }
+
+        function renderProductDetail(productId) {
+            const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-xs text-gray-500 mb-8 flex items-center gap-2">
+                            <a href="#" onclick="router.navigate('home')" class="hover:text-navy">Home</a> / 
+                            <a href="#" onclick="router.navigate('shop')" class="hover:text-navy">Shop</a> / 
+                            <span class="text-navy font-semibold">${product.name}</span>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-3xl overflow-hidden shadow-sm aspect-square border border-gray-200">
+                                    <img id="main-image" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div onclick="document.getElementById('main-image').src='${product.image}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.image}" class="w-full h-full object-cover">
+                                    </div>
+                                    <div onclick="document.getElementById('main-image').src='${product.altImage}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.altImage}" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-8">
+                                <div>
+                                    <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">${product.collection} Collection</span>
+                                    <h1 class="font-display font-bold text-4xl md:text-5xl text-navy uppercase mt-3">${product.name}</h1>
+                                    <p class="text-2xl font-display font-bold text-dark mt-2">$${product.price.toFixed(2)}</p>
+                                </div>
+                                <p class="text-gray-600 text-base leading-relaxed font-light">${product.description} Designed with Vietnamese-inspired visual geometry.</p>
+                                <div class="flex items-center gap-3 text-sm text-gray-500">
+                                    <div class="flex text-gold">${'<i data-lucide="star" class="w-4 h-4 fill-current"></i>'.repeat(5)}</div>
+                                    <span class="font-bold text-dark">${product.rating}</span>
+                                    <span>(${product.reviewsCount} verified reviews)</span>
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">Color Variant</label>
+                                    <div class="flex gap-3">
+                                        ${product.variants.map((v, i) => `<button onclick="selectVariant(this)" class="variant-btn px-4 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold uppercase tracking-wider transition-all">${v}</button>`).join('')}
+                                    </div>
+                                </div>
+                                ${product.sizes ? `
+                                    <div class="space-y-3">
+                                        <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">Size</label>
+                                        <div class="flex gap-3">
+                                            ${product.sizes.map((s, i) => `<button onclick="selectSize(this)" class="size-btn w-12 h-12 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold flex items-center justify-center">${s}</button>`).join('')}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="addToCart('${product.id}')" class="flex-1 bg-navy text-white py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors shadow-xl flex items-center justify-center gap-2">
+                                        <i data-lucide="shopping-bag" class="w-5 h-5"></i> Add to Cart
+                                    </button>
+                                    <button onclick="addToCart('${product.id}'); toggleCart();" class="bg-gold text-navy px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-dark hover:text-white transition-colors">Buy Now</button>
+                                </div>
+                                <div class="border-t border-gray-200 pt-8 space-y-4">
+                                    <h3 class="font-display font-bold text-sm uppercase tracking-widest text-navy">Technical Specifications</h3>
+                                    <div class="grid grid-cols-2 gap-4 text-xs">
+                                        ${Object.entries(product.details).map(([key, val]) => `<div class="bg-white p-4 rounded-xl border border-gray-100"><span class="text-gray-400 uppercase tracking-wider block mb-1">${key}</span><span class="font-bold text-dark">${val}</span></div>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectVariant(btn) {
+            document.querySelectorAll('.variant-btn').forEach(b => b.className = 'variant-btn px-4 py-2 rounded-xl border border-gray-200 bg-white text-dark text-xs font-bold uppercase tracking-wider transition-all');
+            btn.className = 'variant-btn px-4 py-2 rounded-xl border border-navy bg-navy text-white text-xs font-bold uppercase tracking-wider transition-all';
+        }
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.className = 'size-btn w-12 h-12 rounded-xl border border-gray-200 bg-white text-dark text-xs font-bold flex items-center justify-center');
+            btn.className = 'size-btn w-12 h-12 rounded-xl border border-navy bg-navy text-white text-xs font-bold flex items-center justify-center';
+        }
+
+        function renderCollections() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto space-y-24">
+                        <div class="text-center max-w-2xl mx-auto space-y-4">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Editorial Archive</span>
+                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase text-navy">COLLECTIONS.</h1>
+                            <p class="text-gray-600 text-lg font-light">Where international sport meets the timeless artistic heritage of Vietnam.</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm">
+                            <div class="space-y-6">
+                                <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Collection 01</span>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl uppercase text-navy">VIETNAMESE MOTION</h2>
+                                <p class="text-gray-600 leading-relaxed font-light">The debut flagship collection from VISCAPE Sport. Drawing inspiration from Đông Sơn bronze drums, sacred lotus blossoms, and the radiant Saigon skyline.</p>
+                                <button onclick="router.navigate('shop')" class="bg-navy text-white px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Explore Collection 01</button>
+                            </div>
+                            <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-navy">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAbout() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-5xl mx-auto space-y-20">
+                        <div class="text-center space-y-6">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Brand Manifesto</span>
+                            <h1 class="font-display font-bold text-5xl md:text-8xl text-navy uppercase leading-none">NOT JUST A SPORT.<br>A CULTURE IN MOTION.</h1>
+                            <p class="text-gray-600 text-xl font-light max-w-2xl mx-auto">VISCAPE Sport explores the vibrant intersection between global athletic competition and contemporary Vietnamese visual culture.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCheckout() {
+            if(cart.length === 0) {
+                return `
+                    <div class="pt-24 pb-24 px-6 text-center bg-ivory min-h-[70vh] flex flex-col items-center justify-center">
+                        <h2 class="font-display font-bold text-3xl mb-4 text-navy">Your cart is empty</h2>
+                        <button onclick="router.navigate('shop')" class="bg-navy text-white px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider">Return to Shop</button>
+                    </div>
+                `;
+            }
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <div class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm">
+                            <h1 class="font-display font-bold text-3xl uppercase text-navy">Shipping & Payment</h1>
+                            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-6">
+                                <input type="email" required placeholder="Email Address" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <input type="tel" required placeholder="Phone Number" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <input type="text" required placeholder="Street Address" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <button type="submit" class="w-full bg-navy text-white py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors shadow-xl">Place Order ($${subtotal.toFixed(2)})</button>
+                            </form>
+                        </div>
+                        <div class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm h-fit">
+                            <h3 class="font-display font-bold text-xl uppercase text-navy pb-4 border-b">Order Summary</h3>
+                            <div class="space-y-4 max-h-80 overflow-y-auto">
+                                ${cart.map(item => `<div class="flex gap-4 items-center"><img src="${item.image}" class="w-16 h-16 object-cover rounded-lg"><div class="flex-1"><h4 class="font-display font-bold text-sm">${item.name}</h4><p class="text-xs text-gray-500">Qty: ${item.quantity}</p></div><span class="font-bold text-sm">${formatProductPrice(item.price * item.quantity, item.currency)}</span></div>`).join('')}
+                            </div>
+                            <div class="pt-6 border-t font-display font-bold text-navy flex justify-between text-lg">
+                                <span>Total</span><span>$${subtotal.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            cart = [];
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            router.navigate('home');
+            showToast("Order placed successfully! Thank you for choosing VISCAPE Sport.");
+        }
+            /* ================= VISCAPE AI ================= */
+        let viscapeAIHistory=[];
+        function toggleViscapeAI(){var w=document.getElementById('viscape-ai-window');w.classList.toggle('is-open');renderViscapeAIContext();if(w.classList.contains('is-open')&&!viscapeAIHistory.length)initViscapeAI();setTimeout(function(){var i=document.getElementById('viscape-ai-input');if(i)i.focus()},150)}
+        function closeViscapeAI(){document.getElementById('viscape-ai-window').classList.remove('is-open')}
+        function renderViscapeAIContext(){var e=document.getElementById('viscape-ai-context');var p=currentRoute==='product'?PRODUCTS.find(function(x){return x.id===routeParam}):null;e.innerHTML=p?'Bạn đang xem <strong>'+p.name+'</strong> 👀':'<strong>VISCAPE Sport</strong> · Mình có thể giúp bạn chọn vợt, bóng, trang phục, phụ kiện, size và ngân sách.'}
+        function aiMsg(t,u){var b=document.getElementById('viscape-ai-messages');var r=document.createElement('div');r.className='viscape-ai-msg'+(u?' user':'');r.innerHTML='<div class="viscape-ai-bubble">'+t+'</div>';b.appendChild(r);b.scrollTop=b.scrollHeight;viscapeAIHistory.push(t)}
+        function aiQuick(items){var b=document.getElementById('viscape-ai-messages'),w=document.createElement('div');w.className='viscape-ai-quick';items.forEach(function(x){var q=document.createElement('button');q.innerText=x[0];q.onclick=function(){aiAction(x[1])};w.appendChild(q)});b.appendChild(w);b.scrollTop=b.scrollHeight}
+        function aiCard(p){
+return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img class="viscape-ai-product-img" src="'+p.image+'" alt="'+p.name+'"><div><div class="viscape-ai-badge">BEST MATCH</div><div class="viscape-ai-product-name">'+p.name+'</div><div>★★★★★ '+p.rating+'</div><div class="viscape-ai-price">$'+p.price.toFixed(2)+'</div></div></div><div class="viscape-ai-features"><span class="viscape-ai-feature">'+p.description+'</span></div><div class="viscape-ai-product-actions"><button class="viscape-ai-view" data-id="'+p.id+'">Xem sản phẩm</button><button class="viscape-ai-add" data-id="'+p.id+'">+ Thêm vào giỏ</button></div></div>';
+}
+function bindAIProductButtons(){document.querySelectorAll(".viscape-ai-view").forEach(function(b){b.onclick=function(){router.navigate("product",b.dataset.id);closeViscapeAI();}});document.querySelectorAll(".viscape-ai-add").forEach(function(b){b.onclick=function(){addToCart(b.dataset.id);aiMsg("✓ Đã thêm sản phẩm vào giỏ hàng.");}});}
+function aiRecommend(ps){aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");bindAIProductButtons();}
+function initViscapeAI(){aiMsg("Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball.");aiQuick([["🏓 Chọn vợt","paddle"],["👕 Tìm trang phục","apparel"],["🎯 Người mới chơi","beginner"],["💰 Theo ngân sách","budget"],["📏 Tư vấn size","size"],["🛒 Sản phẩm nổi bật","bestseller"]]);}
+function aiAction(a){
+if(a==="paddle"){aiMsg("Bạn đang ở trình độ nào?");aiQuick([["🟢 Mới bắt đầu","beginner"],["🔵 Đã chơi một thời gian","intermediate"],["🔴 Nâng cao","advanced"]]);return;}
+if(a==="beginner"){var p=PRODUCTS.find(function(x){return x.category==="paddles";});if(p)aiRecommend([p]);return;}
+if(a==="intermediate"||a==="advanced"){var p2=PRODUCTS.find(function(x){return x.category==="paddles";});if(p2)aiRecommend([p2]);return;}
+if(a==="apparel"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc để mình tư vấn.");return;}
+if(a==="size"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc. Nếu catalog chưa có bảng size chi tiết, mình sẽ nói rõ.");return;}
+if(a==="budget"){aiMsg("Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.");return;}
+if(a==="bestseller"){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps);return;}
+}
+function sendViscapeAI(){var i=document.getElementById("viscape-ai-input"),t=i.value.trim();if(!t)return;i.value="";aiMsg(t,true);setTimeout(function(){var s=t.toLowerCase();if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới/.test(s)?"beginner":"paddle");return;}if(/áo|quần|trang phục/.test(s)){aiAction("apparel");return;}if(/size/.test(s)){aiAction("size");return;}if(/ngân sách|triệu|combo/.test(s)){aiAction("budget");return;}if(/bán chạy|nổi bật/.test(s)){aiAction("bestseller");return;}if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg("Mình đã mở giỏ hàng cho bạn.");return;}aiMsg("Mình hiểu rồi. Bạn có thể hỏi về vợt, trang phục, size, ngân sách hoặc sản phẩm nổi bật.");},350);}
+
+    </script>
+</body>
+</html>
+ + price.toFixed(2);
+        }
+
+        const PRODUCTS = [
+            {
+                id: 'viscape-vietnam-kham-vang',
+                name: 'Việt Nam Khảm Vàng',
+                category: 'paddles',
+                collection: 'Legacy Collection',
+                price: 3100000,
+                currency: 'VND',
+                rating: 4.9,
+                reviewsCount: 128,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/de75cb36-4c96-49c0-9968-c8839ac482d6.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/de75cb36-4c96-49c0-9968-c8839ac482d6.png',
+                description: 'Vợt pickleball cảm hứng Việt Nam với họa tiết khảm vàng, định hướng control, stability và spin.',
+                details: {
+                    material: 'T700 Carbon Fiber',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: '399 × 198 mm face • 135 mm handle',
+                    core: 'Polypropylene Honeycomb Core',
+                    surface: 'Textured Raw Carbon',
+                    level: 'Advanced / All-Court'
+                },
+                specs: {
+                    thickness: '16 mm',
+                    construction: 'Hybrid / Elongated',
+                    gripMaterial: 'PU Perforated Grip',
+                    protection: 'Edge Guard',
+                    vibration: 'Vibration Dampening'
+                },
+                variants: ['Việt Nam Khảm Vàng'],
                 inStock: true
             },
             {
@@ -575,7 +1379,7 @@
                         <div class="flex-1">
                             <h4 class="font-display font-bold text-sm text-dark">${item.name}</h4>
                             <p class="text-xs text-gray-500 mt-0.5">${item.variant} ${item.size ? '• Size: ' + item.size : ''}</p>
-                            <p class="text-sm font-bold text-navy mt-1">$${item.price.toFixed(2)}</p>
+                            <p class="text-sm font-bold text-navy mt-1">${formatProductPrice(item.price, item.currency)}</p>
                             <div class="flex items-center gap-3 mt-2">
                                 <div class="flex items-center border border-gray-200 rounded-md">
                                     <button onclick="updateQuantity(${index}, -1)" class="px-2 py-0.5 text-gray-500 hover:text-dark">-</button>
@@ -611,7 +1415,7 @@
                     <div>
                         <span class="text-gold text-[10px] uppercase tracking-wider block">${p.category}</span>
                         <h4 class="font-display font-bold text-white text-sm">${p.name}</h4>
-                        <p class="text-white/70 text-xs font-semibold mt-1">$${p.price.toFixed(2)}</p>
+                        <p class="text-white/70 text-xs font-semibold mt-1">${formatProductPrice(p.price, p.currency)}</p>
                     </div>
                 </div>
             `).join('');
@@ -694,7 +1498,7 @@
                                     <div class="p-4">
                                         <span class="text-[10px] text-gray-400 uppercase tracking-widest">${p.category}</span>
                                         <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-sm text-dark truncate cursor-pointer hover:text-gold">${p.name} #${i+1}</h3>
-                                        <p class="text-xs font-bold text-navy mt-1">$${p.price.toFixed(2)}</p>
+                                        <p class="text-xs font-bold text-navy mt-1">${formatProductPrice(p.price, p.currency)}</p>
                                     </div>
                                 </div>
                             `).join('')}
@@ -767,7 +1571,7 @@
                             <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.description}</p>
                         </div>
                         <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-                            <span class="font-display font-bold text-lg text-navy">$${p.price.toFixed(2)}</span>
+                            <span class="font-display font-bold text-lg text-navy">${formatProductPrice(p.price, p.currency)}</span>
                             <div class="flex gap-1.5">
                                 ${p.variants.map(v => `<span class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${v.includes('Gold') ? '#C99A4A' : v.includes('Ivory') ? '#F5F1E8' : '#0E2545'}"></span>`).join('')}
                             </div>
@@ -985,7 +1789,7 @@
                         <div class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm h-fit">
                             <h3 class="font-display font-bold text-xl uppercase text-navy pb-4 border-b">Order Summary</h3>
                             <div class="space-y-4 max-h-80 overflow-y-auto">
-                                ${cart.map(item => `<div class="flex gap-4 items-center"><img src="${item.image}" class="w-16 h-16 object-cover rounded-lg"><div class="flex-1"><h4 class="font-display font-bold text-sm">${item.name}</h4><p class="text-xs text-gray-500">Qty: ${item.quantity}</p></div><span class="font-bold text-sm">$${(item.price * item.quantity).toFixed(2)}</span></div>`).join('')}
+                                ${cart.map(item => `<div class="flex gap-4 items-center"><img src="${item.image}" class="w-16 h-16 object-cover rounded-lg"><div class="flex-1"><h4 class="font-display font-bold text-sm">${item.name}</h4><p class="text-xs text-gray-500">Qty: ${item.quantity}</p></div><span class="font-bold text-sm">${formatProductPrice(item.price * item.quantity, item.currency)}</span></div>`).join('')}
                             </div>
                             <div class="pt-6 border-t font-display font-bold text-navy flex justify-between text-lg">
                                 <span>Total</span><span>$${subtotal.toFixed(2)}</span>
