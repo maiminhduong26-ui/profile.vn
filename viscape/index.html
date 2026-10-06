@@ -867,7 +867,7 @@
                         
                         <!-- 16 Items representing the 4x4 Grid from Wireframe Image 1 -->
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            ${[...PRODUCTS, ...PRODUCTS].map((p, i) => `
+                            ${Array.from(new Map(PRODUCTS.map(p => [p.id || p.name, p])).values()).map((p) => `
                                 <div class="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
                                     <div class="relative aspect-square bg-gray-100 overflow-hidden cursor-pointer" onclick="router.navigate('product', '${p.id}')">
                                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500">
@@ -878,7 +878,7 @@
                                     </div>
                                     <div class="p-4">
                                         <span class="text-[10px] text-gray-400 uppercase tracking-widest">${p.category}</span>
-                                        <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-sm text-dark truncate cursor-pointer hover:text-gold">${p.name} #${i+1}</h3>
+                                        <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-sm text-dark truncate cursor-pointer hover:text-gold">${p.name}</h3>
                                         <p class="text-xs font-bold text-navy mt-1">${formatMoney(p.price, p.currency)}</p>
                                     </div>
                                 </div>
