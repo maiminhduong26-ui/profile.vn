@@ -1419,13 +1419,28 @@ bindAIProductButtons();
 }
 function aiMoney(n){return n.toLocaleString("vi-VN")+" VNĐ";}
 function aiSizeAnswer(s){
-var h=s.match(/(\d{3})\s*cm/) || s.match(/cao\s*(\d{3})/);
-var w=s.match(/(\d{2,3}(?:[.,]\d+)?)\s*kg/) || s.match(/nặng\s*(\d{2,3}(?:[.,]\d+)?)/);
+s=(s||"").toLowerCase().replace(/,/g,".");
+var h=s.match(/(?:^|\\s)(1\\s*m\\s*(?:[.,]?\\s*\\d{1,2})?)\\b/) || s.match(/(\\d{3})\\s*cm/) || s.match(/cao\\s*(\\d{3})/);
+var w=s.match(/(\\d{2,3}(?:\\.\\d+)?)\\s*kg/) || s.match(/nặng\\s*(\\d{2,3}(?:\\.\\d+)?)/);
+var gender=/\\b(nam|male|men|đàn ông|con trai)\\b/.test(s)?"nam":/\\b(nữ|female|women|woman|con gái)\\b/.test(s)?"nữ":"";
 if(!h || !w){
-aiMsg("<strong>Bảng size tham khảo VISCAPE SPORT</strong><br>• Nam: S 160–168 cm / 50–60 kg · M 166–174 cm / 58–68 kg · L 172–180 cm / 66–78 kg · XL 178–188 cm / 76–90 kg.<br>• Nữ: S 150–158 cm / 42–52 kg · M 156–165 cm / 50–60 kg · L 162–172 cm / 58–70 kg · XL 168–178 cm / 68–80 kg.<br><br>Để mình chọn sát hơn, bạn gửi <strong>giới tính + chiều cao + cân nặng + size thường mặc</strong>. Đây là bảng tham khảo theo thể trạng; khi VISCAPE SPORT có bảng size riêng cho từng mẫu, hãy ưu tiên bảng của sản phẩm.");
+aiMsg("<strong>Bảng size tham khảo VISCAPE SPORT</strong><br>• Nam: S 160–168 cm / 50–60 kg · M 166–174 cm / 58–68 kg · L 172–180 cm / 66–78 kg · XL 178–188 cm / 76–90 kg.<br>• Nữ: S 150–158 cm / 42–52 kg · M 156–165 cm / 50–60 kg · L 162–172 cm / 58–70 kg · XL 168–178 cm / 68–80 kg.<br><br>Để mình tư vấn tự động, hãy nhập theo mẫu: <strong>Nam, 1m70, 65kg</strong> hoặc <strong>Nữ, 160cm, 52kg</strong>.");
 return;
 }
-var height=parseFloat(h[1]), weight=parseFloat(w[1].replace(",","."));
+var heightMatch=h[1];
+var height;
+if(/m/.test(heightMatch)) {
+var hm=heightMatch.match(/1\\s*m\\s*(?:[.,]?\\s*(\\d{1,2}))?/);
+height=hm&&hm[1]?100+parseFloat(hm[1]):100;
+} else height=parseFloat(heightMatch);
+var weight=parseFloat(w[1]);
+var size=gender==="nữ"?(weight<=52?"S":weight<=60?"M":weight<=70?"L":"XL"):(weight<=60?"S":weight<=68?"M":weight<=78?"L":"XL");
+if(gender==="nam" && height<165 && weight<=60) size="S";
+if(gender==="nam" && height>=178 && weight>=76) size="XL";
+if(gender==="nữ" && height<156 && weight<=52) size="S";
+if(gender==="nữ" && height>=168 && weight>=68) size="XL";
+aiMsg("Dựa trên <strong>"+(gender?gender:"thông tin bạn cung cấp")+"</strong>, cao <strong>"+height+" cm</strong>, nặng <strong>"+weight+" kg</strong>, mình tư vấn bạn chọn <strong>size "+size+"</strong>.<br><br>• Đây là size tham khảo theo bảng size hiện có của VISCAPE SPORT.<br>• Nếu thích mặc ôm, có thể cân nhắc nhỏ hơn 1 size; nếu thích thoải mái hoặc vai/ngực rộng, cân nhắc lớn hơn 1 size.<br>• Với từng mẫu sản phẩm, hãy ưu tiên bảng size riêng nếu sản phẩm có cung cấp.");
+}
 var size=weight<=60?"S":weight<=68?"M":weight<=78?"L":"XL";
 if(height<165 && weight<=60) size="S";
 if(height>=178 && weight>=76) size="XL";
