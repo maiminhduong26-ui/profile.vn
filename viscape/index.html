@@ -82,7 +82,7 @@
             </svg>
             <div>
                 <span class="font-display font-bold text-lg tracking-wider block leading-none">VISCAPE</span>
-                <span class="text-[8px] tracking-[0.2em] text-gold uppercase block">SPORT</span>
+                <span class="text-[8px] tracking-[0.2em] text-gold uppercase block">THỂ THAO</span>
             </div>
         </div>
 
@@ -101,7 +101,7 @@
             <button onclick="openSearch()" class="hover:text-gold transition-colors" aria-label="Search">
                 <i data-lucide="search" class="w-5 h-5"></i>
             </button>
-            <button onclick="toggleCart()" class="hover:text-gold transition-colors relative" aria-label="Cart">
+            <button onclick="toggleCart()" class="hover:text-gold transition-colors relative" aria-label="Giỏ hàng">
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                 <span id="cart-badge" class="absolute -top-2 -right-2 bg-gold text-navy text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
             </button>
@@ -245,7 +245,7 @@
     <section id="viscape-ai-window" class="viscape-ai-window">
       <header class="viscape-ai-header"><div class="viscape-ai-head"><div class="viscape-ai-brand"><div class="viscape-ai-avatar"><span class="viscape-ai-ball" style="width:22px;height:22px"></span></div><div><div class="viscape-ai-title">VISCAPE AI</div><div class="viscape-ai-sub">Trợ lý mua sắm Pickleball</div><div class="viscape-ai-online">● Đang trực tuyến</div></div></div><div class="viscape-ai-actions"><button onclick="closeViscapeAI()">−</button><button onclick="closeViscapeAI()">×</button></div></div><div id="viscape-ai-context" class="viscape-ai-context"></div></header>
       <div id="viscape-ai-messages" class="viscape-ai-messages"></div>
-      <div class="viscape-ai-inputbar"><div class="viscape-ai-input-row"><input id="viscape-ai-input" class="viscape-ai-input" placeholder="Hỏi về vợt, size, ngân sách..." onkeydown="if(event.key==='Enter')sendViscapeAI()"><button class="viscape-ai-send" onclick="sendViscapeAI()">➤</button></div><div class="viscape-ai-note">VISCAPE AI sử dụng dữ liệu sản phẩm hiện có trên website.</div></div>
+      <div class="viscape-ai-inputbar"><div class="viscape-ai-input-row"><input id="viscape-ai-input" class="viscape-ai-input" placeholder="Hỏi về vợt, kích cỡ, ngân sách..." onkeydown="if(event.key==='Enter')sendViscapeAI()"><button class="viscape-ai-send" onclick="sendViscapeAI()">➤</button></div><div class="viscape-ai-note">VISCAPE AI sử dụng dữ liệu sản phẩm hiện có trên website.</div></div>
     </section>
 
 
@@ -272,7 +272,7 @@
                     material: 'Sợi carbon T700',
                     weight: '7.8–8.3 oz (221–235 g)',
                     grip: '108 mm / 4.25"',
-                    length: '399 × 198 mm face • 135 mm handle',
+                    length: 'Mặt vợt 399 × 198 mm • Chuôi 135 mm',
                     core: 'Lõi tổ ong Polypropylene',
                     surface: 'Carbon thô có vân',
                     level: 'Nâng cao / Toàn sân',
@@ -501,7 +501,7 @@
                 id: 'viscape-dong-son-performance-tee',
                 name: 'Áo thể thao hiệu năng Đông Sơn VISCAPE SPORT',
                 category: 'apparel',
-                collection: 'Dong Son',
+                collection: 'Bộ sưu tập Đông Sơn',
                 price: 750000,
                 currency: 'VND',
                 rating: 0,
@@ -552,7 +552,7 @@
                     fit: 'Dạng lưỡi trai ôm đầu • khóa điều chỉnh phía sau',
                     weight: 'Thiết kế nhẹ, phù hợp vận động dài giờ',
                     colors: 'Xám • Trắng • Đen • Xanh Navy',
-                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Outdoor • Hằng ngày',
+                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Ngoài trời • Hằng ngày',
                     gender: 'Unisex',
                     sizeGuide: 'Một kích cỡ • Điều chỉnh linh hoạt theo vòng đầu'
                 },
@@ -595,7 +595,7 @@
                     fit: 'Dây điều chỉnh phía sau • Một kích cỡ • Unisex',
                     weight: 'Thiết kế siêu nhẹ, ưu tiên sự thoải mái khi vận động dài giờ',
                     colors: 'Trắng • Đen • Xanh Navy',
-                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Outdoor • Hằng ngày',
+                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Ngoài trời • Hằng ngày',
                     care: 'Giặt nhẹ, phơi khô tự nhiên, tránh nhiệt độ cao'
                 },
                 inStock: true
@@ -794,7 +794,7 @@
                 <div onclick="closeSearch(); router.navigate('product', '${p.id}')" class="flex gap-4 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors cursor-pointer items-center">
                     <img src="${p.image}" alt="${p.name}" class="w-16 h-16 object-cover rounded-lg">
                     <div>
-                        <span class="text-gold text-[10px] uppercase tracking-wider block">${p.category}</span>
+                        <span class="text-gold text-[10px] uppercase tracking-wider block">${p.category === 'paddles' ? 'Vợt' : p.category === 'balls' ? 'Bóng' : p.category === 'shoes' ? 'Giày' : p.category === 'apparel' ? 'Trang phục' : p.category === 'accessories' ? 'Phụ kiện' : p.category}</span>
                         <h4 class="font-display font-bold text-white text-sm">${p.name}</h4>
                         <p class="text-white/70 text-xs font-semibold mt-1">${formatMoney(p.price, p.currency)}</p>
                     </div>
@@ -841,13 +841,13 @@
                         <div class="max-w-[420px]">
                             <span class="text-gold text-[11px] md:text-xs font-mono tracking-[0.28em] uppercase block mb-5">10° 46' B / 106° 41' Đ — SAIGON</span>
                             <h1 class="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.1rem] uppercase leading-[0.9] tracking-[-0.035em] mb-7">
-                                PLAY.<br>YOUR WAY.
+                                CHƠI.<br>THEO CÁCH CỦA BẠN.
                             </h1>
                             <p class="text-white text-base md:text-lg leading-relaxed max-w-[430px] font-light mb-9">
-                                International sport. Vietnamese soul. Engineered for precision and style on the pickleball court.
+                                Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.
                             </p>
                             <button onclick="router.navigate('shop')" class="inline-flex items-center gap-3 bg-gold text-navy px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider hover:bg-white transition-all shadow-xl">
-                                Shop Collections
+                                Khám phá bộ sưu tập
                                 <span aria-hidden="true" class="text-lg">→</span>
                             </button>
                         </div>
@@ -873,7 +873,7 @@
                                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500">
                                         <span class="absolute top-3 left-3 bg-navy/90 text-white text-[9px] uppercase px-2 py-0.5 rounded font-mono">${p.collection}</span>
                                         <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-3 left-3 right-3 bg-navy text-white py-2.5 rounded-lg font-display font-bold text-[11px] uppercase tracking-wider opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-gold shadow">
-                                            Add to Cart
+                                            Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                     <div class="p-4">
@@ -900,7 +900,7 @@
                                 <div>
                                     <span class="text-gold font-mono text-xs tracking-widest block mb-4">KHỐI 1</span>
                                     <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Di sản Đông Sơn</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed">Sacred bronze drum motifs and crane line art fused into advanced Toray T700 raw carbon pickleball paddles.</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Họa tiết trống đồng linh thiêng và đường nét chim hạc được kết hợp trên nền carbon T700 Toray cao cấp, tạo nên những cây vợt pickleball mang đậm tinh thần di sản Việt.</p>
                                 </div>
                                 <button onclick="router.navigate('shop', 'paddles')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Khám phá vợt →</button>
                             </div>
@@ -909,7 +909,7 @@
                                 <div>
                                     <span class="text-gold font-mono text-xs tracking-widest block mb-4">KHỐI 2</span>
                                     <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Trang phục Chuyển động Việt</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed">Breathable, moisture-wicking technical fabrics designed with understated elegance for maximum court mobility.</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Chất liệu thể thao thoáng khí, thấm hút mồ hôi nhanh, được thiết kế tinh tế để mang lại sự linh hoạt tối đa trên sân.</p>
                                 </div>
                                 <button onclick="router.navigate('shop', 'apparel')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Khám phá trang phục →</button>
                             </div>
@@ -918,7 +918,7 @@
                                 <div>
                                     <span class="text-gold font-mono text-xs tracking-widest block mb-4">KHỐI 3</span>
                                     <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Tinh thần & Văn hóa Sài Gòn</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed">A contemporary sportswear brand born in Saigon, standing proudly alongside international sport icons.</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Thương hiệu thể thao đương đại khởi nguồn từ Sài Gòn, mang tinh thần Việt Nam sánh vai cùng những biểu tượng thể thao quốc tế.</p>
                                 </div>
                                 <button onclick="router.navigate('about')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Câu chuyện thương hiệu →</button>
                             </div>
@@ -937,7 +937,7 @@
                             ${p.collection}
                         </span>
                         <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-4 left-4 right-4 bg-navy text-white py-3 rounded-xl font-display font-bold text-xs uppercase tracking-wider opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold flex items-center justify-center gap-2 shadow-lg">
-                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Cart
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Thêm vào giỏ hàng
                         </button>
                     </div>
                     <div class="p-6 flex flex-col flex-1 justify-between">
@@ -970,7 +970,7 @@
                         <div class="mb-12 space-y-4">
                             <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">Danh mục VISCAPE</span>
                             <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase">TÌM RA PHONG CÁCH CHƠI CỦA BẠN.</h1>
-                            <p class="text-gray-600 max-w-xl text-lg font-light">Engineered for absolute dominance. Explore high-performance paddles, technical apparel, and court accessories.</p>
+                            <p class="text-gray-600 max-w-xl text-lg font-light">Được thiết kế cho hiệu suất vượt trội. Khám phá vợt pickleball, trang phục thể thao kỹ thuật và phụ kiện sân đấu.</p>
                         </div>
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12 pb-6 border-b border-gray-200">
                             <div class="flex flex-wrap gap-2">
@@ -982,7 +982,7 @@
                                 <button onclick="filterProducts('accessories')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'accessories' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Phụ kiện</button>
                             </div>
                             <div class="flex items-center gap-3 w-full md:w-auto justify-between">
-                                <span class="text-xs text-gray-500 font-mono" id="product-count">${PRODUCTS.length} products</span>
+                                <span class="text-xs text-gray-500 font-mono" id="product-count">${PRODUCTS.length} sản phẩm</span>
                                 <select id="sort-select" onchange="sortProducts(this.value)" class="bg-white border border-gray-200 px-4 py-2 rounded-xl text-xs font-medium text-dark outline-none cursor-pointer">
                                     <option value="featured">Nổi bật</option>
                                     <option value="newest">Mới nhất</option>
@@ -1011,7 +1011,7 @@
                 }
             });
             const filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
-            document.getElementById('product-count').innerText = `${filtered.length} products`;
+            document.getElementById('product-count').innerText = `${filtered.length} sản phẩm`;
             grid.innerHTML = filtered.map(p => renderProductCard(p)).join('');
             lucide.createIcons();
         }
@@ -1084,7 +1084,7 @@
                                 ` : ''}
                                 <div class="flex gap-4 pt-4">
                                     <button onclick="addToCart('${product.id}')" class="flex-1 bg-navy text-white py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors shadow-xl flex items-center justify-center gap-2">
-                                        <i data-lucide="shopping-bag" class="w-5 h-5"></i> Add to Cart
+                                        <i data-lucide="shopping-bag" class="w-5 h-5"></i> Thêm vào giỏ hàng
                                     </button>
                                     <button onclick="addToCart('${product.id}'); toggleCart();" class="bg-gold text-navy px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-dark hover:text-white transition-colors">Mua ngay</button>
                                 </div>
@@ -1131,7 +1131,7 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                             <div class="space-y-6">
                                 <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Bộ sưu tập 01</span>
                                 <h2 class="font-display font-bold text-3xl md:text-5xl uppercase text-navy">CHUYỂN ĐỘNG VIỆT</h2>
-                                <p class="text-gray-600 leading-relaxed font-light">The debut flagship collection from VISCAPE SPORT. Drawing inspiration from Đông Sơn bronze drums, sacred lotus blossoms, and the radiant Saigon skyline.</p>
+                                <p class="text-gray-600 leading-relaxed font-light">Bộ sưu tập chủ lực đầu tiên của VISCAPE SPORT, lấy cảm hứng từ trống đồng Đông Sơn, hoa sen và đường nét rực rỡ của đường chân trời Sài Gòn.</p>
                                 <button onclick="router.navigate('shop')" class="bg-navy text-white px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá Bộ sưu tập 01</button>
                             </div>
                             <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-navy">
@@ -1150,7 +1150,7 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                         <div class="text-center space-y-6">
                             <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Tuyên ngôn thương hiệu</span>
                             <h1 class="font-display font-bold text-5xl md:text-8xl text-navy uppercase leading-none">KHÔNG CHỈ LÀ THỂ THAO.<br>MỘT NỀN VĂN HÓA ĐANG CHUYỂN ĐỘNG.</h1>
-                            <p class="text-gray-600 text-xl font-light max-w-2xl mx-auto">VISCAPE SPORT explores the vibrant intersection between global athletic competition and contemporary Vietnamese visual culture.</p>
+                            <p class="text-gray-600 text-xl font-light max-w-2xl mx-auto">VISCAPE SPORT khai thác điểm giao thoa đầy sức sống giữa thể thao quốc tế và văn hóa thị giác Việt Nam đương đại.</p>
                         </div>
                     </div>
                 </div>
@@ -1199,7 +1199,7 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
             localStorage.setItem('viscape_cart', JSON.stringify(cart));
             updateCartUI();
             router.navigate('home');
-            showToast("Order placed successfully! Thank you for choosing VISCAPE SPORT.");
+            showToast("Đặt hàng thành công! Cảm ơn bạn đã lựa chọn VISCAPE SPORT.");
         }
             /* ================= VISCAPE AI ================= */
         let viscapeAIHistory=[];
