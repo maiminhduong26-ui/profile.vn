@@ -376,23 +376,44 @@
                 id: 'viscape-lotus',
                 name: 'VISCAPE Pickleball Balls',
                 category: 'balls',
-                collection: 'Lotus',
-                price: 175.00,
+                collection: 'Performance Collection',
+                price: 70000,
+                currency: 'VND',
                 rating: 4.8,
-                reviewsCount: 94,
-                image: 'assets/products/viscape-pickleball-balls.svg',
-                altImage: 'assets/products/viscape-pickleball-balls.svg',
-                description: 'Indoor & Outdoor • 3-Pack.',
-                details: {
-                    material: 'Carbon Fiber & Fiberglass Blend',
-                    weight: '7.7 - 8.0 oz',
-                    grip: '4.25 inch Ivory White Grip',
-                    length: '16.0 inch',
-                    core: '14mm Precision Polymer',
-                    surface: 'Smooth Matte UV Shield',
-                    level: 'Intermediate / All-Court'
+                reviewsCount: 56,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/dffeab1f-ac9f-422e-bfcd-dffa6eb02008.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/dffeab1f-ac9f-422e-bfcd-dffa6eb02008.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/1b8c35ad-0080-4cc4-b8ad-611948c97378.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2824ed69-5c1d-4007-84a9-ce1e16509b2e.png'
+                ],
+                colors: ['Vàng', 'Cam', 'Xanh lá'],
+                colorImages: {
+                    'Vàng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/1b8c35ad-0080-4cc4-b8ad-611948c97378.png',
+                    'Cam': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                    'Xanh lá': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2824ed69-5c1d-4007-84a9-ce1e16509b2e.png'
                 },
-                variants: ['Ivory & Gold', 'Emerald'],
+                colorSwatches: [
+                    {name:'Vàng',hex:'#F5D000'},
+                    {name:'Cam',hex:'#F47B20'},
+                    {name:'Xanh lá',hex:'#B8E600'}
+                ],
+                bundlePrice: 270000,
+                bundleLabel: 'Combo 4 quả',
+                description: 'Bóng pickleball outdoor VISCAPE 40 lỗ, thiết kế cho độ bền, đường bay ổn định và cảm giác đánh nhất quán trong các buổi chơi ngoài trời.',
+                details: {
+                    material: 'Nhựa PE cao cấp',
+                    weight: '26 g / quả',
+                    diameter: '~74 mm',
+                    holes: '40 lỗ',
+                    type: 'Pickleball Outdoor',
+                    construction: 'Thiết kế liền khối • tối ưu độ bền',
+                    colors: 'Vàng • Cam • Xanh lá',
+                    use: 'Pickleball ngoài trời • luyện tập • thi đấu phong trào'
+                },
+                variants: ['Vàng', 'Cam', 'Xanh lá'],
                 inStock: true
             },
             {
@@ -1166,6 +1187,7 @@
                                     <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">${product.collection} Collection</span>
                                     <h1 class="font-display font-bold text-4xl md:text-5xl text-navy uppercase mt-3">${product.name}</h1>
                                     <p class="text-2xl font-display font-bold text-dark mt-2">${formatMoney(product.price, product.currency)}</p>
+                                    ${product.bundlePrice ? `<p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-navy">${product.bundleLabel || 'Combo'}</span>: ${formatMoney(product.bundlePrice, product.currency)} • Tiết kiệm ${formatMoney((product.price * 4) - product.bundlePrice, product.currency)}</p>` : ''}
                                 </div>
                                 <p class="text-gray-600 text-base leading-relaxed font-light">${product.description} Designed with Vietnamese-inspired visual geometry.</p>
                                 <div class="flex items-center gap-3 text-sm text-gray-500">
