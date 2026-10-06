@@ -1121,21 +1121,48 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
         function renderCollections() {
             return `
                 <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
-                    <div class="max-w-7xl mx-auto space-y-24">
-                        <div class="text-center max-w-2xl mx-auto space-y-4">
-                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Kho lưu trữ biên tập</span>
-                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase text-navy">BỘ SƯU TẬP.</h1>
-                            <p class="text-gray-600 text-lg font-light">Nơi thể thao quốc tế gặp gỡ di sản nghệ thuật vượt thời gian của Việt Nam.</p>
+                    <div class="max-w-7xl mx-auto space-y-16">
+                        <div class="text-center max-w-3xl mx-auto space-y-4">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Các dòng sản phẩm chủ đạo</span>
+                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase text-navy">3 BỘ SƯU TẬP CHÍNH</h1>
+                            <p class="text-gray-600 text-lg font-light">Ba câu chuyện thiết kế đại diện cho tinh thần VISCAPE SPORT: di sản Việt Nam, nghệ thuật đương đại và phong cách thể thao hiện đại.</p>
                         </div>
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm">
-                            <div class="space-y-6">
-                                <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Bộ sưu tập 01</span>
-                                <h2 class="font-display font-bold text-3xl md:text-5xl uppercase text-navy">CHUYỂN ĐỘNG VIỆT</h2>
-                                <p class="text-gray-600 leading-relaxed font-light">Bộ sưu tập chủ lực đầu tiên của VISCAPE SPORT, lấy cảm hứng từ trống đồng Đông Sơn, hoa sen và đường nét rực rỡ của đường chân trời Sài Gòn.</p>
-                                <button onclick="router.navigate('shop')" class="bg-navy text-white px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá Bộ sưu tập 01</button>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/471b79b2-028d-4923-b9cb-89577da1f30e.png" alt="Bộ sưu tập Di Sản" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 01</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">DI SẢN</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Lấy cảm hứng từ những giá trị văn hóa Việt Nam, kết hợp họa tiết di sản với công nghệ carbon hiện đại để tạo nên những sản phẩm pickleball mang bản sắc riêng.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
                             </div>
-                            <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-navy">
-                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2606bf13-9a4e-4291-8134-567095665e8b.png" alt="Bộ sưu tập Hoa Sen" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 02</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">LIÊN HOA</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Biểu tượng hoa sen được tái hiện theo ngôn ngữ thiết kế hiện đại, hướng đến vẻ đẹp thanh lịch, cân bằng và khác biệt trên sân pickleball.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9da74886-cd25-4afc-a930-248f82bf6351.png" alt="Bộ sưu tập Tinh Hoa Di Sản" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 03</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">TINH HOA DI SẢN</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Phiên bản mang tinh thần sang trọng và mạnh mẽ, kết hợp ngôn ngữ di sản với diện mạo tối giản dành cho người chơi yêu thích sự tinh tế.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
                             </div>
                         </div>
                     </div>
