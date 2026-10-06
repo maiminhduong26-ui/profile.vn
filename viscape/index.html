@@ -417,29 +417,6 @@
                 inStock: true
             },
             {
-                id: 'viscape-saigon',
-                name: 'VISCAPE Court Shoes',
-                category: 'shoes',
-                collection: 'Saigon',
-                price: 190.00,
-                rating: 5.0,
-                reviewsCount: 156,
-                image: 'assets/products/viscape-court-shoes.svg',
-                altImage: 'assets/products/viscape-court-shoes.svg',
-                description: 'Lightweight • Breathable.',
-                details: {
-                    material: 'Aerospace Grade Carbon Fiber',
-                    weight: '8.0 - 8.3 oz',
-                    grip: '4.375 inch Perforated Black',
-                    length: '16.75 inch',
-                    core: '16mm Power Core',
-                    surface: 'Carbon Friction Surface Gen-2',
-                    level: 'Elite / Pro Tournament'
-                },
-                variants: ['Midnight Black', 'Urban Blue'],
-                inStock: true
-            },
-            {
                 id: 'viscape-polyester-performance-tee',
                 name: 'VISCAPE Polyester Performance Tee',
                 category: 'apparel',
@@ -547,111 +524,6 @@
                 inStock: true
             },
             {
-                id: 'viscape-performance-tee',
-                name: 'VISCAPE Performance Tee',
-                category: 'apparel',
-                collection: 'Dong Son',
-                price: 68.00,
-                rating: 4.8,
-                reviewsCount: 72,
-                image: 'assets/products/viscape-performance-tee.svg',
-                altImage: 'assets/products/viscape-performance-tee.svg',
-                description: 'Quick Dry • UV Protection.',
-                details: {
-                    material: '88% Recycled Poly, 12% Elastane',
-                    weight: '140 GSM Lightweight',
-                    fit: 'Athletic Tailored Fit',
-                    care: 'Machine wash cold, tumble dry low',
-                    origin: 'Made in Vietnam'
-                },
-                variants: ['Navy', 'Ivory', 'Black'],
-                sizes: ['S', 'M', 'L', 'XL'],
-                inStock: true
-            },
-            {
-                id: 'viscape-court-shirt',
-                name: 'VISCAPE Flex Shorts',
-                category: 'apparel',
-                collection: 'Lotus',
-                price: 82.00,
-                rating: 4.9,
-                reviewsCount: 110,
-                image: 'assets/products/viscape-flex-shorts.svg',
-                altImage: 'assets/products/viscape-flex-shorts.svg',
-                description: '4-Way Stretch • Breathable.',
-                details: {
-                    material: '92% Performance Poly, 8% Spandex',
-                    weight: '160 GSM Breathable Tech',
-                    fit: 'Modern Athletic',
-                    care: 'Wash with similar colors',
-                    origin: 'Made in Vietnam'
-                },
-                variants: ['Ivory', 'Sky Blue', 'Deep Navy'],
-                sizes: ['S', 'M', 'L', 'XL'],
-                inStock: true
-            },
-            {
-                id: 'viscape-training-shorts',
-                name: 'VISCAPE Sports Cap',
-                category: 'accessories',
-                collection: 'Saigon',
-                price: 75.00,
-                rating: 4.7,
-                reviewsCount: 64,
-                image: 'assets/products/viscape-sports-cap.svg',
-                altImage: 'assets/products/viscape-sports-cap.svg',
-                description: 'Lightweight • Adjustable.',
-                details: {
-                    material: '86% Polyester, 14% Spandex',
-                    weight: '130 GSM Ultralight',
-                    fit: '7-inch Inseam, Athletic Cut',
-                    care: 'Do not bleach',
-                    origin: 'Made in Vietnam'
-                },
-                variants: ['Navy', 'Dark Green', 'Black'],
-                sizes: ['S', 'M', 'L', 'XL'],
-                inStock: true
-            },
-            {
-                id: 'viscape-pro-bag',
-                name: 'VISCAPE Wristband',
-                category: 'accessories',
-                collection: 'Dong Son',
-                price: 140.00,
-                rating: 4.9,
-                reviewsCount: 45,
-                image: 'assets/products/viscape-wristband.svg',
-                altImage: 'assets/products/viscape-wristband.svg',
-                description: 'Soft Cotton • Absorbent.',
-                details: {
-                    material: 'Water-Resistant Ballistic Nylon',
-                    dimensions: '20" x 14" x 9"',
-                    capacity: 'Holds up to 6 paddles',
-                    hardware: 'Gold-finished custom zippers'
-                },
-                variants: ['Matte Black', 'Navy Gold'],
-                inStock: true
-            },
-            {
-                id: 'viscape-cap',
-                name: 'VISCAPE Sports Bag',
-                category: 'accessories',
-                collection: 'Lotus',
-                price: 42.00,
-                rating: 4.8,
-                reviewsCount: 88,
-                image: 'assets/products/viscape-sports-bag.svg',
-                altImage: 'assets/products/viscape-sports-bag.svg',
-                description: 'Multi-compartment • Durable.',
-                details: {
-                    material: '100% Technical Performance Fabric',
-                    closure: 'Adjustable strap with metal buckle',
-                    sweatband: 'Quick-dry absorbent mesh'
-                },
-                variants: ['Ivory', 'Navy', 'Olive'],
-                inStock: true
-            },
-            {
                 id: 'viscape-performance-sport-cap',
                 name: 'VISCAPE Performance Sport Cap',
                 category: 'accessories',
@@ -727,10 +599,11 @@
                     care: 'Giặt nhẹ, phơi khô tự nhiên, tránh nhiệt độ cao'
                 },
                 inStock: true
-            },
+            }
         ];
 
-        let cart = JSON.parse(localStorage.getItem('viscape_cart')) || [];
+        let cart = (JSON.parse(localStorage.getItem('viscape_cart')) || []).filter(item => { const p = PRODUCTS.find(x => x.id === item.id); return p && p.currency === 'VND'; });
+        localStorage.setItem('viscape_cart', JSON.stringify(cart));
         let currentRoute = 'home';
         let routeParam = null;
         let selectedFilter = 'all';
