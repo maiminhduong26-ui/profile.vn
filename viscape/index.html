@@ -1213,18 +1213,98 @@ return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img
 }
 function bindAIProductButtons(){document.querySelectorAll(".viscape-ai-view").forEach(function(b){b.onclick=function(){router.navigate("product",b.dataset.id);closeViscapeAI();}});document.querySelectorAll(".viscape-ai-add").forEach(function(b){b.onclick=function(){addToCart(b.dataset.id);aiMsg("✓ Đã thêm sản phẩm vào giỏ hàng.");}});}
 function aiRecommend(ps){aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");bindAIProductButtons();}
-function initViscapeAI(){aiMsg("Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể giúp bạn chọn vợt, bóng, trang phục hoặc phụ kiện pickleball.");aiQuick([["🏓 Chọn vợt","paddle"],["👕 Tìm trang phục","apparel"],["🎯 Người mới chơi","beginner"],["💰 Theo ngân sách","budget"],["📏 Tư vấn size","size"],["🛒 Sản phẩm nổi bật","bestseller"]]);}
+function initViscapeAI(){
+aiMsg("Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể tư vấn vợt, bóng, trang phục, phụ kiện, size, ngân sách và các câu hỏi cơ bản về pickleball.");
+aiQuick([
+["🏓 Chọn vợt phù hợp","paddle"],
+["📏 Tư vấn size áo","size"],
+["👕 Trang phục nào phù hợp?","apparel"],
+["🟢 Tôi mới chơi","beginner"],
+["⚡ Control hay Power?","controlpower"],
+["🎾 Bóng nào phù hợp?","balls"],
+["💰 Vợt theo ngân sách","budget"],
+["🧼 Cách bảo quản vợt","care"],
+["📖 Luật pickleball cơ bản","rules"],
+["🚚 Giao hàng & đổi trả","shipping"]
+]);
+}
+
+function aiFindPaddles(keyword){
+var ps=PRODUCTS.filter(function(x){return x.category==="paddles" && (!keyword || (x.name+" "+x.description+" "+JSON.stringify(x.details)).toLowerCase().includes(keyword));});
+if(!ps.length) ps=PRODUCTS.filter(function(x){return x.category==="paddles";});
+return ps.slice(0,3);
+}
+function aiRecommend(ps){
+if(!ps||!ps.length){aiMsg("Hiện mình chưa tìm thấy sản phẩm phù hợp trong danh mục.");return;}
+aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");
+bindAIProductButtons();
+}
+function aiMoney(n){return n.toLocaleString("vi-VN")+" VNĐ";}
+function aiSizeAnswer(s){
+var h=s.match(/(\d{3})\s*cm/) || s.match(/cao\s*(\d{3})/);
+var w=s.match(/(\d{2,3}(?:[.,]\d+)?)\s*kg/) || s.match(/nặng\s*(\d{2,3}(?:[.,]\d+)?)/);
+if(!h || !w){
+aiMsg("<strong>Bảng size tham khảo VISCAPE SPORT</strong><br>• Nam: S 160–168 cm / 50–60 kg · M 166–174 cm / 58–68 kg · L 172–180 cm / 66–78 kg · XL 178–188 cm / 76–90 kg.<br>• Nữ: S 150–158 cm / 42–52 kg · M 156–165 cm / 50–60 kg · L 162–172 cm / 58–70 kg · XL 168–178 cm / 68–80 kg.<br><br>Để mình chọn sát hơn, bạn gửi <strong>giới tính + chiều cao + cân nặng + size thường mặc</strong>. Đây là bảng tham khảo theo thể trạng; khi VISCAPE SPORT có bảng size riêng cho từng mẫu, hãy ưu tiên bảng của sản phẩm.");
+return;
+}
+var height=parseFloat(h[1]), weight=parseFloat(w[1].replace(",","."));
+var size=weight<=60?"S":weight<=68?"M":weight<=78?"L":"XL";
+if(height<165 && weight<=60) size="S";
+if(height>=178 && weight>=76) size="XL";
+aiMsg("Với khoảng <strong>"+height+" cm / "+weight+" kg</strong>, mình tạm gợi ý <strong>size "+size+"</strong>.<br>• Nếu thích mặc ôm: có thể cân nhắc nhỏ hơn 1 size.<br>• Nếu thích thoải mái hoặc vai/ngực rộng: cân nhắc lớn hơn 1 size.<br>• Nếu bạn gửi thêm <strong>nam/nữ + size thường mặc</strong>, mình sẽ tinh chỉnh.");
+}
 function aiAction(a){
-if(a==="paddle"){aiMsg("Bạn đang ở trình độ nào?");aiQuick([["🟢 Mới bắt đầu","beginner"],["🔵 Đã chơi một thời gian","intermediate"],["🔴 Nâng cao","advanced"]]);return;}
-if(a==="beginner"){var p=PRODUCTS.find(function(x){return x.category==="paddles";});if(p)aiRecommend([p]);return;}
-if(a==="intermediate"||a==="advanced"){var p2=PRODUCTS.find(function(x){return x.category==="paddles";});if(p2)aiRecommend([p2]);return;}
-if(a==="apparel"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc để mình tư vấn.");return;}
-if(a==="size"){aiMsg("Bạn gửi mình nam/nữ + chiều cao + cân nặng + size thường mặc. Nếu catalog chưa có bảng size chi tiết, mình sẽ nói rõ.");return;}
-if(a==="budget"){aiMsg("Bạn dự kiến ngân sách bao nhiêu? Mình sẽ tư vấn dựa trên catalog hiện có.");return;}
+if(a==="paddle"){
+aiMsg("Để chọn vợt chính xác, bạn cho mình biết <strong>trình độ + lối chơi + ngân sách</strong> nhé.");
+aiQuick([["🟢 Mới bắt đầu","beginner"],["🎯 Thiên về control","control"],["💥 Thiên về power","power"],["🌀 Thiên về spin","spin"],["🏆 Nâng cao / toàn sân","advanced"]]);return;
+}
+if(a==="beginner"){aiMsg("Người mới nên ưu tiên vợt dễ kiểm soát, mặt vợt ổn định và trọng lượng vừa phải. Với danh mục hiện có, mình ưu tiên mẫu thuộc nhóm <strong>All-Court / Control</strong>.");aiRecommend(aiFindPaddles());return;}
+if(a==="intermediate"||a==="advanced"){aiRecommend(aiFindPaddles());return;}
+if(a==="control"){aiMsg("Nếu ưu tiên <strong>control</strong>, hãy ưu tiên vợt 16 mm, trọng lượng vừa phải và mặt carbon có texture để kiểm soát hướng bóng tốt hơn.");aiRecommend(aiFindPaddles("control"));return;}
+if(a==="power"){aiMsg("Nếu ưu tiên <strong>power</strong>, nên chọn vợt có trọng lượng và điểm cân bằng phù hợp với lực tay. Đừng chỉ chọn vợt nặng vì vợt nặng hơn có thể làm tăng mỏi tay.");aiRecommend(aiFindPaddles());return;}
+if(a==="spin"){aiMsg("Nếu ưu tiên <strong>spin</strong>, hãy chú ý bề mặt có texture và kỹ thuật tạo xoáy. Các mẫu VISCAPE dùng bề mặt carbon có vân là lựa chọn đáng cân nhắc.");aiRecommend(aiFindPaddles());return;}
+if(a==="apparel"){aiMsg("<strong>Trang phục pickleball nên ưu tiên:</strong><br>• Vải nhẹ, thoáng và khô nhanh.<br>• Co giãn tốt để thực hiện split-step, xoay người và vung tay.<br>• Form vừa người, không quá rộng để tránh vướng khi di chuyển.<br>• Áo sáng màu phù hợp khi chơi ngoài trời; có thể kết hợp mũ/visor để che nắng.<br><br>Nếu bạn cho mình giới tính + chiều cao + cân nặng, mình tư vấn size luôn.");return;}
+if(a==="size"){aiSizeAnswer("");return;}
+if(a==="budget"){
+aiMsg("Bạn có thể nhập ngân sách, ví dụ <strong>2 triệu</strong>, <strong>3 triệu</strong> hoặc <strong>dưới 1 triệu</strong>. Mình sẽ lọc sản phẩm trong danh mục hiện có.");
+return;
+}
+if(a==="balls"){aiMsg("<strong>Bóng VISCAPE SPORT</strong> hiện là bóng pickleball outdoor 40 lỗ, thiết kế cho độ bền và đường bay ổn định. Giá lẻ hiện tại là <strong>"+aiMoney(70000)+" / quả</strong>, combo 4 quả là <strong>"+aiMoney(270000)+"</strong> theo dữ liệu sản phẩm.");aiRecommend(PRODUCTS.filter(function(x){return x.category==="balls";}).slice(0,1));return;}
+if(a==="care"){aiMsg("<strong>Bảo quản vợt:</strong><br>• Lau mặt vợt bằng khăn mềm sau khi chơi.<br>• Không dùng hóa chất tẩy mạnh trên mặt carbon.<br>• Tránh để vợt lâu dưới nắng hoặc trong cốp xe quá nóng.<br>• Kiểm tra viền bảo vệ và tay cầm định kỳ.<br>• Không dùng mặt vợt để nhặt bóng hoặc cọ xuống sân.");return;}
+if(a==="rules"){aiMsg("<strong>Pickleball cơ bản:</strong><br>• Mục tiêu là đưa bóng qua lưới sao cho đối thủ không trả được hợp lệ.<br>• Khu vực gần lưới gọi là <strong>kitchen / vùng cấm volley</strong>; người chơi không được volley khi đang đứng trong vùng này.<br>• Khi giao bóng, bóng phải đi chéo sang ô giao bóng đối diện theo luật áp dụng của trận.<br>• Cách tính điểm có thể khác giữa đơn và đôi hoặc theo thể thức giải; hãy thống nhất luật trước khi chơi.");return;}
+if(a==="shipping"){aiMsg("Về giao hàng, đổi trả và bảo hành: mình chỉ nên xác nhận theo chính sách được công bố chính thức trên website. Nếu bạn cần, hãy cho mình biết sản phẩm bạn đang xem để mình hướng dẫn thông tin có sẵn trên trang sản phẩm.");return;}
 if(a==="bestseller"){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps);return;}
 }
-function sendViscapeAI(){var i=document.getElementById("viscape-ai-input"),t=i.value.trim();if(!t)return;i.value="";aiMsg(t,true);setTimeout(function(){var s=t.toLowerCase();if(/vợt|paddle/.test(s)){aiAction(/mới chơi|người mới/.test(s)?"beginner":"paddle");return;}if(/áo|quần|trang phục/.test(s)){aiAction("apparel");return;}if(/size/.test(s)){aiAction("size");return;}if(/ngân sách|triệu|combo/.test(s)){aiAction("budget");return;}if(/bán chạy|nổi bật/.test(s)){aiAction("bestseller");return;}if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg("Mình đã mở giỏ hàng cho bạn.");return;}aiMsg("Mình hiểu rồi. Bạn có thể hỏi về vợt, trang phục, size, ngân sách hoặc sản phẩm nổi bật.");},350);}
 
-    </script>
+function aiFAQ(s){
+if(/control|kiểm soát|điều khiển/.test(s)){aiAction("control");return true;}
+if(/power|lực|mạnh|đập|tấn công/.test(s)){aiAction("power");return true;}
+if(/spin|xoáy|xoáy bóng/.test(s)){aiAction("spin");return true;}
+if(/bóng|ball|40 lỗ|outdoor|ngoài trời/.test(s)){aiAction("balls");return true;}
+if(/size|kích cỡ|kích thước|cao \d{3}|nặng \d{2,3}/.test(s)){aiSizeAnswer(s);return true;}
+if(/áo|quần|trang phục|áo thun|mặc gì|vải|thoáng|mồ hôi/.test(s)){aiAction("apparel");return true;}
+if(/bảo quản|vệ sinh|lau|bảo dưỡng|hỏng|trầy|carbon/.test(s)){aiAction("care");return true;}
+if(/luật|cách chơi|tính điểm|giao bóng|kitchen|vùng cấm/.test(s)){aiAction("rules");return true;}
+if(/giao hàng|đổi trả|bảo hành|ship|vận chuyển/.test(s)){aiAction("shipping");return true;}
+if(/ngân sách|triệu|giá|bao nhiêu tiền|dưới \d/.test(s)){
+var m=s.match(/(\d+(?:[.,]\d+)?)\s*(triệu|tr|k)/);
+if(m){var budget=parseFloat(m[1].replace(",","."))*(m[2]==="triệu"||m[2]==="tr"?1000000:1000);var ps=PRODUCTS.filter(function(x){return x.price<=budget;}).sort(function(x,y){return y.rating-x.rating;}).slice(0,3);if(ps.length){aiMsg("Với ngân sách khoảng <strong>"+aiMoney(budget)+"</strong>, mình gợi ý:");aiRecommend(ps);}else aiMsg("Hiện chưa có sản phẩm trong catalog nằm trong mức <strong>"+aiMoney(budget)+"</strong>. Bạn có thể tăng ngân sách hoặc hỏi mình về combo.");return true;}
+aiAction("budget");return true;
+}
+if(/vợt|paddle|paddles/.test(s)){aiAction("paddle");return true;}
+if(/bán chạy|nổi bật|đáng mua|best/.test(s)){aiAction("bestseller");return true;}
+return false;
+}
+function sendViscapeAI(){
+var i=document.getElementById("viscape-ai-input"),t=i.value.trim();if(!t)return;i.value="";aiMsg(t,true);
+setTimeout(function(){
+var s=t.toLowerCase();
+if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg("Mình đã mở giỏ hàng cho bạn.");return;}
+if(aiFAQ(s))return;
+aiMsg("Mình chưa nhận diện chính xác câu hỏi này. Bạn có thể hỏi mình về <strong>vợt, control/power/spin, bóng, size, trang phục, bảo quản, luật pickleball, ngân sách, giao hàng</strong> hoặc sản phẩm cụ thể.");
+aiQuick([["🏓 Chọn vợt","paddle"],["📏 Tư vấn size","size"],["👕 Trang phục","apparel"],["🎾 Bóng pickleball","balls"],["📖 Luật chơi","rules"],["🧼 Bảo quản vợt","care"]]);
+},300);
+}
+</script>
 </body>
 </html>
