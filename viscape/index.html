@@ -1441,10 +1441,6 @@ if(gender==="nữ" && height<156 && weight<=52) size="S";
 if(gender==="nữ" && height>=168 && weight>=68) size="XL";
 aiMsg("Dựa trên <strong>"+(gender?gender:"thông tin bạn cung cấp")+"</strong>, cao <strong>"+height+" cm</strong>, nặng <strong>"+weight+" kg</strong>, mình tư vấn bạn chọn <strong>size "+size+"</strong>.<br><br>• Đây là size tham khảo theo bảng size hiện có của VISCAPE SPORT.<br>• Nếu thích mặc ôm, có thể cân nhắc nhỏ hơn 1 size; nếu thích thoải mái hoặc vai/ngực rộng, cân nhắc lớn hơn 1 size.<br>• Với từng mẫu sản phẩm, hãy ưu tiên bảng size riêng nếu sản phẩm có cung cấp.");
 }
-var size=weight<=60?"S":weight<=68?"M":weight<=78?"L":"XL";
-if(height<165 && weight<=60) size="S";
-if(height>=178 && weight>=76) size="XL";
-aiMsg("Với khoảng <strong>"+height+" cm / "+weight+" kg</strong>, mình tạm gợi ý <strong>size "+size+"</strong>.<br>• Nếu thích mặc ôm: có thể cân nhắc nhỏ hơn 1 size.<br>• Nếu thích thoải mái hoặc vai/ngực rộng: cân nhắc lớn hơn 1 size.<br>• Nếu bạn gửi thêm <strong>nam/nữ + size thường mặc</strong>, mình sẽ tinh chỉnh.");
 }
 function aiAction(a){
 if(a==="paddle"){
