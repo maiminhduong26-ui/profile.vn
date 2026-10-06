@@ -224,7 +224,7 @@
                 <ul class="space-y-2 text-xs text-ivory/70">
                     <li><a href="#" onclick="router.navigate('policies')" class="hover:text-gold">Chính sách & Bảo quản</a></li>
                     <li><a href="#" onclick="router.navigate('policies')" class="hover:text-gold">Bảo hành & Hướng dẫn</a></li>
-                    <li><a href="#" class="hover:text-gold">Liên hệ</a></li>
+                    <li><a href="#" onclick="router.navigate('contact')" class="hover:text-gold">Liên hệ & Hỗ trợ</a></li>
                 </ul>
             </div>
         </div>
@@ -1256,6 +1256,62 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                                     <p class="text-white/70 text-sm leading-relaxed mt-3 max-w-2xl">Các hướng dẫn trên mang tính chăm sóc và tham khảo chung. Nếu sản phẩm có hướng dẫn riêng trên nhãn, bao bì hoặc trang sản phẩm, hãy ưu tiên hướng dẫn cụ thể đó.</p>
                                 </div>
                                 <button onclick="router.navigate('shop')" class="shrink-0 bg-gold text-navy px-7 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-white transition-colors">Xem sản phẩm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderContact() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory min-h-[70vh]">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="text-center mb-14">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Hỗ trợ khách hàng</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase mt-3">LIÊN HỆ VISCAPE SPORT</h1>
+                            <p class="text-gray-600 max-w-2xl mx-auto mt-5">Cần tư vấn về vợt, trang phục, size, đơn hàng hoặc sản phẩm? Hãy kết nối trực tiếp với VISCAPE SPORT qua các kênh hỗ trợ dưới đây.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <a href="tel:0345034501" class="group bg-navy text-white rounded-3xl p-8 md:p-10 shadow-sm hover:-translate-y-1 transition-transform">
+                                <div class="w-14 h-14 rounded-2xl bg-gold text-navy flex items-center justify-center mb-7">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Hotline</span>
+                                <h2 class="font-display font-bold text-3xl mt-2">0345 034 501</h2>
+                                <p class="text-white/70 text-sm mt-3">Nhấn để gọi trực tiếp cho VISCAPE SPORT.</p>
+                            </a>
+
+                            <div class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200 shadow-sm">
+                                <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Mạng xã hội</span>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mt-2 mb-6">Kết nối cùng VISCAPE</h2>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <a href="https://www.facebook.com/viscapesport" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">Facebook</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                    <a href="https://www.instagram.com/viscapesport/" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">Instagram</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@viscapesport" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">TikTok</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-5">Nếu tên tài khoản thực tế của VISCAPE SPORT khác với các đường dẫn trên, chỉ cần thay URL tương ứng tại đây.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 bg-white rounded-3xl border border-gray-200 p-8 md:p-10">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                                <div>
+                                    <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Tư vấn nhanh</span>
+                                    <h2 class="font-display font-bold text-2xl text-navy uppercase mt-2">Bạn đang cần hỗ trợ điều gì?</h2>
+                                    <p class="text-sm text-gray-600 mt-2">Bạn có thể gọi hotline hoặc mở VISCAPE AI ở góc màn hình để hỏi về vợt, bóng, trang phục, size và bảo quản sản phẩm.</p>
+                                </div>
+                                <button onclick="toggleViscapeAI()" class="shrink-0 bg-navy text-white px-7 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Hỏi VISCAPE AI</button>
                             </div>
                         </div>
                     </div>
