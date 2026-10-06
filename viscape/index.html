@@ -222,8 +222,8 @@
             <div>
                 <h4 class="font-display font-bold text-xs uppercase tracking-[0.2em] mb-4 text-gold">Hỗ trợ</h4>
                 <ul class="space-y-2 text-xs text-ivory/70">
-                    <li><a href="#" class="hover:text-gold">Vận chuyển & Đổi trả</a></li>
-                    <li><a href="#" class="hover:text-gold">Bảo hành & Bảo quản</a></li>
+                    <li><a href="#" onclick="router.navigate('policies')" class="hover:text-gold">Chính sách & Bảo quản</a></li>
+                    <li><a href="#" onclick="router.navigate('policies')" class="hover:text-gold">Bảo hành & Hướng dẫn</a></li>
                     <li><a href="#" class="hover:text-gold">Liên hệ</a></li>
                 </ul>
             </div>
@@ -814,6 +814,8 @@
                 container.innerHTML = renderCollections();
             } else if(currentRoute === 'about') {
                 container.innerHTML = renderAbout();
+            } else if(currentRoute === 'policies') {
+                container.innerHTML = renderPolicies();
             } else if(currentRoute === 'checkout') {
                 container.innerHTML = renderCheckout();
             }
@@ -1163,6 +1165,97 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                                     <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Phiên bản mang tinh thần sang trọng và mạnh mẽ, kết hợp ngôn ngữ di sản với diện mạo tối giản dành cho người chơi yêu thích sự tinh tế.</p>
                                     <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPolicies() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase font-bold">Hỗ trợ khách hàng</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase mt-3">CHÍNH SÁCH & BẢO QUẢN</h1>
+                            <p class="text-gray-600 text-lg font-light leading-relaxed mt-6">Những hướng dẫn cần thiết để bạn mua sắm thuận tiện và duy trì hiệu suất sản phẩm VISCAPE SPORT trong thời gian dài.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">01</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Giao hàng</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Đơn hàng được tiếp nhận và chuẩn bị sau khi thông tin đặt hàng được xác nhận.</p>
+                                    <p>Khách hàng vui lòng kiểm tra tên, số điện thoại và địa chỉ nhận hàng trước khi hoàn tất đơn.</p>
+                                    <p>Khi nhận hàng, hãy kiểm tra ngoại quan sản phẩm và phụ kiện đi kèm. Nếu phát hiện dấu hiệu bất thường, nên chụp ảnh hoặc quay video và liên hệ VISCAPE SPORT để được hỗ trợ.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">02</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Đổi trả & kiểm tra sản phẩm</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>VISCAPE SPORT ưu tiên hỗ trợ các trường hợp sản phẩm có lỗi sản xuất hoặc hư hỏng phát sinh trong quá trình giao nhận.</p>
+                                    <p>Sản phẩm cần được giữ nguyên tình trạng, phụ kiện và bao bì liên quan để quá trình kiểm tra được thuận lợi.</p>
+                                    <p>Trước khi gửi sản phẩm về, khách hàng nên liên hệ VISCAPE SPORT để được hướng dẫn. Không tự ý gửi hàng khi chưa có xác nhận.</p>
+                                    <p class="text-navy font-semibold">Lưu ý: yêu cầu đổi trả sẽ được xem xét dựa trên tình trạng thực tế và chính sách áp dụng tại thời điểm mua hàng.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">03</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo quản vợt pickleball</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p><strong class="text-navy">Sau mỗi buổi chơi:</strong> dùng khăn mềm, khô hoặc hơi ẩm để lau bụi và mồ hôi trên bề mặt vợt.</p>
+                                    <p><strong class="text-navy">Tránh nhiệt độ cao:</strong> không để vợt lâu trong cốp xe, dưới nắng trực tiếp hoặc gần nguồn nhiệt.</p>
+                                    <p><strong class="text-navy">Bảo vệ mặt vợt:</strong> không dùng mặt vợt để nhặt bóng, cọ xuống sân hoặc va chạm mạnh với vật cứng.</p>
+                                    <p><strong class="text-navy">Vệ sinh:</strong> không sử dụng hóa chất tẩy rửa mạnh, dung môi hoặc vật liệu có tính mài mòn trên bề mặt carbon.</p>
+                                    <p><strong class="text-navy">Viền & tay cầm:</strong> kiểm tra định kỳ edge guard và grip; nếu có dấu hiệu bong, nứt hoặc xuống cấp rõ rệt, nên thay thế hoặc liên hệ hỗ trợ.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">04</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo quản trang phục</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Giặt theo hướng dẫn trên nhãn sản phẩm, ưu tiên chế độ giặt nhẹ và nước mát.</p>
+                                    <p>Không dùng chất tẩy mạnh hoặc ngâm quần áo quá lâu để hạn chế ảnh hưởng đến màu sắc và sợi vải.</p>
+                                    <p>Phơi ở nơi thoáng mát, tránh nhiệt độ quá cao; hạn chế sấy nóng nếu nhãn sản phẩm không cho phép.</p>
+                                    <p>Nên giặt riêng các sản phẩm có màu đậm trong những lần giặt đầu để giảm nguy cơ lem màu.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">05</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bóng pickleball & phụ kiện</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Bảo quản bóng ở nơi khô ráo, tránh ánh nắng trực tiếp và nhiệt độ quá cao trong thời gian dài.</p>
+                                    <p>Không đè nén hoặc để vật nặng lên bóng trong thời gian dài vì có thể ảnh hưởng hình dạng và độ nảy.</p>
+                                    <p>Với mũ, visor và túi thể thao, nên vệ sinh bằng khăn mềm hoặc giặt nhẹ tùy theo chất liệu; để khô tự nhiên trước khi cất.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">06</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo hành & hỗ trợ</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Nếu sản phẩm có dấu hiệu lỗi bất thường, vui lòng ngừng sử dụng và liên hệ VISCAPE SPORT để được kiểm tra.</p>
+                                    <p>Khi yêu cầu hỗ trợ, khách hàng nên cung cấp mã đơn hàng, hình ảnh/video tình trạng sản phẩm và mô tả vấn đề.</p>
+                                    <p>Hư hỏng do va đập, sử dụng sai mục đích, bảo quản không đúng cách hoặc hao mòn tự nhiên có thể không thuộc phạm vi hỗ trợ bảo hành.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="mt-12 bg-navy text-white rounded-3xl p-8 md:p-10">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                                <div>
+                                    <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase">Lưu ý</span>
+                                    <h3 class="font-display font-bold text-2xl uppercase mt-2">Ưu tiên bảng hướng dẫn của từng sản phẩm</h3>
+                                    <p class="text-white/70 text-sm leading-relaxed mt-3 max-w-2xl">Các hướng dẫn trên mang tính chăm sóc và tham khảo chung. Nếu sản phẩm có hướng dẫn riêng trên nhãn, bao bì hoặc trang sản phẩm, hãy ưu tiên hướng dẫn cụ thể đó.</p>
+                                </div>
+                                <button onclick="router.navigate('shop')" class="shrink-0 bg-gold text-navy px-7 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-white transition-colors">Xem sản phẩm</button>
                             </div>
                         </div>
                     </div>
