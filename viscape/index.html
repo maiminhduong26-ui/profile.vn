@@ -630,6 +630,42 @@
                 variants: ['Ivory', 'Navy', 'Olive'],
                 inStock: true
             }
+
+            {
+                id: 'viscape-performance-sport-cap',
+                name: 'VISCAPE Performance Sport Cap',
+                category: 'accessories',
+                collection: 'Performance Collection',
+                price: 450000,
+                currency: 'VND',
+                rating: 4.8,
+                reviewsCount: 42,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png',
+                galleryImages: ['https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/3fdca9f8-c2c7-4655-bd9f-1737815553bf.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/c6f53db9-c136-4156-beb7-c1efebe2fbd8.png'],
+                colors: ['Xám', 'Trắng', 'Đen', 'Xanh Navy'],
+                colorImages: {
+                    'Xám': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png',
+                    'Trắng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/3fdca9f8-c2c7-4655-bd9f-1737815553bf.png',
+                    'Đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png',
+                    'Xanh Navy': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/c6f53db9-c136-4156-beb7-c1efebe2fbd8.png'
+                },
+                variants: ['Xám', 'Trắng', 'Đen', 'Xanh Navy'],
+                colorSwatches: [{name:'Xám',hex:'#6B7280'},{name:'Trắng',hex:'#FFFFFF'},{name:'Đen',hex:'#111111'},{name:'Xanh Navy',hex:'#102A43'}],
+                sizes: ['One Size'],
+                description: 'VISCAPE Performance Sport Cap là nón lưỡi trai thể thao nhẹ, thoáng khí và dễ điều chỉnh, phù hợp pickleball, tennis, golf, chạy bộ và các hoạt động ngoài trời. Thiết kế tối giản với logo VISCAPE Sport tạo điểm nhấn hiện đại, dễ phối cùng trang phục thi đấu hoặc mặc hằng ngày.',
+                details: {
+                    material: 'Vải thể thao cao cấp',
+                    ventilation: 'Lỗ thông gió bên hông • tăng lưu thông không khí',
+                    fit: 'Dạng lưỡi trai ôm đầu • khóa điều chỉnh phía sau',
+                    weight: 'Thiết kế nhẹ, phù hợp vận động dài giờ',
+                    colors: 'Xám • Trắng • Đen • Xanh Navy',
+                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Outdoor • Hằng ngày',
+                    gender: 'Unisex',
+                    sizeGuide: 'One Size • Điều chỉnh linh hoạt theo vòng đầu'
+                },
+                inStock: true
+            },
         ];
 
         let cart = JSON.parse(localStorage.getItem('viscape_cart')) || [];
@@ -723,7 +759,7 @@
                     name: product.name,
                     price: product.price,
                     currency: product.currency || 'USD',
-                    image: product.image,
+                    image: (product.colorImages && product.colorImages[variant]) ? product.colorImages[variant] : product.image,
                     variant: variant || product.variants[0],
                     size: size || (product.sizes ? product.sizes[0] : null),
                     quantity: 1
@@ -983,7 +1019,7 @@
                         <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
                             <span class="font-display font-bold text-lg text-navy">${formatMoney(p.price, p.currency)}</span>
                             <div class="flex gap-1.5">
-                                ${p.variants.map(v => `<span class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${v.includes('Gold') ? '#C99A4A' : v.includes('Ivory') ? '#F5F1E8' : '#0E2545'}"></span>`).join('')}
+                                ${(p.colorSwatches ? p.colorSwatches.map(c => `<span title="${c.name}" class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${c.hex}"></span>`).join('') : p.variants.map(v => `<span class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${v.includes('Gold') ? '#C99A4A' : v.includes('Ivory') ? '#F5F1E8' : '#0E2545'}"></span>`).join(''))}
                             </div>
                         </div>
                     </div>
