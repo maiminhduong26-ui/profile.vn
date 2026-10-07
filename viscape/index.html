@@ -116,11 +116,19 @@
                     kernelMatrix="0 -0.18 0 -0.18 1.72 -0.18 0 -0.18 0" />
             </filter>
         </defs>
-    </svg><svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="viscape-logo" viewBox="0 0 700 140"><path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z" fill="currentColor"/><path d="M93 73L132 8H182L147 63H104Z" fill="currentColor"/><text x="215" y="74" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="62" font-weight="700" letter-spacing="11" fill="currentColor">VISCAPE</text><text x="455" y="119" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="29" font-weight="500" letter-spacing="14" fill="currentColor">SPORT</text></symbol><symbol id="viscape-logo-mark" viewBox="0 0 190 140"><path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z" fill="currentColor"/><path d="M93 73L132 8H182L147 63H104Z" fill="currentColor"/></symbol></defs></svg>
+    </svg><svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="viscape-logo" viewBox="0 0 700 140" preserveAspectRatio="xMidYMid meet">
+  <!-- VISCAPE SPORT — giữ nguyên tỷ lệ logo, không bóp méo -->
+  <g fill="currentColor">
+    <path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z"/>
+    <path d="M93 73L132 8H182L147 63H104Z"/>
+    <text x="215" y="75" font-family="Inter,Arial,sans-serif" font-size="61" font-weight="700" letter-spacing="11">VISCAPE</text>
+    <text x="455" y="119" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="500" letter-spacing="14">SPORT</text>
+  </g>
+</symbol><symbol id="viscape-logo-mark" viewBox="0 0 190 140"><path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z" fill="currentColor"/><path d="M93 73L132 8H182L147 63H104Z" fill="currentColor"/></symbol></defs></svg>
 
     <div id="loader" class="fixed inset-0 z-50 bg-navy flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="text-center">
-            <svg class="w-[280px] md:w-[430px] h-auto mx-auto text-white mb-8" viewBox="0 0 700 140" aria-label="VISCAPE SPORT"><use href="#viscape-logo"/></svg>
+            <svg class="w-[280px] md:w-[430px] h-auto mx-auto text-white mb-8" viewBox="0 0 700 140" preserveAspectRatio="xMidYMid meet" aria-label="VISCAPE SPORT"><use href="#viscape-logo"/></svg>
             <div class="w-48 h-[2px] bg-white/20 relative overflow-hidden mx-auto rounded-full">
                 <div id="loader-bar" class="absolute inset-0 bg-gold w-0 transition-all duration-300"></div>
             </div>
