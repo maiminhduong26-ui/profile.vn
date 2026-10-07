@@ -782,10 +782,27 @@
             `).join('');
         }
 
+        async function loadViscapeHeroImage() {
+            const img = document.getElementById('viscape-hero-image');
+            if (!img || img.dataset.loaded === 'true') return;
+            try {
+                const parts = await Promise.all([
+                    fetch('assets/hero-data-0.txt').then(r => r.text()),
+                    fetch('assets/hero-data-1.txt').then(r => r.text()),
+                    fetch('assets/hero-data-2.txt').then(r => r.text())
+                ]);
+                img.src = 'data:image/webp;base64,' + parts.join('');
+                img.dataset.loaded = 'true';
+            } catch (e) {
+                img.src = 'assets/hero-pickleball.jpg?v=20261002-10';
+            }
+        }
+
         function render() {
             const container = document.getElementById('app-container');
             if(currentRoute === 'home') {
                 container.innerHTML = renderHome();
+                loadViscapeHeroImage();
             } else if(currentRoute === 'shop') {
                 container.innerHTML = renderShop(routeParam);
             } else if(currentRoute === 'product') {
@@ -808,32 +825,35 @@
         // Top Header -> Hero Background banner -> 4x4 Grid in Main area -> Box 1, Box 2, Box 3 -> Footer
         function renderHome() {
             return `
-                <!-- Background Banner / Hero -->
-                <section class="relative bg-navy text-white min-h-[720px] md:min-h-[780px] flex items-center px-6 md:px-12 lg:px-16 overflow-hidden">
-                    <!-- Hero image is intentionally positioned on the RIGHT so the copy stays clear of the athlete. -->
-                    <div class="absolute inset-0 overflow-hidden">
-                        <img
-                            src="assets/hero-pickleball.jpg?v=20261002-10"
-                            alt="VISCAPE SPORT pickleball athlete"
-                            class="w-full h-full object-cover object-[58%_center]"
-                        >
-                        <!-- Full-bleed image. A single soft overlay keeps the copy readable without creating a vertical seam. -->
-                        <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-navy/90 via-navy/55 via-[24%] via-navy/15 via-[43%] to-transparent"></div>
-                    </div>
+                <!-- Hero / Responsive split layout: text never covers the athlete image -->
+                <section class="relative bg-navy text-white overflow-hidden">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] items-stretch">
+                        <div class="flex items-center px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24">
+                            <div class="max-w-[500px]">
+                                <span class="text-gold text-[11px] md:text-xs font-mono tracking-[0.28em] uppercase block mb-5">10° 46' B / 106° 41' Đ — SAIGON</span>
+                                <h1 class="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.1rem] uppercase leading-[0.9] tracking-[-0.035em] mb-7">
+                                    CHƠI.<br>THEO CÁCH CỦA BẠN.
+                                </h1>
+                                <p class="text-white text-base md:text-lg leading-relaxed max-w-[430px] font-light mb-9">
+                                    Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.
+                                </p>
+                                <button onclick="router.navigate('shop')" class="inline-flex items-center gap-3 bg-gold text-navy px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider hover:bg-white transition-all shadow-xl">
+                                    Khám phá bộ sưu tập
+                                    <span aria-hidden="true" class="text-lg">→</span>
+                                </button>
+                            </div>
+                        </div>
 
-                    <div class="max-w-7xl mx-auto relative z-10 py-24 w-full">
-                        <div class="max-w-[420px]">
-                            <span class="text-gold text-[11px] md:text-xs font-mono tracking-[0.28em] uppercase block mb-5">10° 46' B / 106° 41' Đ — SAIGON</span>
-                            <h1 class="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[5.1rem] uppercase leading-[0.9] tracking-[-0.035em] mb-7">
-                                CHƠI.<br>THEO CÁCH CỦA BẠN.
-                            </h1>
-                            <p class="text-white text-base md:text-lg leading-relaxed max-w-[430px] font-light mb-9">
-                                Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.
-                            </p>
-                            <button onclick="router.navigate('shop')" class="inline-flex items-center gap-3 bg-gold text-navy px-8 py-4 rounded-lg font-display font-bold uppercase tracking-wider hover:bg-white transition-all shadow-xl">
-                                Khám phá bộ sưu tập
-                                <span aria-hidden="true" class="text-lg">→</span>
-                            </button>
+                        <div class="relative flex items-center justify-center bg-[#091a30] p-0">
+                            <div class="w-full aspect-[16/9] flex items-center justify-center overflow-hidden">
+                                <img
+                                    id="viscape-hero-image"
+                                    src="assets/hero-pickleball.jpg?v=20261002-10"
+                                    alt="VISCAPE SPORT pickleball athlete"
+                                    class="w-full h-full object-contain"
+                                    decoding="async"
+                                >
+                            </div>
                         </div>
                     </div>
                 </section>
