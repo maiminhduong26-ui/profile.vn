@@ -59,7 +59,13 @@
         .viscape-ai-product{margin-top:8px;background:#fff;border:1px solid #0e25451c;border-radius:15px;overflow:hidden}.viscape-ai-product-top{display:flex;gap:10px;padding:9px}.viscape-ai-product-img{width:68px;height:68px;object-fit:cover;border-radius:10px;background:#f1f1ee}.viscape-ai-product-name{font:bold 12px "Space Grotesk",sans-serif;color:#0E2545}.viscape-ai-price{font:bold 13px "Space Grotesk",sans-serif;margin-top:5px}.viscape-ai-badge{display:inline-block;background:#C99A4A;color:#fff;font-size:8px;font-weight:800;padding:3px 6px;border-radius:999px;margin-bottom:4px}.viscape-ai-features{display:flex;flex-wrap:wrap;gap:5px;padding:0 9px 9px}.viscape-ai-feature{font-size:8px;background:#f2f4f1;padding:5px 7px;border-radius:999px;color:#5c6670}.viscape-ai-product-actions{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #edf0ed}.viscape-ai-product-actions button{border:0;padding:9px;font-size:9px;font-weight:800;background:#fff;color:#0E2545;cursor:pointer}.viscape-ai-product-actions button+button{background:#0E2545;color:#fff;border-left:1px solid #edf0ed}
         .viscape-ai-inputbar{padding:10px;background:#fff;border-top:1px solid #0e254512}.viscape-ai-input-row{display:flex;gap:6px;padding:5px 6px 5px 11px;border:1px solid #dce2dc;border-radius:13px;background:#f3f5f2}.viscape-ai-input{flex:1;border:0;outline:0;background:transparent;font-size:11px}.viscape-ai-send{width:34px;height:34px;border:0;border-radius:9px;background:#0E2545;color:#fff}.viscape-ai-note{text-align:center;font-size:8px;color:#8a9299;margin-top:5px}
         @media(max-width:640px){.viscape-ai-launcher{right:15px;bottom:15px;width:58px;height:58px}.viscape-ai-tooltip{display:none}.viscape-ai-window{inset:8px;width:auto;height:auto;max-height:none}}
-    </style>
+    
+        /* Hero mobile: giữ vùng chữ bên trái, không chồng lên nhân vật; desktop giữ nguyên bố cục. */
+        @media (max-width: 639px) {
+            #viscape-hero-image { object-position: 58% center !important; }
+            #viscape-hero-image + .bg-gradient-to-r { background: linear-gradient(90deg, rgba(7,23,43,.94) 0%, rgba(7,23,43,.62) 45%, rgba(7,23,43,.08) 78%, transparent 100%); }
+        }
+</style>
 </head>
 <body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white">
     <!-- Sharpening filter: giữ chi tiết ảnh hero rõ hơn khi hiển thị lớn trên desktop/mobile -->
@@ -835,9 +841,9 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"></div>
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
-                                <div class="max-w-[430px] sm:max-w-[470px] lg:max-w-[500px]">
+                                <div class="w-[52%] max-w-[430px] sm:max-w-[470px] lg:max-w-[500px]">
                                     <span class="text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
-                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.05rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
+                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.78] sm:leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.18rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
                                     <p class="text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
                                     <button onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
                                 </div>
