@@ -837,7 +837,7 @@
                             <div class="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
                                 <div class="max-w-[430px] sm:max-w-[470px] lg:max-w-[500px]">
                                     <span class="text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
-                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[1.08] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block mt-1.5 sm:mt-3 md:mt-5">THEO CÁCH CỦA BẠN</span></h1>
+                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[1.08] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block mt-0.5 sm:mt-2 md:mt-4">THEO CÁCH CỦA BẠN</span></h1>
                                     <p class="text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
                                     <button onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
                                 </div>
@@ -1310,15 +1310,73 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
         }
 
         function renderAbout() {
+            const stories = [
+                {
+                    no: '01',
+                    title: 'TỪ SÀI GÒN, ĐI RA THẾ GIỚI',
+                    text: 'VISCAPE SPORT bắt đầu từ tinh thần sống nhanh, chơi hết mình và luôn muốn tạo ra dấu ấn riêng của Sài Gòn. Chúng tôi đưa tinh thần ấy vào từng sản phẩm để thể thao Việt Nam có một diện mạo tự tin, hiện đại và có câu chuyện.'
+                },
+                {
+                    no: '02',
+                    title: 'DI SẢN KHÔNG ĐỨNG YÊN',
+                    text: 'Trống đồng Đông Sơn, hoa sen, đường nét thủ công và những biểu tượng quen thuộc của Việt Nam được tái diễn giải bằng ngôn ngữ thiết kế đương đại. Di sản với VISCAPE SPORT không phải là thứ để cất giữ, mà là nguồn cảm hứng để tiếp tục chuyển động.'
+                },
+                {
+                    no: '03',
+                    title: 'MỖI TRẬN ĐẤU, MỘT CÂU CHUYỆN',
+                    text: 'Pickleball là cuộc chơi của phản xạ, chiến thuật và kết nối. Chúng tôi tin rằng mỗi cú đánh đều có cá tính riêng — vì vậy sản phẩm phải giúp người chơi cảm thấy thoải mái, tự tin và được là chính mình trên sân.'
+                },
+                {
+                    no: '04',
+                    title: 'MÀU ÁO VIỆT',
+                    text: 'Trang phục VISCAPE SPORT lấy cảm hứng từ nhịp sống Việt Nam: năng động, gần gũi và đầy năng lượng. Từ chất liệu, phom dáng đến chi tiết nhận diện, mọi thứ được tạo ra để đồng hành cùng chuyển động thay vì cản trở nó.'
+                },
+                {
+                    no: '05',
+                    title: 'SỨC MẠNH CỦA BẢN SẮC',
+                    text: 'Chúng tôi không muốn tạo ra một thương hiệu chỉ đẹp trên màn hình. VISCAPE SPORT muốn xây dựng một cộng đồng nơi người chơi có thể mang theo niềm tự hào Việt Nam bước lên sân và chơi theo cách của riêng mình.'
+                }
+            ];
+
             return `
-                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
-                    <div class="max-w-5xl mx-auto space-y-20">
-                        <div class="text-center space-y-6">
-                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Tuyên ngôn thương hiệu</span>
-                            <h1 class="font-display font-bold text-5xl md:text-8xl text-navy uppercase leading-none">KHÔNG CHỈ LÀ THỂ THAO.<br>MỘT NỀN VĂN HÓA ĐANG CHUYỂN ĐỘNG.</h1>
-                            <p class="text-gray-600 text-xl font-light max-w-2xl mx-auto">VISCAPE SPORT khai thác điểm giao thoa đầy sức sống giữa thể thao quốc tế và văn hóa thị giác Việt Nam đương đại.</p>
+                <div class="bg-ivory">
+                    <section class="pt-24 pb-20 px-6 md:px-16 bg-navy text-white relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_75%_20%,#dc982a_0,transparent_32%),radial-gradient(circle_at_10%_80%,#2b6f55_0,transparent_28%)]"></div>
+                        <div class="relative max-w-6xl mx-auto">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Câu chuyện thương hiệu</span>
+                            <h1 class="font-display font-bold text-5xl md:text-8xl uppercase leading-[0.92] mt-5">MỘT NỀN VĂN HÓA<br><span class="text-gold">ĐANG CHUYỂN ĐỘNG.</span></h1>
+                            <p class="mt-8 max-w-2xl text-white/75 text-base md:text-xl font-light leading-relaxed">VISCAPE SPORT là điểm giao thoa giữa thể thao quốc tế và văn hóa thị giác Việt Nam đương đại — nơi di sản, thiết kế và tinh thần chơi thể thao cùng chuyển động.</p>
                         </div>
-                    </div>
+                    </section>
+
+                    <section class="py-20 px-6 md:px-16">
+                        <div class="max-w-6xl mx-auto">
+                            <div class="max-w-2xl mb-14">
+                                <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase">Những câu chuyện tạo nên VISCAPE</span>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl text-navy uppercase mt-3">CHƠI. SỐNG. KỂ CHUYỆN.</h2>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${stories.map((story, index) => `
+                                    <article class="group bg-white border border-gray-200 rounded-2xl p-7 md:p-9 hover:border-gold hover:-translate-y-1 transition-all ${index === stories.length - 1 ? 'md:col-span-2 md:max-w-2xl' : ''}">
+                                        <div class="flex items-start justify-between gap-6">
+                                            <span class="font-mono text-gold text-xs tracking-[0.2em]">${story.no}</span>
+                                            <span class="text-navy/10 font-display font-bold text-5xl leading-none">V</span>
+                                        </div>
+                                        <h3 class="font-display font-bold text-xl md:text-2xl text-navy uppercase mt-8 mb-4">${story.title}</h3>
+                                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">${story.text}</p>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-20 px-6 md:px-16 bg-white border-y border-gray-100">
+                        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
+                            <div><span class="text-gold font-mono text-xs tracking-widest">TINH THẦN</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Tự tin là chính mình</h3></div>
+                            <div><span class="text-gold font-mono text-xs tracking-widest">THIẾT KẾ</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Di sản theo cách mới</h3></div>
+                            <div><span class="text-gold font-mono text-xs tracking-widest">CỘNG ĐỒNG</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Cùng nhau chuyển động</h3></div>
+                        </div>
+                    </section>
                 </div>
             `;
         }
