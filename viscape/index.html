@@ -61,12 +61,11 @@
         @media(max-width:640px){.viscape-ai-launcher{right:15px;bottom:15px;width:58px;height:58px}.viscape-ai-tooltip{display:none}.viscape-ai-window{inset:8px;width:auto;height:auto;max-height:none}}
     </style>
 </head>
-<body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white">
+<body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white"><svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs><symbol id="viscape-logo" viewBox="0 0 700 140"><path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z" fill="currentColor"/><path d="M93 73L132 8H182L147 63H104Z" fill="currentColor"/><text x="215" y="74" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="62" font-weight="700" letter-spacing="11" fill="currentColor">VISCAPE</text><text x="455" y="119" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="29" font-weight="500" letter-spacing="14" fill="currentColor">SPORT</text></symbol><symbol id="viscape-logo-mark" viewBox="0 0 190 140"><path d="M8 8H55L93 73L132 8H182L119 105L95 137L71 101L8 8Z" fill="currentColor"/><path d="M93 73L132 8H182L147 63H104Z" fill="currentColor"/></symbol></defs></svg>
 
     <div id="loader" class="fixed inset-0 z-50 bg-navy flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="text-center">
-            <h1 class="font-display text-4xl md:text-6xl text-white tracking-widest font-bold mb-2">VISCAPE</h1>
-            <p class="text-gold tracking-[0.3em] text-sm md:text-base uppercase mb-8">SPORT</p>
+            <svg class="w-[280px] md:w-[430px] h-auto mx-auto text-white mb-8" viewBox="0 0 700 140" aria-label="VISCAPE SPORT"><use href="#viscape-logo"/></svg>
             <div class="w-48 h-[2px] bg-white/20 relative overflow-hidden mx-auto rounded-full">
                 <div id="loader-bar" class="absolute inset-0 bg-gold w-0 transition-all duration-300"></div>
             </div>
@@ -75,16 +74,7 @@
     </div>
 
     <header id="site-header" class="sticky top-0 z-50 bg-navy text-white shadow-md py-4 px-6 md:px-12 flex items-center justify-between transition-all duration-300">
-        <!-- Logo -->
-        <div class="flex items-center gap-2 cursor-pointer" onclick="router.navigate('home')">
-            <svg class="w-7 h-7 text-gold" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 22h20L12 2zm0 4l7.5 14h-15L12 6z"/>
-            </svg>
-            <div>
-                <span class="font-display font-bold text-lg tracking-wider block leading-none">VISCAPE</span>
-                <span class="text-[8px] tracking-[0.2em] text-gold uppercase block">THỂ THAO</span>
-            </div>
-        </div>
+        <!-- Logo --><div class="flex items-center cursor-pointer" onclick="router.navigate('home')"><svg class="w-[190px] h-auto text-white" viewBox="0 0 700 140" aria-label="VISCAPE SPORT"><use href="#viscape-logo"/></svg></div>
 
         <!-- Navigation (Wireframe center) -->
         <nav class="hidden lg:flex items-center gap-8 font-medium text-xs tracking-widest uppercase">
@@ -195,12 +185,7 @@
     <footer class="bg-navy text-white pt-16 pb-12 px-6 md:px-16 border-t border-gold/20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div class="space-y-4">
-                <div class="flex items-center gap-2">
-                    <svg class="w-7 h-7 text-gold" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L2 22h20L12 2zm0 4l7.5 14h-15L12 6z"/>
-                    </svg>
-                    <span class="font-display font-bold text-lg tracking-wider">VISCAPE SPORT</span>
-                </div>
+                <div class="flex items-center"><svg class="w-[180px] h-auto text-white" viewBox="0 0 700 140" aria-label="VISCAPE SPORT"><use href="#viscape-logo"/></svg></div>
                 <p class="text-ivory/70 text-xs leading-relaxed">Thể thao quốc tế. Tâm hồn Việt Nam. Thiết kế tại Sài Gòn cho hiệu suất đỉnh cao.</p>
             </div>
             <div>
@@ -241,9 +226,9 @@
         <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
         <span id="toast-message" class="text-xs font-medium">Đã thêm vào giỏ hàng thành công</span>
     </div>
-    <button id="viscape-ai-launcher" class="viscape-ai-launcher" onclick="toggleViscapeAI()" aria-label="Mở VISCAPE AI"><span class="viscape-ai-ball"></span><span class="viscape-ai-tooltip">VISCAPE AI – Hỏi tôi về Pickleball</span></button>
+    <button id="viscape-ai-launcher" class="viscape-ai-launcher" onclick="toggleViscapeAI()" aria-label="Mở VISCAPE AI"><svg class="w-[34px] h-[34px] text-white" viewBox="0 0 190 140"><use href="#viscape-logo-mark"/></svg><span class="viscape-ai-tooltip">VISCAPE AI – Hỏi tôi về Pickleball</span></button>
     <section id="viscape-ai-window" class="viscape-ai-window">
-      <header class="viscape-ai-header"><div class="viscape-ai-head"><div class="viscape-ai-brand"><div class="viscape-ai-avatar"><span class="viscape-ai-ball" style="width:22px;height:22px"></span></div><div><div class="viscape-ai-title">VISCAPE AI</div><div class="viscape-ai-sub">Trợ lý mua sắm Pickleball</div><div class="viscape-ai-online">● Đang trực tuyến</div></div></div><div class="viscape-ai-actions"><button onclick="closeViscapeAI()">−</button><button onclick="closeViscapeAI()">×</button></div></div><div id="viscape-ai-context" class="viscape-ai-context"></div></header>
+      <header class="viscape-ai-header"><div class="viscape-ai-head"><div class="viscape-ai-brand"><div class="viscape-ai-avatar"><svg class="w-[25px] h-[25px] text-navy" viewBox="0 0 190 140"><use href="#viscape-logo-mark"/></svg></div><div><div class="viscape-ai-title">VISCAPE AI</div><div class="viscape-ai-sub">Trợ lý mua sắm Pickleball</div><div class="viscape-ai-online">● Đang trực tuyến</div></div></div><div class="viscape-ai-actions"><button onclick="closeViscapeAI()">−</button><button onclick="closeViscapeAI()">×</button></div></div><div id="viscape-ai-context" class="viscape-ai-context"></div></header>
       <div id="viscape-ai-messages" class="viscape-ai-messages"></div>
       <div class="viscape-ai-inputbar"><div class="viscape-ai-input-row"><input id="viscape-ai-input" class="viscape-ai-input" placeholder="Hỏi về vợt, kích cỡ, ngân sách..." onkeydown="if(event.key==='Enter')sendViscapeAI()"><button class="viscape-ai-send" onclick="sendViscapeAI()">➤</button></div><div class="viscape-ai-note">VISCAPE AI sử dụng dữ liệu sản phẩm hiện có trên website.</div></div>
     </section>
