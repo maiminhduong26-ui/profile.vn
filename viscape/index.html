@@ -33,6 +33,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
         ::-webkit-scrollbar {
             width: 8px;
@@ -65,6 +67,16 @@
             #viscape-hero-image { object-position: 58% center !important; }
             #viscape-hero-image + .bg-gradient-to-r { background: linear-gradient(90deg, rgba(7,23,43,.94) 0%, rgba(7,23,43,.62) 45%, rgba(7,23,43,.08) 78%, transparent 100%); }
         }
+        /* Awwwards-style VISCAPE hero */
+        #viscape-hero-stage{position:relative;isolation:isolate}
+        #viscape-hero-webgl{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:auto;mix-blend-mode:screen;opacity:.9}
+        .viscape-hero-copy{position:relative;z-index:12}
+        .viscape-hero-copy .viscape-reveal{clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);transform:translateY(22px);opacity:0}
+        .viscape-hero-intro{position:absolute;inset:0;z-index:20;background:#0a0a0a;display:flex;align-items:center;justify-content:center;pointer-events:none}
+        .viscape-hero-intro-canvas{position:absolute;inset:0;width:100%;height:100%}
+        .viscape-hero-intro-label{position:relative;z-index:2;color:#f5f1e8;font:500 10px/1 Inter,sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:.72}
+        @media(max-width:639px){#viscape-hero-webgl{opacity:.72}.viscape-hero-copy .viscape-reveal{transform:translateY(16px)}.viscape-hero-copy h1{line-height:.96!important}.viscape-hero-copy h1 span+span{margin-top:.06em!important}.viscape-hero-copy{width:58%!important;max-width:330px!important}}
+        @media(prefers-reduced-motion:reduce){#viscape-hero-webgl,.viscape-hero-intro{display:none!important}.viscape-hero-copy .viscape-reveal{clip-path:none;transform:none;opacity:1}}
 </style>
 </head>
 <body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white">
@@ -835,17 +847,17 @@
             return `
                 <!-- Hero / Full-bleed image: giữ trọn nhân vật và sản phẩm, chữ phủ trực tiếp trên ảnh -->
                 <section class="relative overflow-hidden bg-navy text-white">
-                    <div class="relative w-full aspect-[2048/1143] min-h-[250px]">
+                    <div id="viscape-hero-stage" class="relative w-full aspect-[2048/1143] min-h-[250px]"><canvas id="viscape-hero-webgl" aria-hidden="true"></canvas><div id="viscape-hero-intro" class="viscape-hero-intro"><canvas id="viscape-hero-intro-canvas" class="viscape-hero-intro-canvas" aria-hidden="true"></canvas><span class="viscape-hero-intro-label">VISCAPE SPORT</span></div>
                         <img id="viscape-hero-image" src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/42917a65-f8d4-43e8-8458-9219a16987ac.png" alt="VISCAPE SPORT pickleball athlete" class="absolute inset-0 w-full h-full object-cover" decoding="async" fetchpriority="high" width="1672" height="940" style="object-position:center center;filter:url(#viscape-hero-sharpen);image-rendering:auto;">
                         <div class="absolute inset-0 bg-gradient-to-r from-[#07172b]/90 via-[#07172b]/48 via-42% to-transparent"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"></div>
-                        <div class="absolute inset-0 flex items-center">
+                        <div class="absolute inset-0 flex items-center viscape-hero-copy">
                             <div class="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
                                 <div class="w-[52%] max-w-[430px] sm:max-w-[470px] lg:max-w-[500px]">
-                                    <span class="text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
-                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.88] sm:leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.18rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
-                                    <p class="text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
-                                    <button onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
+                                    <span class="viscape-reveal text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
+                                    <h1 class="viscape-reveal font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.88] sm:leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.18rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
+                                    <p class="viscape-reveal text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
+                                    <button class="viscape-reveal" onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
                                 </div>
                             </div>
                         </div>
@@ -1545,6 +1557,49 @@ aiMsg("Mình chưa nhận diện chính xác câu hỏi này. Bạn có thể h�
 aiQuick([["🏓 Chọn vợt","paddle"],["📏 Tư vấn size","size"],["👕 Trang phục","apparel"],["🎾 Bóng pickleball","balls"],["📖 Luật chơi","rules"],["🧼 Bảo quản vợt","care"]]);
 },300);
 }
+/* ===== VISCAPE 3-SECOND HERO EXPERIENCE ===== */
+let viscapeHeroWebGL=null;
+function initViscapeHeroExperience(){
+ if(!window.THREE||!window.gsap)return;
+ const stage=document.getElementById('viscape-hero-stage'),canvas=document.getElementById('viscape-hero-webgl'),intro=document.getElementById('viscape-hero-intro');
+ if(!stage||!canvas||!intro)return;
+ if(viscapeHeroWebGL&&viscapeHeroWebGL.stage===stage)return;
+ if(viscapeHeroWebGL&&viscapeHeroWebGL.dispose)viscapeHeroWebGL.dispose();
+ const THREE=window.THREE;
+ const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(stage.clientWidth,stage.clientHeight,false);renderer.outputEncoding=THREE.sRGBEncoding;
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(32,stage.clientWidth/stage.clientHeight,.1,100);camera.position.z=7;
+ const group=new THREE.Group();scene.add(group);
+ const geometry=new THREE.IcosahedronGeometry(1.55,5);
+ const material=new THREE.ShaderMaterial({
+  transparent:true,
+  uniforms:{uTime:{value:0},uPointer:{value:new THREE.Vector3(99,99,0)},uHover:{value:0}},
+  vertexShader:`
+   uniform float uTime;uniform vec3 uPointer;uniform float uHover;varying vec3 vNormal;varying vec3 vWorld;
+   void main(){vec3 p=position;float wave=sin(p.x*3.1+uTime*1.6)*.055+sin(p.y*4.0-uTime*1.15)*.045+sin(p.z*5.2+uTime*.85)*.035;p+=normalize(p)*wave;float d=distance(p,uPointer);float force=smoothstep(1.05,0.0,d)*uHover;vec3 dir=normalize(p-uPointer+vec3(.0001));p+=dir*force*.42;vec4 mv=modelViewMatrix*vec4(p,1.0);vNormal=normalize(normalMatrix*normal);vWorld=(modelMatrix*vec4(p,1.0)).xyz;gl_Position=projectionMatrix*mv;}
+  `,
+  fragmentShader:`
+   varying vec3 vNormal;varying vec3 vWorld;void main(){vec3 N=normalize(vNormal);vec3 V=normalize(cameraPosition-vWorld);float fresnel=pow(1.0-max(dot(N,V),0.0),3.0);vec3 base=vec3(.78,.58,.24);vec3 light=vec3(.95,.82,.48)*fresnel;float sheen=.18+.22*max(dot(N,normalize(vec3(-.4,.7,1.0))),0.0);gl_FragColor=vec4(base*(.58+sheen)+light,.72);}
+  `
+ });
+ const blob=new THREE.Mesh(geometry,material);group.add(blob);group.position.set(.75,.05,.25);group.scale.setScalar(.001);
+ const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2(99,99),targetPointer=new THREE.Vector3(99,99,0);let targetHover=0;
+ function updatePointer(x,y){const r=stage.getBoundingClientRect();pointer.x=((x-r.left)/r.width)*2-1;pointer.y=-((y-r.top)/r.height)*2+1;raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObject(blob,false);if(hit.length){targetPointer.copy(blob.worldToLocal(hit[0].point.clone()));targetHover=1}else targetHover=0}
+ stage.addEventListener('pointermove',e=>updatePointer(e.clientX,e.clientY),{passive:true});stage.addEventListener('pointerleave',()=>{targetHover=0;targetPointer.set(99,99,0)},{passive:true});stage.addEventListener('touchmove',e=>{if(e.touches[0])updatePointer(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
+ function resize(){const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)}
+ window.addEventListener('resize',resize,{passive:true});resize();
+ const tl=gsap.timeline();
+ tl.to(blob.scale,{x:1,y:1,z:1,duration:1.05,ease:'expo.out'})
+   .to(intro,{opacity:0,duration:.65,ease:'power2.out'},.72)
+   .to('.viscape-hero-copy .viscape-reveal',{clipPath:'polygon(0 0%,100% 0%,100% 100%,0 100%)',y:0,opacity:1,duration:.72,ease:'power3.out',stagger:.08},1.65)
+   .to(group.position,{x:window.innerWidth<640?.45:.75,duration:1.1,ease:'power3.out'},1.35)
+   .to(group.scale,{x:window.innerWidth<640?.72:1,y:window.innerWidth<640?.72:1,z:window.innerWidth<640?.72:1,duration:1,ease:'expo.out'},1.2);
+ const clock=new THREE.Clock();let raf=0;
+ function animate(){raf=requestAnimationFrame(animate);const t=clock.getElapsedTime();material.uniforms.uTime.value=t;material.uniforms.uHover.value+=(targetHover-material.uniforms.uHover.value)*.08;material.uniforms.uPointer.value.lerp(targetPointer,.12);blob.rotation.y=t*.08;blob.rotation.x=Math.sin(t*.35)*.06;renderer.render(scene,camera)}
+ animate();
+ viscapeHeroWebGL={stage,dispose(){cancelAnimationFrame(raf);window.removeEventListener('resize',resize);renderer.dispose();geometry.dispose();material.dispose()}};
+}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(initViscapeHeroExperience,100));
 </script>
 </body>
 </html>
