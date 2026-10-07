@@ -244,6 +244,1308 @@
     </section>
 
 
-    
+    <script>
+        function formatMoney(amount, currency = 'USD') {
+            if (currency === 'VND') return amount.toLocaleString('vi-VN') + ' VNĐ';
+            return '$' + Number(amount).toFixed(2);
+        }
+
+        const PRODUCTS = [
+            {
+                id: 'viscape-di-san-chinh-phuc',
+                name: 'Di Sản Chinh Phục',
+                category: 'paddles',
+                collection: 'Bộ sưu tập Di Sản',
+                price: 3100000,
+                currency: 'VND',
+                rating: 4.9,
+                reviewsCount: 128,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/fd799df2-140b-4850-9fef-75d614e6d22c.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/fd799df2-140b-4850-9fef-75d614e6d22c.png',
+                description: 'Vợt pickleball lấy cảm hứng từ di sản Việt Nam, hoàn thiện khảm vàng với định hướng control, stability và spin.',
+                details: {
+                    material: 'Sợi carbon T700',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: 'Mặt vợt 399 × 198 mm • Chuôi 135 mm',
+                    core: 'Lõi tổ ong Polypropylene',
+                    surface: 'Carbon thô có vân',
+                    level: 'Nâng cao / Toàn sân',
+                    thickness: '16 mm',
+                    design: 'Dáng lai / Kéo dài',
+                    gripType: 'Tay cầm PU đục lỗ',
+                    protection: 'Viền bảo vệ',
+                    damping: 'Giảm chấn rung'
+                },
+                variants: ['Di Sản Chinh Phục'],
+                inStock: true
+            },
+            {
+                id: 'viscape-viet-nam-kham-vang',
+                name: 'Việt Nam Khảm Vàng',
+                category: 'paddles',
+                collection: 'Bộ sưu tập Di Sản',
+                price: 3100000,
+                currency: 'VND',
+                rating: 4.9,
+                reviewsCount: 98,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/471b79b2-028d-4923-b9cb-89577da1f30e.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/471b79b2-028d-4923-b9cb-89577da1f30e.png',
+                description: 'Vợt pickleball Việt Nam Khảm Vàng với họa tiết di sản Việt Nam trên nền xanh đậm, định hướng control, stability và spin.',
+                details: {
+                    material: 'Sợi carbon T700',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: '399 × 198 mm face • 135 mm handle',
+                    core: 'Lõi tổ ong Polypropylene',
+                    surface: 'Carbon thô có vân',
+                    level: 'Nâng cao / Toàn sân',
+                    thickness: '16 mm',
+                    design: 'Dáng lai / Kéo dài',
+                    gripType: 'Tay cầm PU đục lỗ',
+                    protection: 'Viền bảo vệ',
+                    damping: 'Giảm chấn rung'
+                },
+                variants: ['Việt Nam Khảm Vàng'],
+                inStock: true
+            },
+            {
+                id: 'viscape-tinh-hoa-di-san',
+                name: 'Tinh Hoa Di Sản',
+                category: 'paddles',
+                collection: 'Bộ sưu tập Di Sản',
+                price: 3100000,
+                currency: 'VND',
+                rating: 4.9,
+                reviewsCount: 104,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9da74886-cd25-4afc-a930-248f82bf6351.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9da74886-cd25-4afc-a930-248f82bf6351.png',
+                description: 'Vợt pickleball Tinh Hoa Di Sản với thiết kế đen sang trọng và họa tiết di sản, định hướng control, stability và spin.',
+                details: {
+                    material: 'Sợi carbon T700',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: '399 × 198 mm face • 135 mm handle',
+                    core: 'Lõi tổ ong Polypropylene',
+                    surface: 'Carbon thô có vân',
+                    level: 'Nâng cao / Toàn sân',
+                    thickness: '16 mm',
+                    design: 'Dáng lai / Kéo dài',
+                    gripType: 'Tay cầm PU đục lỗ',
+                    protection: 'Viền bảo vệ',
+                    damping: 'Giảm chấn rung'
+                },
+                variants: ['Tinh Hoa Di Sản'],
+                inStock: true
+            },
+            {
+                id: 'viscape-lien-hoa',
+                name: 'Liên Hoa',
+                category: 'paddles',
+                collection: 'Bộ sưu tập Hoa Sen',
+                price: 3000000,
+                currency: 'VND',
+                rating: 4.9,
+                reviewsCount: 96,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2606bf13-9a4e-4291-8134-567095665e8b.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2606bf13-9a4e-4291-8134-567095665e8b.png',
+                description: 'Vợt pickleball Liên Hoa mang họa tiết hoa sen trên nền tối, kết hợp định hướng control, stability và spin.',
+                details: {
+                    material: 'Sợi carbon T700',
+                    weight: '7.8–8.3 oz (221–235 g)',
+                    grip: '108 mm / 4.25"',
+                    length: '399 × 198 mm face • 135 mm handle',
+                    core: 'Lõi tổ ong Polypropylene',
+                    surface: 'Carbon thô có vân',
+                    level: 'Nâng cao / Toàn sân',
+                    thickness: '16 mm',
+                    design: 'Dáng lai / Kéo dài',
+                    gripType: 'Tay cầm PU đục lỗ',
+                    protection: 'Viền bảo vệ',
+                    damping: 'Giảm chấn rung'
+                },
+                variants: ['Liên Hoa'],
+                inStock: true
+            },
+            {
+                id: 'viscape-lotus',
+                name: 'Bóng Pickleball VISCAPE SPORT',
+                category: 'balls',
+                collection: 'Bộ sưu tập Hiệu Năng',
+                price: 70000,
+                currency: 'VND',
+                rating: 4.8,
+                reviewsCount: 56,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/dffeab1f-ac9f-422e-bfcd-dffa6eb02008.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/dffeab1f-ac9f-422e-bfcd-dffa6eb02008.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/1b8c35ad-0080-4cc4-b8ad-611948c97378.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2824ed69-5c1d-4007-84a9-ce1e16509b2e.png'
+                ],
+                colors: ['Vàng', 'Cam', 'Xanh lá'],
+                colorImages: {
+                    'Vàng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/1b8c35ad-0080-4cc4-b8ad-611948c97378.png',
+                    'Cam': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/a0310c0a-e8e4-499a-8714-75ebec6490bc.png',
+                    'Xanh lá': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2824ed69-5c1d-4007-84a9-ce1e16509b2e.png'
+                },
+                colorSwatches: [
+                    {name:'Vàng',hex:'#F5D000'},
+                    {name:'Cam',hex:'#F47B20'},
+                    {name:'Xanh lá',hex:'#B8E600'}
+                ],
+                bundlePrice: 270000,
+                bundleLabel: 'Combo 4 quả',
+                description: 'Bóng pickleball outdoor VISCAPE 40 lỗ, thiết kế cho độ bền, đường bay ổn định và cảm giác đánh nhất quán trong các buổi chơi ngoài trời.',
+                details: {
+                    material: 'Nhựa PE cao cấp',
+                    weight: '26 g / quả',
+                    diameter: '~74 mm',
+                    holes: '40 lỗ',
+                    type: 'Pickleball ngoài trời',
+                    construction: 'Thiết kế liền khối • tối ưu độ bền',
+                    colors: 'Vàng • Cam • Xanh lá',
+                    use: 'Pickleball ngoài trời • luyện tập • thi đấu phong trào'
+                },
+                variants: ['Vàng', 'Cam', 'Xanh lá'],
+                inStock: true
+            },
+            {
+                id: 'viscape-polyester-performance-tee',
+                name: 'Áo thể thao hiệu năng Polyester VISCAPE SPORT',
+                category: 'apparel',
+                collection: 'Bộ sưu tập Hiệu Năng',
+                price: 550000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                galleryImages: ['https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png','https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png'],
+                colors: ['Đen', 'Trắng', 'Xanh đen', 'Xám'],
+                colorImages: {
+                    'Đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/d33810a0-efc6-4723-a671-15286ddd6338.png',
+                    'Trắng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                    'Xanh đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png',
+                    'Xám': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/7f449d21-8576-4682-9c42-139f4c25bb16.png'
+                },
+                variants: ['Đen', 'Trắng', 'Xanh đen', 'Xám'],
+                sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+                description: 'Áo thể thao hiệu năng Polyester VISCAPE SPORT - Áo thun thể thao VISCAPE chất liệu Polyester. Thiết kế tối giản với chất liệu Polyester nhẹ, mềm, co giãn tốt và thoáng khí, giúp thấm hút mồ hôi và nhanh khô trong suốt quá trình vận động. Phù hợp cho pickleball và nhiều hoạt động thể thao khác.',
+                details: { material: '92% Polyester + 8% Elastane', stretch: '4 chiều', colors: 'Đen • Trắng • Xanh đen • Xám', sizeGuide: 'M: 40–55kg • L: 56–65kg • XL: 66–73kg • XXL: 74–82kg • XXXL: 83–90kg' },
+                inStock: true
+            },
+            {
+                id: 'viscape-pickleball-duffel-bag',
+                name: 'Túi duffel Pickleball',
+                category: 'bags',
+                collection: 'Bộ sưu tập Đông Sơn',
+                price: 2200000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/6fc50305-9b0d-44f9-8e93-636fd439eae8.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/6fc50305-9b0d-44f9-8e93-636fd439eae8.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/6fc50305-9b0d-44f9-8e93-636fd439eae8.png'
+                ],
+                variants: ['Black'],
+                inStock: true,
+                description: 'Túi duffel Pickleball – túi duffel thể thao VISCAPE với thiết kế đen chủ đạo, họa tiết vàng đồng Đông Sơn và nhiều ngăn tiện dụng, phù hợp chơi pickleball, tập luyện, thi đấu và du lịch.',
+                details: {
+                    material: 'Vải polyester cao cấp',
+                    surface: 'Chắc chắn, bền bỉ • chống thấm nước tốt • chống bám bụi, dễ vệ sinh',
+                    dimensions: '52 × 28 × 28 cm',
+                    design: 'Túi duffel thể thao',
+                    capacity: 'Khoang chính rộng rãi cho quần áo, phụ kiện và dụng cụ thể thao',
+                    compartments: 'Nhiều ngăn riêng giúp phân loại và bảo quản vật dụng',
+                    sidePocket: 'Ngăn lưới bên hông cho bình nước hoặc phụ kiện cần lấy nhanh',
+                    hardware: 'Khóa kéo chắc chắn, hoạt động mượt mà',
+                    straps: 'Quai xách và dây đeo được gia cố',
+                    use: 'Pickleball • tập luyện • thi đấu • du lịch'
+                }
+            },
+            {
+                id: 'viscape-lotus-performance-tee',
+                name: 'Áo thể thao hiệu năng Hoa Sen VISCAPE SPORT',
+                category: 'apparel',
+                collection: 'Bộ sưu tập Hoa Sen',
+                price: 750000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2c92afb0-0af4-460d-8602-2d28ce646c95.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9e0def79-aba6-428c-9c19-6483de7f17fd.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2c92afb0-0af4-460d-8602-2d28ce646c95.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9e0def79-aba6-428c-9c19-6483de7f17fd.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/36cb4360-8134-4640-93e8-78408583c2f4.png'
+                ],
+                description: 'Áo thể thao hiệu năng Hoa Sen VISCAPE SPORT - Áo thun thể thao VISCAPE Hoạ tiết hoa sen. Thiết kế lấy cảm hứng từ hình tượng hoa sen Việt Nam, kết hợp chất liệu thể thao co giãn 4 chiều, mềm nhẹ, thoáng khí và thấm hút nhanh, mang lại sự thoải mái và linh hoạt trong từng chuyển động trên sân.',
+                details: {
+                    material: '92% Polyester + 8% Elastane',
+                    stretch: '4 chiều',
+                    sizeGuide: 'M: 40–55kg • L: 56–65kg • XL: 66–73kg • XXL: 74–82kg • XXXL: 83–90kg'
+                },
+                variants: ['White'],
+                sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+                inStock: true
+            },
+            {
+                id: 'viscape-dong-son-performance-tee',
+                name: 'Áo thể thao hiệu năng Đông Sơn VISCAPE SPORT',
+                category: 'apparel',
+                collection: 'Bộ sưu tập Đông Sơn',
+                price: 750000,
+                currency: 'VND',
+                rating: 0,
+                reviewsCount: 0,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/b4f9fe3f-5f95-493d-83a2-e5c3c168d270.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/0acf4792-3c65-4536-b683-639f41d202a5.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/b4f9fe3f-5f95-493d-83a2-e5c3c168d270.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/0acf4792-3c65-4536-b683-639f41d202a5.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/eea0e226-1315-450c-a1bd-938aac05814e.png'
+                ],
+                description: 'Áo thể thao hiệu năng Đông Sơn VISCAPE SPORT - Áo thun thể thao VISCAPE Hoạ tiết Đông Sơn. Áo thể thao hiệu năng Đông Sơn VISCAPE SPORT kết hợp họa tiết Đông Sơn mang đậm dấu ấn văn hóa Việt với chất liệu thể thao co giãn 4 chiều, mềm mại và thoáng khí. Thiết kế nhẹ, linh hoạt, hỗ trợ tối đa từng chuyển động trên sân pickleball, đồng thời tạo nên diện mạo hiện đại, tinh tế và khác biệt cho người mặc.',
+                details: {
+                    material: '92% Polyester + 8% Elastane',
+                    stretch: '4 chiều',
+                    sizeGuide: 'M: 40–55kg • L: 56–65kg • XL: 66–73kg • XXL: 74–82kg • XXXL: 83–90kg'
+                },
+                variants: ['Black'],
+                sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+                inStock: true
+            },
+            {
+                id: 'viscape-performance-sport-cap',
+                name: 'Mũ thể thao hiệu năng VISCAPE SPORT',
+                category: 'accessories',
+                collection: 'Bộ sưu tập Hiệu Năng',
+                price: 450000,
+                currency: 'VND',
+                rating: 4.8,
+                reviewsCount: 42,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png',
+                galleryImages: ['https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/3fdca9f8-c2c7-4655-bd9f-1737815553bf.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png', 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/c6f53db9-c136-4156-beb7-c1efebe2fbd8.png'],
+                colors: ['Xám', 'Trắng', 'Đen', 'Xanh Navy'],
+                colorImages: {
+                    'Xám': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/8ddf0d77-fbf9-477a-bb2e-f5fb4335f40d.png',
+                    'Trắng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/3fdca9f8-c2c7-4655-bd9f-1737815553bf.png',
+                    'Đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2beaa69e-c48a-4856-8a0b-ccb4b98c2f52.png',
+                    'Xanh Navy': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/c6f53db9-c136-4156-beb7-c1efebe2fbd8.png'
+                },
+                variants: ['Xám', 'Trắng', 'Đen', 'Xanh Navy'],
+                colorSwatches: [{name:'Xám',hex:'#6B7280'},{name:'Trắng',hex:'#FFFFFF'},{name:'Đen',hex:'#111111'},{name:'Xanh Navy',hex:'#102A43'}],
+                sizes: ['Một kích cỡ'],
+                description: 'Mũ thể thao hiệu năng VISCAPE SPORT là nón lưỡi trai thể thao nhẹ, thoáng khí và dễ điều chỉnh, phù hợp pickleball, tennis, golf, chạy bộ và các hoạt động ngoài trời. Thiết kế tối giản với logo VISCAPE SPORT tạo điểm nhấn hiện đại, dễ phối cùng trang phục thi đấu hoặc mặc hằng ngày.',
+                details: {
+                    material: 'Vải thể thao cao cấp',
+                    ventilation: 'Lỗ thông gió bên hông • tăng lưu thông không khí',
+                    fit: 'Dạng lưỡi trai ôm đầu • khóa điều chỉnh phía sau',
+                    weight: 'Thiết kế nhẹ, phù hợp vận động dài giờ',
+                    colors: 'Xám • Trắng • Đen • Xanh Navy',
+                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Ngoài trời • Hằng ngày',
+                    gender: 'Unisex',
+                    sizeGuide: 'Một kích cỡ • Điều chỉnh linh hoạt theo vòng đầu'
+                },
+                inStock: true
+            },
+            {
+                id: 'viscape-pickleball-visor',
+                name: 'Mũ visor Pickleball VISCAPE SPORT',
+                category: 'accessories',
+                collection: 'Bộ sưu tập Hiệu Năng',
+                price: 900000,
+                currency: 'VND',
+                rating: 4.8,
+                reviewsCount: 36,
+                image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/51dccf71-9a12-4dbf-8578-22af0eb9b975.png',
+                altImage: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/625df9ed-980a-441c-ad56-bf87f958172c.png',
+                galleryImages: [
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/51dccf71-9a12-4dbf-8578-22af0eb9b975.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/625df9ed-980a-441c-ad56-bf87f958172c.png',
+                    'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/bc39f83a-3de2-4b7a-88da-1e2caf850f95.png'
+                ],
+                colors: ['Trắng', 'Đen', 'Xanh Navy'],
+                colorImages: {
+                    'Trắng': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/51dccf71-9a12-4dbf-8578-22af0eb9b975.png',
+                    'Đen': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/625df9ed-980a-441c-ad56-bf87f958172c.png',
+                    'Xanh Navy': 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/bc39f83a-3de2-4b7a-88da-1e2caf850f95.png'
+                },
+                colorSwatches: [
+                    {name:'Trắng',hex:'#FFFFFF'},
+                    {name:'Đen',hex:'#111111'},
+                    {name:'Xanh Navy',hex:'#102A43'}
+                ],
+                variants: ['Trắng', 'Đen', 'Xanh Navy'],
+                sizes: ['Một kích cỡ'],
+                description: 'Mũ visor Pickleball VISCAPE SPORT là mũ visor thể thao nửa đầu, nhẹ và thoáng khí, được thiết kế cho pickleball và các hoạt động ngoài trời. Vành cong rộng hỗ trợ che nắng, phần sau để hở giúp tăng độ thoáng và dây điều chỉnh cho phép ôm vừa nhiều vòng đầu.',
+                details: {
+                    material: 'Polyester thể thao cao cấp • nhẹ • mềm • thoáng khí',
+                    ventilation: 'Thiết kế nửa đầu và các vùng thông thoáng giúp giảm bí khi vận động',
+                    brim: 'Vành cong rộng, hỗ trợ che nắng khi thi đấu và luyện tập ngoài trời',
+                    fit: 'Dây điều chỉnh phía sau • Một kích cỡ • Unisex',
+                    weight: 'Thiết kế siêu nhẹ, ưu tiên sự thoải mái khi vận động dài giờ',
+                    colors: 'Trắng • Đen • Xanh Navy',
+                    use: 'Pickleball • Tennis • Golf • Chạy bộ • Ngoài trời • Hằng ngày',
+                    care: 'Giặt nhẹ, phơi khô tự nhiên, tránh nhiệt độ cao'
+                },
+                inStock: true
+            }
+        ];
+
+        let cart = (JSON.parse(localStorage.getItem('viscape_cart')) || []).filter(item => { const p = PRODUCTS.find(x => x.id === item.id); return p && p.currency === 'VND'; });
+        localStorage.setItem('viscape_cart', JSON.stringify(cart));
+        let currentRoute = 'home';
+        let routeParam = null;
+        let selectedFilter = 'all';
+
+        const router = {
+            navigate: (route, param = null) => {
+                currentRoute = route;
+                routeParam = param;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                render();
+                if(window.innerWidth < 1024) {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+                        toggleMobileMenu();
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 700);
+            }, 800);
+            const bar = document.getElementById('loader-bar');
+            if(bar) bar.style.width = '100%';
+            updateCartUI();
+            render();
+            lucide.createIcons();
+        });
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const panel = document.getElementById('cart-panel');
+            if(drawer.classList.contains('pointer-events-none')) {
+                drawer.classList.remove('opacity-0', 'pointer-events-none');
+                panel.classList.remove('translate-x-full');
+                renderCartItems();
+            } else {
+                drawer.classList.add('opacity-0', 'pointer-events-none');
+                panel.classList.add('translate-x-full');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        function openSearch() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearch() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-32');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3000);
+        }
+
+        function addToCart(productId, variant = null, size = null) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if(!product) return;
+            if (variant === null) {
+                const activeVariant = document.querySelector('.variant-btn.border-navy');
+                variant = activeVariant ? activeVariant.textContent.trim() : (product.variants ? product.variants[0] : null);
+            }
+            if (size === null && product.sizes) {
+                const activeSize = document.querySelector('.size-btn.border-navy');
+                size = activeSize ? activeSize.textContent.trim() : product.sizes[0];
+            }
+            const existingItem = cart.find(item => item.id === productId && item.variant === variant && item.size === size);
+            if(existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    currency: product.currency || 'USD',
+                    image: (product.colorImages && product.colorImages[variant]) ? product.colorImages[variant] : product.image,
+                    variant: variant || product.variants[0],
+                    size: size || (product.sizes ? product.sizes[0] : null),
+                    quantity: 1
+                });
+            }
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast(`Đã thêm ${product.name} vào giỏ hàng`);
+            toggleCart();
+        }
+
+        function updateQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if(cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            renderCartItems();
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badges = document.querySelectorAll('#cart-badge, #cart-count-badge');
+            badges.forEach(badge => {
+                badge.innerText = totalItems;
+                if(totalItems > 0) {
+                    badge.classList.remove('scale-0');
+                    badge.classList.add('scale-100');
+                } else {
+                    badge.classList.remove('scale-100');
+                    badge.classList.add('scale-0');
+                }
+            });
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-400">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 stroke-[1]"></i>
+                        <p class="font-display font-medium text-lg text-dark">Giỏ hàng của bạn đang trống</p>
+                        <p class="text-xs text-gray-500 mt-1">Khám phá các bộ sưu tập và nâng tầm cuộc chơi của bạn.</p>
+                        <button onclick="toggleCart(); router.navigate('shop');" class="mt-6 bg-navy text-white text-xs px-6 py-3 rounded-lg uppercase tracking-wider font-bold">Bắt đầu mua sắm</button>
+                    </div>
+                `;
+                subtotalEl.innerText = '$0.00';
+                totalEl.innerText = '$0.00';
+                lucide.createIcons();
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, index) => {
+                subtotal += item.price * item.quantity;
+                return `
+                    <div class="flex gap-4 py-4 items-center">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg bg-ivory">
+                        <div class="flex-1">
+                            <h4 class="font-display font-bold text-sm text-dark">${item.name}</h4>
+                            <p class="text-xs text-gray-500 mt-0.5">${item.variant} ${item.size ? '• Kích cỡ: ' + item.size : ''}</p>
+                            <p class="text-sm font-bold text-navy mt-1">${formatMoney(item.price, item.currency)}</p>
+                            <div class="flex items-center gap-3 mt-2">
+                                <div class="flex items-center border border-gray-200 rounded-md">
+                                    <button onclick="updateQuantity(${index}, -1)" class="px-2 py-0.5 text-gray-500 hover:text-dark">-</button>
+                                    <span class="px-2 text-xs font-bold">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${index}, 1)" class="px-2 py-0.5 text-gray-500 hover:text-dark">+</button>
+                                </div>
+                                <button onclick="updateQuantity(${index}, -item.quantity)" class="text-xs text-red-500 hover:underline">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = `${formatMoney(subtotal, cart[0]?.currency || 'USD')}`;
+            totalEl.innerText = `${formatMoney(subtotal, cart[0]?.currency || 'USD')}`;
+            lucide.createIcons();
+        }
+
+        function handleSearch(query) {
+            const container = document.getElementById('search-results');
+            if(!query.trim()) {
+                container.innerHTML = '';
+                return;
+            }
+            const results = PRODUCTS.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.description.toLowerCase().includes(query.toLowerCase()));
+            if(results.length === 0) {
+                container.innerHTML = `<p class="text-white/60 text-sm col-span-2">No products found matching "${query}"</p>`;
+                return;
+            }
+            container.innerHTML = results.map(p => `
+                <div onclick="closeSearch(); router.navigate('product', '${p.id}')" class="flex gap-4 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors cursor-pointer items-center">
+                    <img src="${p.image}" alt="${p.name}" class="w-16 h-16 object-cover rounded-lg">
+                    <div>
+                        <span class="text-gold text-[10px] uppercase tracking-wider block">${p.category === 'paddles' ? 'Vợt' : p.category === 'balls' ? 'Bóng' : p.category === 'shoes' ? 'Giày' : p.category === 'apparel' ? 'Trang phục' : p.category === 'accessories' ? 'Phụ kiện' : p.category}</span>
+                        <h4 class="font-display font-bold text-white text-sm">${p.name}</h4>
+                        <p class="text-white/70 text-xs font-semibold mt-1">${formatMoney(p.price, p.currency)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadViscapeHeroImage() {
+            const img = document.getElementById('viscape-hero-image');
+            if (!img || img.dataset.loaded === 'true') return;
+
+            // Dùng asset hero chất lượng cao trong repository, tránh ảnh base64 cũ bị nén.
+            img.src = 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/42917a65-f8d4-43e8-8458-9219a16987ac.png';
+            img.dataset.loaded = 'true';
+        }
+
+        function render() {
+            const container = document.getElementById('app-container');
+            if(currentRoute === 'home') {
+                container.innerHTML = renderHome();
+                loadViscapeHeroImage();
+            } else if(currentRoute === 'shop') {
+                container.innerHTML = renderShop(routeParam);
+            } else if(currentRoute === 'product') {
+                container.innerHTML = renderProductDetail(routeParam);
+            } else if(currentRoute === 'collections') {
+                container.innerHTML = renderCollections();
+            } else if(currentRoute === 'about') {
+                container.innerHTML = renderAbout();
+            } else if(currentRoute === 'policies') {
+                container.innerHTML = renderPolicies();
+            } else if(currentRoute === 'contact') {
+                container.innerHTML = renderContact();
+            } else if(currentRoute === 'checkout') {
+                container.innerHTML = renderCheckout();
+            }
+            lucide.createIcons();
+        }
+
+        // Homepage structured exactly according to wireframe Image 1:
+        // Top Header -> Hero Background banner -> 4x4 Grid in Main area -> Box 1, Box 2, Box 3 -> Footer
+        function renderHome() {
+            return `
+                <!-- Hero / Full-bleed image: giữ trọn nhân vật và sản phẩm, chữ phủ trực tiếp trên ảnh -->
+                <section class="relative overflow-hidden bg-navy text-white">
+                    <div class="relative w-full aspect-[2048/1143] min-h-[250px]">
+                        <img id="viscape-hero-image" src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/42917a65-f8d4-43e8-8458-9219a16987ac.png" alt="VISCAPE SPORT pickleball athlete" class="absolute inset-0 w-full h-full object-cover" decoding="async" fetchpriority="high" width="1672" height="940" style="object-position:center center;filter:url(#viscape-hero-sharpen);image-rendering:auto;">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#07172b]/90 via-[#07172b]/48 via-42% to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"></div>
+                        <div class="absolute inset-0 flex items-center ">
+                            <div class="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+                                <div class="w-[52%] max-w-[430px] sm:max-w-[470px] lg:max-w-[500px]">
+                                    <span class="text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
+                                    <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.88] sm:leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.18rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
+                                    <p class="text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
+                                    <button class="viscape-reveal" onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4x4 Grid Section (Main Grid layout matching Wireframe Image 1) -->
+                <section class="py-20 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex justify-between items-end mb-12">
+                            <div>
+                                <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">Danh mục nổi bật</span>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl text-navy uppercase mt-2">BỘ SƯU TẬP BÁN CHẠY NHẤT 2026</h2>
+                            </div>
+                            <button onclick="router.navigate('shop', 'all')" class="text-navy font-display font-bold uppercase text-xs hover:text-gold transition-colors">Xem tất cả sản phẩm →</button>
+                        </div>
+                        
+                        <!-- 16 Items representing the 4x4 Grid from Wireframe Image 1 -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            ${Array.from(new Map(PRODUCTS.map(p => [p.id || p.name, p])).values()).map((p) => `
+                                <div class="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                                    <div class="relative aspect-square bg-gray-100 overflow-hidden cursor-pointer" onclick="router.navigate('product', '${p.id}')">
+                                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500">
+                                        <span class="absolute top-3 left-3 bg-navy/90 text-white text-[9px] uppercase px-2 py-0.5 rounded font-mono">${p.collection}</span>
+                                        <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-3 left-3 right-3 bg-navy text-white py-2.5 rounded-lg font-display font-bold text-[11px] uppercase tracking-wider opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-gold shadow">
+                                            Thêm vào giỏ hàng
+                                        </button>
+                                    </div>
+                                    <div class="p-4">
+                                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">${p.category}</span>
+                                        <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-sm text-dark truncate cursor-pointer hover:text-gold">${p.name}</h3>
+                                        <p class="text-xs font-bold text-navy mt-1">${formatMoney(p.price, p.currency)}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Box 1, Box 2, Box 3 Section matching Wireframe Image 1 Bottom layout -->
+                <section class="py-20 px-6 md:px-16 bg-white border-t border-gray-200">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-center max-w-xl mx-auto mb-16">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Giá trị cốt lõi</span>
+                            <h2 class="font-display font-bold text-3xl md:text-4xl text-navy uppercase mt-2">TRẢI NGHIỆM VISCAPE</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Box 1 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">SỨC MẠNH VIỆT</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Di sản Đông Sơn</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Họa tiết trống đồng linh thiêng và đường nét chim hạc được kết hợp trên nền carbon T700 Toray cao cấp, tạo nên những cây vợt pickleball mang đậm tinh thần di sản Việt.</p>
+                                </div>
+                                <button onclick="router.navigate('shop', 'paddles')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Khám phá vợt →</button>
+                            </div>
+                            <!-- Box 2 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">MÀU ÁO VIỆT</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Trang phục Chuyển động Việt</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Chất liệu thể thao thoáng khí, thấm hút mồ hôi nhanh, được thiết kế tinh tế để mang lại sự linh hoạt tối đa trên sân.</p>
+                                </div>
+                                <button onclick="router.navigate('shop', 'apparel')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Khám phá trang phục →</button>
+                            </div>
+                            <!-- Box 3 -->
+                            <div class="bg-ivory border border-gray-200 p-8 rounded-2xl flex flex-col justify-between hover:border-gold transition-colors">
+                                <div>
+                                    <span class="text-gold font-mono text-xs tracking-widest block mb-4">CHUYỆN VIỆT</span>
+                                    <h3 class="font-display font-bold text-2xl text-navy mb-3 uppercase">Tinh thần & Văn hóa Sài Gòn</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">Thương hiệu thể thao đương đại khởi nguồn từ Sài Gòn, mang tinh thần Việt Nam sánh vai cùng những biểu tượng thể thao quốc tế.</p>
+                                </div>
+                                <button onclick="router.navigate('about')" class="mt-8 text-xs font-bold uppercase text-navy hover:text-gold flex items-center gap-2">Câu chuyện thương hiệu →</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderProductCard(p) {
+            return `
+                <div class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden bg-ivory aspect-[4/5] cursor-pointer" onclick="router.navigate('product', '${p.id}')">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-navy/80 backdrop-blur-sm text-white text-[10px] uppercase font-mono tracking-widest px-2.5 py-1 rounded-md">
+                            ${p.collection}
+                        </span>
+                        <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="absolute bottom-4 left-4 right-4 bg-navy text-white py-3 rounded-xl font-display font-bold text-xs uppercase tracking-wider opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold flex items-center justify-center gap-2 shadow-lg">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs text-gray-400 uppercase tracking-widest">${p.category}</span>
+                                <div class="flex items-center gap-1 text-xs text-gold font-bold">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> ${p.rating}
+                                </div>
+                            </div>
+                            <h3 onclick="router.navigate('product', '${p.id}')" class="font-display font-bold text-lg text-dark hover:text-gold transition-colors cursor-pointer">${p.name}</h3>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${p.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                            <span class="font-display font-bold text-lg text-navy">${formatMoney(p.price, p.currency)}</span>
+                            <div class="flex gap-1.5">
+                                ${(p.colorSwatches ? p.colorSwatches.map(c => `<span title="${c.name}" class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${c.hex}"></span>`).join('') : p.variants.map(v => `<span class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${v.includes('Gold') ? '#C99A4A' : v.includes('Ivory') ? '#F5F1E8' : '#0E2545'}"></span>`).join(''))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderShop(initialCategory = 'all') {
+            selectedFilter = initialCategory;
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="mb-12 space-y-4">
+                            <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">Danh mục VISCAPE</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase">TÌM RA PHONG CÁCH CHƠI CỦA BẠN.</h1>
+                            <p class="text-gray-600 max-w-xl text-lg font-light">Được thiết kế cho hiệu suất vượt trội. Khám phá vợt pickleball, trang phục thể thao kỹ thuật và phụ kiện sân đấu.</p>
+                        </div>
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12 pb-6 border-b border-gray-200">
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="filterProducts('all')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'all' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Tất cả</button>
+                                <button onclick="filterProducts('paddles')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'paddles' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Vợt</button>
+                                <button onclick="filterProducts('balls')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'balls' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Bóng</button>
+                                <button onclick="filterProducts('shoes')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'shoes' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Giày</button>
+                                <button onclick="filterProducts('apparel')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'apparel' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Trang phục</button>
+                                <button onclick="filterProducts('accessories')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all ${selectedFilter === 'accessories' ? 'bg-navy text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'}">Phụ kiện</button>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto justify-between">
+                                <span class="text-xs text-gray-500 font-mono" id="product-count">${PRODUCTS.length} sản phẩm</span>
+                                <select id="sort-select" onchange="sortProducts(this.value)" class="bg-white border border-gray-200 px-4 py-2 rounded-xl text-xs font-medium text-dark outline-none cursor-pointer">
+                                    <option value="featured">Nổi bật</option>
+                                    <option value="newest">Mới nhất</option>
+                                    <option value="low-high">Giá: Thấp đến cao</option>
+                                    <option value="high-low">Giá: Cao đến thấp</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                            ${(selectedFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === selectedFilter)).map(p => renderProductCard(p)).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterProducts(category) {
+            selectedFilter = category;
+            const grid = document.getElementById('shop-grid');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText === 'All')) {
+                    btn.className = 'filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all bg-navy text-white shadow-md';
+                } else {
+                    btn.className = 'filter-btn px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider transition-all bg-white text-gray-600 hover:bg-gray-100';
+                }
+            });
+            const filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
+            document.getElementById('product-count').innerText = `${filtered.length} sản phẩm`;
+            grid.innerHTML = filtered.map(p => renderProductCard(p)).join('');
+            lucide.createIcons();
+        }
+
+        function sortProducts(criteria) {
+            let sorted = [...PRODUCTS];
+            if(selectedFilter !== 'all') sorted = sorted.filter(p => p.category === selectedFilter);
+            if(criteria === 'low-high') sorted.sort((a,b) => a.price - b.price);
+            if(criteria === 'high-low') sorted.sort((a,b) => b.price - a.price);
+            if(criteria === 'newest') sorted.reverse();
+            const grid = document.getElementById('shop-grid');
+            grid.innerHTML = sorted.map(p => renderProductCard(p)).join('');
+            lucide.createIcons();
+        }
+
+        function renderProductDetail(productId) {
+            const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="text-xs text-gray-500 mb-8 flex items-center gap-2">
+                            <a href="#" onclick="router.navigate('home')" class="hover:text-navy">Trang chủ</a> / 
+                            <a href="#" onclick="router.navigate('shop')" class="hover:text-navy">Mua sắm</a> / 
+                            <span class="text-navy font-semibold">${product.name}</span>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-3xl overflow-hidden shadow-sm aspect-square border border-gray-200">
+                                    <img id="main-image" src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4 md:p-6">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div onclick="document.getElementById('main-image').src='${product.image}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.image}" class="w-full h-full object-contain p-2">
+                                    </div>
+                                    <div onclick="document.getElementById('main-image').src='${product.altImage}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.altImage}" class="w-full h-full object-contain p-2">
+                                    </div>
+                                </div>
+                                    ${product.galleryImages && product.galleryImages[2] ? `
+                                    <div onclick="document.getElementById('main-image').src='${product.galleryImages[2]}'" class="bg-white rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer border border-gray-200 hover:border-gold">
+                                        <img src="${product.galleryImages[2]}" class="w-full h-full object-contain p-2">
+                                    </div>` : ''}
+                            </div>
+                            <div class="space-y-8">
+                                <div>
+                                    <span class="bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">${product.collection}</span>
+                                    <h1 class="font-display font-bold text-4xl md:text-5xl text-navy uppercase mt-3">${product.name}</h1>
+                                    <p class="text-2xl font-display font-bold text-dark mt-2">${formatMoney(product.price, product.currency)}</p>
+                                    ${product.bundlePrice ? `<p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-navy">${product.bundleLabel || 'Combo'}</span>: ${formatMoney(product.bundlePrice, product.currency)} • Tiết kiệm ${formatMoney((product.price * 4) - product.bundlePrice, product.currency)}</p>` : ''}
+                                </div>
+                                <p class="text-gray-600 text-base leading-relaxed font-light">${product.description} Thiết kế với ngôn ngữ hình học lấy cảm hứng từ Việt Nam.</p>
+                                <div class="flex items-center gap-3 text-sm text-gray-500">
+                                    <div class="flex text-gold">${'<i data-lucide="star" class="w-4 h-4 fill-current"></i>'.repeat(5)}</div>
+                                    <span class="font-bold text-dark">${product.rating}</span>
+                                    <span>(${product.reviewsCount} đánh giá đã xác thực)</span>
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">${product.colors ? 'Màu sắc' : 'Màu sắc'}</label>
+                                    <div class="flex flex-wrap gap-3">
+                                        ${(product.colors || product.variants).map((v, i) => product.colors ? `<button type="button" onclick="selectVariant(this, '${v}', '${product.colorImages ? (product.colorImages[v] || product.image) : product.image}')" title="${v}" class="variant-btn flex items-center gap-2 px-3 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold transition-all"><span class="w-4 h-4 rounded-full border border-black/10 ${v === 'Đen' ? 'bg-black' : v === 'Trắng' ? 'bg-white' : v === 'Xám' ? 'bg-gray-400' : 'bg-blue-950'}"></span>${v}</button>` : `<button type="button" onclick="selectVariant(this)" class="variant-btn px-4 py-2 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold uppercase tracking-wider transition-all">${v}</button>`).join('')}
+                                    </div>
+                                </div>
+                                ${product.sizes ? `
+                                    <div class="space-y-3">
+                                        <label class="text-xs font-display font-bold uppercase tracking-wider text-dark block">Kích cỡ</label>
+                                        <div class="flex gap-3">
+                                            ${product.sizes.map((s, i) => `<button onclick="selectSize(this)" class="size-btn w-12 h-12 rounded-xl border ${i === 0 ? 'border-navy bg-navy text-white' : 'border-gray-200 bg-white text-dark'} text-xs font-bold flex items-center justify-center">${s}</button>`).join('')}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="addToCart('${product.id}')" class="flex-1 bg-navy text-white py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors shadow-xl flex items-center justify-center gap-2">
+                                        <i data-lucide="shopping-bag" class="w-5 h-5"></i> Thêm vào giỏ hàng
+                                    </button>
+                                    <button onclick="addToCart('${product.id}'); toggleCart();" class="bg-gold text-navy px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-dark hover:text-white transition-colors">Mua ngay</button>
+                                </div>
+                                <div class="border-t border-gray-200 pt-8 space-y-4">
+                                    <h3 class="font-display font-bold text-sm uppercase tracking-widest text-navy">Thông số kỹ thuật</h3>
+                                    <div class="grid grid-cols-2 gap-4 text-xs">
+                                        ${Object.entries(product.details).map(([key, val]) => `<div class="bg-white p-4 rounded-xl border border-gray-100"><span class="text-gray-400 uppercase tracking-wider block mb-1">${translateDetailKey(key)}</span><span class="font-bold text-dark">${val}</span></div>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function translateDetailKey(key) { const labels={material:'Chất liệu',weight:'Trọng lượng',grip:'Chuôi cầm',length:'Kích thước',core:'Lõi',surface:'Bề mặt',level:'Trình độ',thickness:'Độ dày',design:'Thiết kế',gripType:'Loại tay cầm',protection:'Bảo vệ',damping:'Giảm chấn',type:'Loại sản phẩm',construction:'Cấu tạo',colors:'Màu sắc',use:'Mục đích sử dụng'}; return labels[key]||key; }
+function selectVariant(btn, variantName = null, imageUrl = null) {
+            document.querySelectorAll('.variant-btn').forEach(b => {
+                b.className = b.className.replace('border-navy bg-navy text-white', 'border-gray-200 bg-white text-dark');
+            });
+            btn.className = btn.className.replace('border-gray-200 bg-white text-dark', 'border-navy bg-navy text-white');
+            if (variantName && imageUrl) {
+                const mainImage = document.getElementById('main-image');
+                if (mainImage) mainImage.src = imageUrl;
+            }
+        }
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.className = 'size-btn w-12 h-12 rounded-xl border border-gray-200 bg-white text-dark text-xs font-bold flex items-center justify-center');
+            btn.className = 'size-btn w-12 h-12 rounded-xl border border-navy bg-navy text-white text-xs font-bold flex items-center justify-center';
+        }
+
+        function renderCollections() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto space-y-16">
+                        <div class="text-center max-w-3xl mx-auto space-y-4">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Các dòng sản phẩm chủ đạo</span>
+                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase text-navy">3 BỘ SƯU TẬP CHÍNH</h1>
+                            <p class="text-gray-600 text-lg font-light">Ba câu chuyện thiết kế đại diện cho tinh thần VISCAPE SPORT: di sản Việt Nam, nghệ thuật đương đại và phong cách thể thao hiện đại.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/471b79b2-028d-4923-b9cb-89577da1f30e.png" alt="Bộ sưu tập Di Sản" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 01</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">DI SẢN</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Lấy cảm hứng từ những giá trị văn hóa Việt Nam, kết hợp họa tiết di sản với công nghệ carbon hiện đại để tạo nên những sản phẩm pickleball mang bản sắc riêng.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/2606bf13-9a4e-4291-8134-567095665e8b.png" alt="Bộ sưu tập Hoa Sen" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 02</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">LIÊN HOA</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Biểu tượng hoa sen được tái hiện theo ngôn ngữ thiết kế hiện đại, hướng đến vẻ đẹp thanh lịch, cân bằng và khác biệt trên sân pickleball.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
+                                <div class="aspect-[4/3] bg-navy overflow-hidden">
+                                    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/9da74886-cd25-4afc-a930-248f82bf6351.png" alt="Bộ sưu tập Tinh Hoa Di Sản" class="w-full h-full object-contain p-8 hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col">
+                                    <span class="text-gold text-xs font-mono tracking-widest uppercase font-bold">Bộ sưu tập 03</span>
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy mt-3">TINH HOA DI SẢN</h2>
+                                    <p class="text-gray-600 leading-relaxed font-light mt-4 flex-1">Phiên bản mang tinh thần sang trọng và mạnh mẽ, kết hợp ngôn ngữ di sản với diện mạo tối giản dành cho người chơi yêu thích sự tinh tế.</p>
+                                    <button onclick="router.navigate('shop', 'paddles')" class="mt-8 bg-navy text-white px-6 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Khám phá bộ sưu tập</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPolicies() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase font-bold">Hỗ trợ khách hàng</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase mt-3">CHÍNH SÁCH & BẢO QUẢN</h1>
+                            <p class="text-gray-600 text-lg font-light leading-relaxed mt-6">Những hướng dẫn cần thiết để bạn mua sắm thuận tiện và duy trì hiệu suất sản phẩm VISCAPE SPORT trong thời gian dài.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">01</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Giao hàng</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Đơn hàng được tiếp nhận và chuẩn bị sau khi thông tin đặt hàng được xác nhận.</p>
+                                    <p>Khách hàng vui lòng kiểm tra tên, số điện thoại và địa chỉ nhận hàng trước khi hoàn tất đơn.</p>
+                                    <p>Khi nhận hàng, hãy kiểm tra ngoại quan sản phẩm và phụ kiện đi kèm. Nếu phát hiện dấu hiệu bất thường, nên chụp ảnh hoặc quay video và liên hệ VISCAPE SPORT để được hỗ trợ.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">02</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Đổi trả & kiểm tra sản phẩm</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>VISCAPE SPORT ưu tiên hỗ trợ các trường hợp sản phẩm có lỗi sản xuất hoặc hư hỏng phát sinh trong quá trình giao nhận.</p>
+                                    <p>Sản phẩm cần được giữ nguyên tình trạng, phụ kiện và bao bì liên quan để quá trình kiểm tra được thuận lợi.</p>
+                                    <p>Trước khi gửi sản phẩm về, khách hàng nên liên hệ VISCAPE SPORT để được hướng dẫn. Không tự ý gửi hàng khi chưa có xác nhận.</p>
+                                    <p class="text-navy font-semibold">Lưu ý: yêu cầu đổi trả sẽ được xem xét dựa trên tình trạng thực tế và chính sách áp dụng tại thời điểm mua hàng.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">03</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo quản vợt pickleball</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p><strong class="text-navy">Sau mỗi buổi chơi:</strong> dùng khăn mềm, khô hoặc hơi ẩm để lau bụi và mồ hôi trên bề mặt vợt.</p>
+                                    <p><strong class="text-navy">Tránh nhiệt độ cao:</strong> không để vợt lâu trong cốp xe, dưới nắng trực tiếp hoặc gần nguồn nhiệt.</p>
+                                    <p><strong class="text-navy">Bảo vệ mặt vợt:</strong> không dùng mặt vợt để nhặt bóng, cọ xuống sân hoặc va chạm mạnh với vật cứng.</p>
+                                    <p><strong class="text-navy">Vệ sinh:</strong> không sử dụng hóa chất tẩy rửa mạnh, dung môi hoặc vật liệu có tính mài mòn trên bề mặt carbon.</p>
+                                    <p><strong class="text-navy">Viền & tay cầm:</strong> kiểm tra định kỳ edge guard và grip; nếu có dấu hiệu bong, nứt hoặc xuống cấp rõ rệt, nên thay thế hoặc liên hệ hỗ trợ.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">04</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo quản trang phục</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Giặt theo hướng dẫn trên nhãn sản phẩm, ưu tiên chế độ giặt nhẹ và nước mát.</p>
+                                    <p>Không dùng chất tẩy mạnh hoặc ngâm quần áo quá lâu để hạn chế ảnh hưởng đến màu sắc và sợi vải.</p>
+                                    <p>Phơi ở nơi thoáng mát, tránh nhiệt độ quá cao; hạn chế sấy nóng nếu nhãn sản phẩm không cho phép.</p>
+                                    <p>Nên giặt riêng các sản phẩm có màu đậm trong những lần giặt đầu để giảm nguy cơ lem màu.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">05</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bóng pickleball & phụ kiện</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Bảo quản bóng ở nơi khô ráo, tránh ánh nắng trực tiếp và nhiệt độ quá cao trong thời gian dài.</p>
+                                    <p>Không đè nén hoặc để vật nặng lên bóng trong thời gian dài vì có thể ảnh hưởng hình dạng và độ nảy.</p>
+                                    <p>Với mũ, visor và túi thể thao, nên vệ sinh bằng khăn mềm hoặc giặt nhẹ tùy theo chất liệu; để khô tự nhiên trước khi cất.</p>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 shadow-sm">
+                                <div class="w-12 h-12 rounded-2xl bg-navy text-gold flex items-center justify-center font-display font-bold mb-6">06</div>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mb-4">Bảo hành & hỗ trợ</h2>
+                                <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
+                                    <p>Nếu sản phẩm có dấu hiệu lỗi bất thường, vui lòng ngừng sử dụng và liên hệ VISCAPE SPORT để được kiểm tra.</p>
+                                    <p>Khi yêu cầu hỗ trợ, khách hàng nên cung cấp mã đơn hàng, hình ảnh/video tình trạng sản phẩm và mô tả vấn đề.</p>
+                                    <p>Hư hỏng do va đập, sử dụng sai mục đích, bảo quản không đúng cách hoặc hao mòn tự nhiên có thể không thuộc phạm vi hỗ trợ bảo hành.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="mt-12 bg-navy text-white rounded-3xl p-8 md:p-10">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                                <div>
+                                    <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase">Lưu ý</span>
+                                    <h3 class="font-display font-bold text-2xl uppercase mt-2">Ưu tiên bảng hướng dẫn của từng sản phẩm</h3>
+                                    <p class="text-white/70 text-sm leading-relaxed mt-3 max-w-2xl">Các hướng dẫn trên mang tính chăm sóc và tham khảo chung. Nếu sản phẩm có hướng dẫn riêng trên nhãn, bao bì hoặc trang sản phẩm, hãy ưu tiên hướng dẫn cụ thể đó.</p>
+                                </div>
+                                <button onclick="router.navigate('shop')" class="shrink-0 bg-gold text-navy px-7 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-white transition-colors">Xem sản phẩm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderContact() {
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory min-h-[70vh]">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="text-center mb-14">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Hỗ trợ khách hàng</span>
+                            <h1 class="font-display font-bold text-5xl md:text-7xl text-navy uppercase mt-3">LIÊN HỆ VISCAPE SPORT</h1>
+                            <p class="text-gray-600 max-w-2xl mx-auto mt-5">Cần tư vấn về vợt, trang phục, size, đơn hàng hoặc sản phẩm? Hãy kết nối trực tiếp với VISCAPE SPORT qua các kênh hỗ trợ dưới đây.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <a href="tel:0345034501" class="group bg-navy text-white rounded-3xl p-8 md:p-10 shadow-sm hover:-translate-y-1 transition-transform">
+                                <div class="w-14 h-14 rounded-2xl bg-gold text-navy flex items-center justify-center mb-7">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Hotline</span>
+                                <h2 class="font-display font-bold text-3xl mt-2">0345 034 501</h2>
+                                <p class="text-white/70 text-sm mt-3">Nhấn để gọi trực tiếp cho VISCAPE SPORT.</p>
+                            </a>
+
+                            <div class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200 shadow-sm">
+                                <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Mạng xã hội</span>
+                                <h2 class="font-display font-bold text-2xl text-navy uppercase mt-2 mb-6">Kết nối cùng VISCAPE</h2>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <a href="https://www.facebook.com/viscapesport" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">Facebook</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                    <a href="https://www.instagram.com/viscapesport/" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">Instagram</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@viscapesport" target="_blank" rel="noopener noreferrer" class="border border-gray-200 rounded-2xl p-4 hover:border-gold hover:bg-ivory transition-colors">
+                                        <div class="font-display font-bold text-navy">TikTok</div>
+                                        <div class="text-xs text-gray-500 mt-1">@viscapesport</div>
+                                    </a>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-5">Nếu tên tài khoản thực tế của VISCAPE SPORT khác với các đường dẫn trên, chỉ cần thay URL tương ứng tại đây.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 bg-white rounded-3xl border border-gray-200 p-8 md:p-10">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                                <div>
+                                    <span class="text-gold text-xs font-mono tracking-[0.2em] uppercase">Tư vấn nhanh</span>
+                                    <h2 class="font-display font-bold text-2xl text-navy uppercase mt-2">Bạn đang cần hỗ trợ điều gì?</h2>
+                                    <p class="text-sm text-gray-600 mt-2">Bạn có thể gọi hotline hoặc mở VISCAPE AI ở góc màn hình để hỏi về vợt, bóng, trang phục, size và bảo quản sản phẩm.</p>
+                                </div>
+                                <button onclick="toggleViscapeAI()" class="shrink-0 bg-navy text-white px-7 py-3.5 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors">Hỏi VISCAPE AI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAbout() {
+            const stories = [
+                {
+                    no: '01',
+                    title: 'TỪ SÀI GÒN, ĐI RA THẾ GIỚI',
+                    text: 'VISCAPE SPORT bắt đầu từ tinh thần sống nhanh, chơi hết mình và luôn muốn tạo ra dấu ấn riêng của Sài Gòn. Chúng tôi đưa tinh thần ấy vào từng sản phẩm để thể thao Việt Nam có một diện mạo tự tin, hiện đại và có câu chuyện.'
+                },
+                {
+                    no: '02',
+                    title: 'DI SẢN KHÔNG ĐỨNG YÊN',
+                    text: 'Trống đồng Đông Sơn, hoa sen, đường nét thủ công và những biểu tượng quen thuộc của Việt Nam được tái diễn giải bằng ngôn ngữ thiết kế đương đại. Di sản với VISCAPE SPORT không phải là thứ để cất giữ, mà là nguồn cảm hứng để tiếp tục chuyển động.'
+                },
+                {
+                    no: '03',
+                    title: 'MỖI TRẬN ĐẤU, MỘT CÂU CHUYỆN',
+                    text: 'Pickleball là cuộc chơi của phản xạ, chiến thuật và kết nối. Chúng tôi tin rằng mỗi cú đánh đều có cá tính riêng — vì vậy sản phẩm phải giúp người chơi cảm thấy thoải mái, tự tin và được là chính mình trên sân.'
+                },
+                {
+                    no: '04',
+                    title: 'MÀU ÁO VIỆT',
+                    text: 'Trang phục VISCAPE SPORT lấy cảm hứng từ nhịp sống Việt Nam: năng động, gần gũi và đầy năng lượng. Từ chất liệu, phom dáng đến chi tiết nhận diện, mọi thứ được tạo ra để đồng hành cùng chuyển động thay vì cản trở nó.'
+                },
+                {
+                    no: '05',
+                    title: 'SỨC MẠNH CỦA BẢN SẮC',
+                    text: 'Chúng tôi không muốn tạo ra một thương hiệu chỉ đẹp trên màn hình. VISCAPE SPORT muốn xây dựng một cộng đồng nơi người chơi có thể mang theo niềm tự hào Việt Nam bước lên sân và chơi theo cách của riêng mình.'
+                }
+            ];
+
+            return `
+                <div class="bg-ivory">
+                    <section class="pt-24 pb-20 px-6 md:px-16 bg-navy text-white relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_75%_20%,#dc982a_0,transparent_32%),radial-gradient(circle_at_10%_80%,#2b6f55_0,transparent_28%)]"></div>
+                        <div class="relative max-w-6xl mx-auto">
+                            <span class="text-gold text-xs font-mono tracking-[0.3em] uppercase">Câu chuyện thương hiệu</span>
+                            <h1 class="font-display font-bold text-5xl md:text-8xl uppercase leading-[0.92] mt-5">MỘT NỀN VĂN HÓA<br><span class="text-gold">ĐANG CHUYỂN ĐỘNG.</span></h1>
+                            <p class="mt-8 max-w-2xl text-white/75 text-base md:text-xl font-light leading-relaxed">VISCAPE SPORT là điểm giao thoa giữa thể thao quốc tế và văn hóa thị giác Việt Nam đương đại — nơi di sản, thiết kế và tinh thần chơi thể thao cùng chuyển động.</p>
+                        </div>
+                    </section>
+
+                    <section class="py-20 px-6 md:px-16">
+                        <div class="max-w-6xl mx-auto">
+                            <div class="max-w-2xl mb-14">
+                                <span class="text-gold text-xs font-mono tracking-[0.25em] uppercase">Những câu chuyện tạo nên VISCAPE</span>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl text-navy uppercase mt-3">CHƠI. SỐNG. KỂ CHUYỆN.</h2>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${stories.map((story, index) => `
+                                    <article class="group bg-white border border-gray-200 rounded-2xl p-7 md:p-9 hover:border-gold hover:-translate-y-1 transition-all ${index === stories.length - 1 ? 'md:col-span-2 md:max-w-2xl' : ''}">
+                                        <div class="flex items-start justify-between gap-6">
+                                            <span class="font-mono text-gold text-xs tracking-[0.2em]">${story.no}</span>
+                                            <span class="text-navy/10 font-display font-bold text-5xl leading-none">V</span>
+                                        </div>
+                                        <h3 class="font-display font-bold text-xl md:text-2xl text-navy uppercase mt-8 mb-4">${story.title}</h3>
+                                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">${story.text}</p>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-20 px-6 md:px-16 bg-white border-y border-gray-100">
+                        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
+                            <div><span class="text-gold font-mono text-xs tracking-widest">TINH THẦN</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Tự tin là chính mình</h3></div>
+                            <div><span class="text-gold font-mono text-xs tracking-widest">THIẾT KẾ</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Di sản theo cách mới</h3></div>
+                            <div><span class="text-gold font-mono text-xs tracking-widest">CỘNG ĐỒNG</span><h3 class="font-display font-bold text-2xl text-navy uppercase mt-3">Cùng nhau chuyển động</h3></div>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderCheckout() {
+            if(cart.length === 0) {
+                return `
+                    <div class="pt-24 pb-24 px-6 text-center bg-ivory min-h-[70vh] flex flex-col items-center justify-center">
+                        <h2 class="font-display font-bold text-3xl mb-4 text-navy">Giỏ hàng của bạn đang trống</h2>
+                        <button onclick="router.navigate('shop')" class="bg-navy text-white px-8 py-4 rounded-xl font-display font-bold uppercase tracking-wider">Quay lại mua sắm</button>
+                    </div>
+                `;
+            }
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            return `
+                <div class="pt-24 pb-24 px-6 md:px-16 bg-ivory">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <div class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm">
+                            <h1 class="font-display font-bold text-3xl uppercase text-navy">Vận chuyển & Thanh toán</h1>
+                            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-6">
+                                <input type="email" required placeholder="Địa chỉ email" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <input type="tel" required placeholder="Số điện thoại" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <input type="text" required placeholder="Địa chỉ nhận hàng" class="w-full bg-ivory border border-gray-200 px-4 py-3.5 rounded-xl text-sm outline-none">
+                                <button type="submit" class="w-full bg-navy text-white py-4 rounded-xl font-display font-bold uppercase tracking-wider hover:bg-gold transition-colors shadow-xl">Đặt hàng (${formatMoney(subtotal, cart[0]?.currency || 'USD')})</button>
+                            </form>
+                        </div>
+                        <div class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-sm h-fit">
+                            <h3 class="font-display font-bold text-xl uppercase text-navy pb-4 border-b">Tóm tắt đơn hàng</h3>
+                            <div class="space-y-4 max-h-80 overflow-y-auto">
+                                ${cart.map(item => `<div class="flex gap-4 items-center"><img src="${item.image}" class="w-16 h-16 object-cover rounded-lg"><div class="flex-1"><h4 class="font-display font-bold text-sm">${item.name}</h4><p class="text-xs text-gray-500">SL: ${item.quantity}</p></div><span class="font-bold text-sm">${formatMoney(item.price * item.quantity, item.currency)}</span></div>`).join('')}
+                            </div>
+                            <div class="pt-6 border-t font-display font-bold text-navy flex justify-between text-lg">
+                                <span>Tổng cộng</span><span>${formatMoney(subtotal, cart[0]?.currency || 'USD')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            cart = [];
+            localStorage.setItem('viscape_cart', JSON.stringify(cart));
+            updateCartUI();
+            router.navigate('home');
+            showToast("Đặt hàng thành công! Cảm ơn bạn đã lựa chọn VISCAPE SPORT.");
+        }
+            /* ================= VISCAPE AI ================= */
+        let viscapeAIHistory=[];
+        function toggleViscapeAI(){var w=document.getElementById('viscape-ai-window');w.classList.toggle('is-open');renderViscapeAIContext();if(w.classList.contains('is-open')&&!viscapeAIHistory.length)initViscapeAI();setTimeout(function(){var i=document.getElementById('viscape-ai-input');if(i)i.focus()},150)}
+        function closeViscapeAI(){document.getElementById('viscape-ai-window').classList.remove('is-open')}
+        function renderViscapeAIContext(){var e=document.getElementById('viscape-ai-context');var p=currentRoute==='product'?PRODUCTS.find(function(x){return x.id===routeParam}):null;e.innerHTML=p?'Bạn đang xem <strong>'+p.name+'</strong> 👀':'<strong>VISCAPE SPORT</strong> · Mình có thể giúp bạn chọn vợt, bóng, trang phục, phụ kiện, size và ngân sách.'}
+        function aiMsg(t,u){var b=document.getElementById('viscape-ai-messages');var r=document.createElement('div');r.className='viscape-ai-msg'+(u?' user':'');r.innerHTML='<div class="viscape-ai-bubble">'+t+'</div>';b.appendChild(r);b.scrollTop=b.scrollHeight;viscapeAIHistory.push(t)}
+        function aiQuick(items){var b=document.getElementById('viscape-ai-messages'),w=document.createElement('div');w.className='viscape-ai-quick';items.forEach(function(x){var q=document.createElement('button');q.innerText=x[0];q.onclick=function(){aiAction(x[1])};w.appendChild(q)});b.appendChild(w);b.scrollTop=b.scrollHeight}
+        function aiCard(p){
+return '<div class="viscape-ai-product"><div class="viscape-ai-product-top"><img class="viscape-ai-product-img" src="'+p.image+'" alt="'+p.name+'"><div><div class="viscape-ai-badge">PHÙ HỢP NHẤT</div><div class="viscape-ai-product-name">'+p.name+'</div><div>★★★★★ '+p.rating+'</div><div class="viscape-ai-price">'+formatMoney(p.price,p.currency)+'</div></div></div><div class="viscape-ai-features"><span class="viscape-ai-feature">'+p.description+'</span></div><div class="viscape-ai-product-actions"><button class="viscape-ai-view" data-id="'+p.id+'">Xem sản phẩm</button><button class="viscape-ai-add" data-id="'+p.id+'">+ Thêm vào giỏ</button></div></div>';
+}
+function bindAIProductButtons(){document.querySelectorAll(".viscape-ai-view").forEach(function(b){b.onclick=function(){router.navigate("product",b.dataset.id);closeViscapeAI();}});document.querySelectorAll(".viscape-ai-add").forEach(function(b){b.onclick=function(){addToCart(b.dataset.id);aiMsg("✓ Đã thêm sản phẩm vào giỏ hàng.");}});}
+function aiRecommend(ps){aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");bindAIProductButtons();}
+function initViscapeAI(){
+aiMsg("Xin chào! 👋 Tôi là <strong>VISCAPE AI</strong>.<br>Tôi có thể tư vấn vợt, bóng, trang phục, phụ kiện, size, ngân sách và các câu hỏi cơ bản về pickleball.");
+aiQuick([
+["🏓 Chọn vợt phù hợp","paddle"],
+["📏 Tư vấn size áo","size"],
+["👕 Trang phục nào phù hợp?","apparel"],
+["🟢 Tôi mới chơi","beginner"],
+["⚡ Control hay Power?","controlpower"],
+["🎾 Bóng nào phù hợp?","balls"],
+["💰 Vợt theo ngân sách","budget"],
+["🧼 Cách bảo quản vợt","care"],
+["📖 Luật pickleball cơ bản","rules"],
+["🚚 Giao hàng & đổi trả","shipping"]
+]);
+}
+
+function aiFindPaddles(keyword){
+var ps=PRODUCTS.filter(function(x){return x.category==="paddles" && (!keyword || (x.name+" "+x.description+" "+JSON.stringify(x.details)).toLowerCase().includes(keyword));});
+if(!ps.length) ps=PRODUCTS.filter(function(x){return x.category==="paddles";});
+return ps.slice(0,3);
+}
+function aiRecommend(ps){
+if(!ps||!ps.length){aiMsg("Hiện mình chưa tìm thấy sản phẩm phù hợp trong danh mục.");return;}
+aiMsg("Mình tìm được sản phẩm phù hợp:<div>"+ps.map(aiCard).join("")+"</div>");
+bindAIProductButtons();
+}
+function aiMoney(n){return n.toLocaleString("vi-VN")+" VNĐ";}
+function aiSizeAnswer(s){
+s=(s||"").toLowerCase().replace(/,/g,".");
+var h=s.match(/(?:^|\\s)(1\\s*m\\s*(?:[.,]?\\s*\\d{1,2})?)\\b/) || s.match(/(\\d{3})\\s*cm/) || s.match(/cao\\s*(\\d{3})/);
+var w=s.match(/(\\d{2,3}(?:\\.\\d+)?)\\s*kg/) || s.match(/nặng\\s*(\\d{2,3}(?:\\.\\d+)?)/);
+var gender=/\\b(nam|male|men|đàn ông|con trai)\\b/.test(s)?"nam":/\\b(nữ|female|women|woman|con gái)\\b/.test(s)?"nữ":"";
+if(!h || !w){
+aiMsg("<strong>Bảng size tham khảo VISCAPE SPORT</strong><br>• Nam: S 160–168 cm / 50–60 kg · M 166–174 cm / 58–68 kg · L 172–180 cm / 66–78 kg · XL 178–188 cm / 76–90 kg.<br>• Nữ: S 150–158 cm / 42–52 kg · M 156–165 cm / 50–60 kg · L 162–172 cm / 58–70 kg · XL 168–178 cm / 68–80 kg.<br><br>Để mình tư vấn tự động, hãy nhập theo mẫu: <strong>Nam, 1m70, 65kg</strong> hoặc <strong>Nữ, 160cm, 52kg</strong>.");
+return;
+}
+var heightMatch=h[1];
+var height;
+if(/m/.test(heightMatch)) {
+var hm=heightMatch.match(/1\\s*m\\s*(?:[.,]?\\s*(\\d{1,2}))?/);
+height=hm&&hm[1]?100+parseFloat(hm[1]):100;
+} else height=parseFloat(heightMatch);
+var weight=parseFloat(w[1]);
+var size=gender==="nữ"?(weight<=52?"S":weight<=60?"M":weight<=70?"L":"XL"):(weight<=60?"S":weight<=68?"M":weight<=78?"L":"XL");
+if(gender==="nam" && height<165 && weight<=60) size="S";
+if(gender==="nam" && height>=178 && weight>=76) size="XL";
+if(gender==="nữ" && height<156 && weight<=52) size="S";
+if(gender==="nữ" && height>=168 && weight>=68) size="XL";
+aiMsg("Dựa trên <strong>"+(gender?gender:"thông tin bạn cung cấp")+"</strong>, cao <strong>"+height+" cm</strong>, nặng <strong>"+weight+" kg</strong>, mình tư vấn bạn chọn <strong>size "+size+"</strong>.<br><br>• Đây là size tham khảo theo bảng size hiện có của VISCAPE SPORT.<br>• Nếu thích mặc ôm, có thể cân nhắc nhỏ hơn 1 size; nếu thích thoải mái hoặc vai/ngực rộng, cân nhắc lớn hơn 1 size.<br>• Với từng mẫu sản phẩm, hãy ưu tiên bảng size riêng nếu sản phẩm có cung cấp.");
+}
+function aiAction(a){
+if(a==="paddle"){
+aiMsg("Để chọn vợt chính xác, bạn cho mình biết <strong>trình độ + lối chơi + ngân sách</strong> nhé.");
+aiQuick([["🟢 Mới bắt đầu","beginner"],["🎯 Thiên về control","control"],["💥 Thiên về power","power"],["🌀 Thiên về spin","spin"],["🏆 Nâng cao / toàn sân","advanced"]]);return;
+}
+if(a==="beginner"){aiMsg("Người mới nên ưu tiên vợt dễ kiểm soát, mặt vợt ổn định và trọng lượng vừa phải. Với danh mục hiện có, mình ưu tiên mẫu thuộc nhóm <strong>All-Court / Control</strong>.");aiRecommend(aiFindPaddles());return;}
+if(a==="intermediate"||a==="advanced"){aiRecommend(aiFindPaddles());return;}
+if(a==="control"){aiMsg("Nếu ưu tiên <strong>control</strong>, hãy ưu tiên vợt 16 mm, trọng lượng vừa phải và mặt carbon có texture để kiểm soát hướng bóng tốt hơn.");aiRecommend(aiFindPaddles("control"));return;}
+if(a==="power"){aiMsg("Nếu ưu tiên <strong>power</strong>, nên chọn vợt có trọng lượng và điểm cân bằng phù hợp với lực tay. Đừng chỉ chọn vợt nặng vì vợt nặng hơn có thể làm tăng mỏi tay.");aiRecommend(aiFindPaddles());return;}
+if(a==="spin"){aiMsg("Nếu ưu tiên <strong>spin</strong>, hãy chú ý bề mặt có texture và kỹ thuật tạo xoáy. Các mẫu VISCAPE dùng bề mặt carbon có vân là lựa chọn đáng cân nhắc.");aiRecommend(aiFindPaddles());return;}
+if(a==="apparel"){aiMsg("<strong>Trang phục pickleball nên ưu tiên:</strong><br>• Vải nhẹ, thoáng và khô nhanh.<br>• Co giãn tốt để thực hiện split-step, xoay người và vung tay.<br>• Form vừa người, không quá rộng để tránh vướng khi di chuyển.<br>• Áo sáng màu phù hợp khi chơi ngoài trời; có thể kết hợp mũ/visor để che nắng.<br><br>Nếu bạn cho mình giới tính + chiều cao + cân nặng, mình tư vấn size luôn.");return;}
+if(a==="size"){aiSizeAnswer("");return;}
+if(a==="budget"){
+aiMsg("Bạn có thể nhập ngân sách, ví dụ <strong>2 triệu</strong>, <strong>3 triệu</strong> hoặc <strong>dưới 1 triệu</strong>. Mình sẽ lọc sản phẩm trong danh mục hiện có.");
+return;
+}
+if(a==="balls"){aiMsg("<strong>Bóng VISCAPE SPORT</strong> hiện là bóng pickleball outdoor 40 lỗ, thiết kế cho độ bền và đường bay ổn định. Giá lẻ hiện tại là <strong>"+aiMoney(70000)+" / quả</strong>, combo 4 quả là <strong>"+aiMoney(270000)+"</strong> theo dữ liệu sản phẩm.");aiRecommend(PRODUCTS.filter(function(x){return x.category==="balls";}).slice(0,1));return;}
+if(a==="care"){aiMsg("<strong>Bảo quản vợt:</strong><br>• Lau mặt vợt bằng khăn mềm sau khi chơi.<br>• Không dùng hóa chất tẩy mạnh trên mặt carbon.<br>• Tránh để vợt lâu dưới nắng hoặc trong cốp xe quá nóng.<br>• Kiểm tra viền bảo vệ và tay cầm định kỳ.<br>• Không dùng mặt vợt để nhặt bóng hoặc cọ xuống sân.");return;}
+if(a==="rules"){aiMsg("<strong>Pickleball cơ bản:</strong><br>• Mục tiêu là đưa bóng qua lưới sao cho đối thủ không trả được hợp lệ.<br>• Khu vực gần lưới gọi là <strong>kitchen / vùng cấm volley</strong>; người chơi không được volley khi đang đứng trong vùng này.<br>• Khi giao bóng, bóng phải đi chéo sang ô giao bóng đối diện theo luật áp dụng của trận.<br>• Cách tính điểm có thể khác giữa đơn và đôi hoặc theo thể thức giải; hãy thống nhất luật trước khi chơi.");return;}
+if(a==="shipping"){aiMsg("Về giao hàng, đổi trả và bảo hành: mình chỉ nên xác nhận theo chính sách được công bố chính thức trên website. Nếu bạn cần, hãy cho mình biết sản phẩm bạn đang xem để mình hướng dẫn thông tin có sẵn trên trang sản phẩm.");return;}
+if(a==="bestseller"){var ps=PRODUCTS.slice().sort(function(x,y){return y.rating-x.rating||y.reviewsCount-x.reviewsCount}).slice(0,3);aiRecommend(ps);return;}
+}
+
+function aiFAQ(s){
+if(/control|kiểm soát|điều khiển/.test(s)){aiAction("control");return true;}
+if(/power|lực|mạnh|đập|tấn công/.test(s)){aiAction("power");return true;}
+if(/spin|xoáy|xoáy bóng/.test(s)){aiAction("spin");return true;}
+if(/bóng|ball|40 lỗ|outdoor|ngoài trời/.test(s)){aiAction("balls");return true;}
+if(/size|kích cỡ|kích thước|cao \d{3}|nặng \d{2,3}/.test(s)){aiSizeAnswer(s);return true;}
+if(/áo|quần|trang phục|áo thun|mặc gì|vải|thoáng|mồ hôi/.test(s)){aiAction("apparel");return true;}
+if(/bảo quản|vệ sinh|lau|bảo dưỡng|hỏng|trầy|carbon/.test(s)){aiAction("care");return true;}
+if(/luật|cách chơi|tính điểm|giao bóng|kitchen|vùng cấm/.test(s)){aiAction("rules");return true;}
+if(/giao hàng|đổi trả|bảo hành|ship|vận chuyển/.test(s)){aiAction("shipping");return true;}
+if(/ngân sách|triệu|giá|bao nhiêu tiền|dưới \d/.test(s)){
+var m=s.match(/(\d+(?:[.,]\d+)?)\s*(triệu|tr|k)/);
+if(m){var budget=parseFloat(m[1].replace(",","."))*(m[2]==="triệu"||m[2]==="tr"?1000000:1000);var ps=PRODUCTS.filter(function(x){return x.price<=budget;}).sort(function(x,y){return y.rating-x.rating;}).slice(0,3);if(ps.length){aiMsg("Với ngân sách khoảng <strong>"+aiMoney(budget)+"</strong>, mình gợi ý:");aiRecommend(ps);}else aiMsg("Hiện chưa có sản phẩm trong catalog nằm trong mức <strong>"+aiMoney(budget)+"</strong>. Bạn có thể tăng ngân sách hoặc hỏi mình về combo.");return true;}
+aiAction("budget");return true;
+}
+if(/vợt|paddle|paddles/.test(s)){aiAction("paddle");return true;}
+if(/bán chạy|nổi bật|đáng mua|best/.test(s)){aiAction("bestseller");return true;}
+return false;
+}
+function sendViscapeAI(){
+var i=document.getElementById("viscape-ai-input"),t=i.value.trim();if(!t)return;i.value="";aiMsg(t,true);
+setTimeout(function(){
+var s=t.toLowerCase();
+if(/giỏ hàng|cart/.test(s)){toggleCart();aiMsg("Mình đã mở giỏ hàng cho bạn.");return;}
+if(aiFAQ(s))return;
+aiMsg("Mình chưa nhận diện chính xác câu hỏi này. Bạn có thể hỏi mình về <strong>vợt, control/power/spin, bóng, size, trang phục, bảo quản, luật pickleball, ngân sách, giao hàng</strong> hoặc sản phẩm cụ thể.");
+aiQuick([["🏓 Chọn vợt","paddle"],["📏 Tư vấn size","size"],["👕 Trang phục","apparel"],["🎾 Bóng pickleball","balls"],["📖 Luật chơi","rules"],["🧼 Bảo quản vợt","care"]]);
+},300);
+}
+
+</script>
 </body>
 </html>
