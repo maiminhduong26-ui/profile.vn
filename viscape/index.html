@@ -65,6 +65,46 @@
             #viscape-hero-image { object-position: 58% center !important; }
             #viscape-hero-image + .bg-gradient-to-r { background: linear-gradient(90deg, rgba(7,23,43,.94) 0%, rgba(7,23,43,.62) 45%, rgba(7,23,43,.08) 78%, transparent 100%); }
         }
+
+        /* Hero CTA: khung vàng rõ nét + vệt sáng chạy ngang nhẹ */
+        .viscape-hero-cta {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .65rem;
+            background: #dc982a;
+            color: #0E2545;
+            border: 1px solid rgba(255,255,255,.28);
+            box-shadow: 0 10px 28px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.10);
+            transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
+        }
+        .viscape-hero-cta::after {
+            content: "";
+            position: absolute;
+            inset: -40% auto -40% -55%;
+            width: 38%;
+            transform: skewX(-22deg);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.78), rgba(255,244,205,.95), transparent);
+            filter: blur(2px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            animation: viscape-cta-shine 3.2s ease-in-out infinite;
+        }
+        .viscape-hero-cta:hover {
+            transform: translateY(-2px);
+            background: #f0ad3d;
+            box-shadow: 0 14px 34px rgba(0,0,0,.34), 0 0 24px rgba(220,152,42,.24);
+        }
+        @keyframes viscape-cta-shine {
+            0%, 18% { left: -55%; opacity: 0; }
+            28% { opacity: .95; }
+            48% { left: 125%; opacity: .85; }
+            58%, 100% { left: 125%; opacity: 0; }
+        }
 </style>
 </head>
 <body class="bg-ivory text-dark font-sans antialiased selection:bg-gold selection:text-white">
@@ -845,7 +885,7 @@
                                     <span class="text-gold text-[8px] sm:text-[10px] md:text-xs font-mono tracking-[0.22em] sm:tracking-[0.28em] uppercase block mb-2 sm:mb-4">10° 46' B / 106° 41' Đ — SAIGON</span>
                                     <h1 class="font-display font-bold text-[clamp(2rem,5vw,5.1rem)] uppercase leading-[0.88] sm:leading-[0.9] tracking-[-0.035em] mb-4 sm:mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,.35)]"><span class="block">CHƠI</span><span class="block -mt-[0.18rem] sm:-mt-[0.12rem] md:-mt-[0.2rem]">THEO CÁCH CỦA BẠN</span></h1>
                                     <p class="text-white text-[10px] sm:text-xs md:text-base lg:text-lg leading-relaxed max-w-[390px] font-light mb-4 sm:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,.45)]">Thể thao quốc tế. Tâm hồn Việt Nam. Được thiết kế để mang lại độ chính xác, phong cách và hiệu suất trên sân pickleball.</p>
-                                    <button class="viscape-reveal" onclick="router.navigate('shop')" class="inline-flex items-center gap-2 sm:gap-3 bg-gold text-navy px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs hover:bg-white transition-all shadow-xl">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
+                                    <button class="viscape-hero-cta px-4 sm:px-6 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-lg font-display font-bold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs" onclick="router.navigate('collections')">Khám phá bộ sưu tập <span aria-hidden="true" class="text-sm sm:text-lg">→</span></button>
                                 </div>
                             </div>
                         </div>
