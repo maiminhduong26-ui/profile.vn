@@ -143,13 +143,23 @@
         <!-- Logo --><div class="flex items-center cursor-pointer" onclick="router.navigate('home')"><img src="./assets/viscape-logo-user.jpg?v=20261008" alt="VISCAPE SPORT" class="w-[190px] h-auto text-white" decoding="async" draggable="false"></div>
 
         <!-- Navigation (Wireframe center) -->
-        <nav class="hidden lg:flex items-center gap-8 font-medium text-xs tracking-widest uppercase">
+        <nav class="hidden lg:flex items-center gap-8 font-medium text-xs tracking-widest uppercase" aria-label="Điều hướng chính">
             <a href="#" onclick="router.navigate('home')" class="hover:text-gold transition-colors">Trang chủ</a>
-            <a href="#" onclick="router.navigate('shop', 'all')" class="hover:text-gold transition-colors">Tất cả sản phẩm</a>
-            <a href="#" onclick="router.navigate('shop', 'paddles')" class="hover:text-gold transition-colors">Vợt</a>
-            <a href="#" onclick="router.navigate('shop', 'apparel')" class="hover:text-gold transition-colors">Trang phục</a>
-            <a href="#" onclick="router.navigate('collections')" class="hover:text-gold transition-colors">Bộ sưu tập</a>
             <a href="#" onclick="router.navigate('about')" class="hover:text-gold transition-colors">Câu chuyện thương hiệu</a>
+            <div class="relative group">
+                <button type="button" onclick="router.navigate('shop', 'all')" class="hover:text-gold transition-colors inline-flex items-center gap-1" aria-haspopup="true">Tất cả sản phẩm <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block normal-case tracking-normal z-50">
+                    <div class="flex flex-col min-w-52 rounded-xl bg-white text-navy shadow-xl border border-gray-100 py-2">
+                        <a href="#" onclick="router.navigate('shop', 'paddles')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Vợt</a>
+                        <a href="#" onclick="router.navigate('shop', 'apparel')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Quần áo nam</a>
+                        <a href="#" onclick="router.navigate('shop', 'apparel')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Quần áo nữ</a>
+                        <a href="#" onclick="router.navigate('shop', 'balls')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Bóng</a>
+                        <a href="#" onclick="router.navigate('shop', 'bags')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Túi</a>
+                        <a href="#" onclick="router.navigate('shop', 'accessories')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Phụ kiện</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" onclick="router.navigate('news')" class="hover:text-gold transition-colors">Tin tức</a>
         </nav>
 
         <!-- Right Icons -->
@@ -174,14 +184,22 @@
                 <i data-lucide="x" class="w-7 h-7"></i>
             </button>
         </div>
-        <div class="flex flex-col gap-6 text-xl font-display font-bold uppercase">
+        <nav class="flex flex-col gap-6 text-xl font-display font-bold uppercase overflow-y-auto py-8" aria-label="Điều hướng chính">
             <a href="#" onclick="router.navigate('home'); toggleMobileMenu();">Trang chủ</a>
-            <a href="#" onclick="router.navigate('shop', 'all'); toggleMobileMenu();">Tất cả sản phẩm</a>
-            <a href="#" onclick="router.navigate('shop', 'paddles'); toggleMobileMenu();">Vợt</a>
-            <a href="#" onclick="router.navigate('shop', 'apparel'); toggleMobileMenu();">Trang phục</a>
-            <a href="#" onclick="router.navigate('collections'); toggleMobileMenu();">Bộ sưu tập</a>
             <a href="#" onclick="router.navigate('about'); toggleMobileMenu();">Câu chuyện thương hiệu</a>
-        </div>
+            <details class="group">
+                <summary class="cursor-pointer list-none flex items-center justify-between">Tất cả sản phẩm <i data-lucide="chevron-down" class="w-5 h-5"></i></summary>
+                <div class="flex flex-col gap-4 pl-5 pt-5 text-base font-medium normal-case tracking-wide">
+                    <a href="#" onclick="router.navigate('shop', 'paddles'); toggleMobileMenu();">Vợt</a>
+                    <a href="#" onclick="router.navigate('shop', 'apparel'); toggleMobileMenu();">Quần áo nam</a>
+                    <a href="#" onclick="router.navigate('shop', 'apparel'); toggleMobileMenu();">Quần áo nữ</a>
+                    <a href="#" onclick="router.navigate('shop', 'balls'); toggleMobileMenu();">Bóng</a>
+                    <a href="#" onclick="router.navigate('shop', 'bags'); toggleMobileMenu();">Túi</a>
+                    <a href="#" onclick="router.navigate('shop', 'accessories'); toggleMobileMenu();">Phụ kiện</a>
+                </div>
+            </details>
+            <a href="#" onclick="router.navigate('news'); toggleMobileMenu();">Tin tức</a>
+        </nav>
         <div class="text-xs text-ivory/60 border-t border-white/10 pt-4 flex justify-between">
             <span>SÀI GÒN, VIỆT NAM</span>
             <span>10° 46' B / 106° 41' Đ</span>
@@ -876,6 +894,8 @@
                 container.innerHTML = renderCollections();
             } else if(currentRoute === 'about') {
                 container.innerHTML = renderAbout();
+            } else if(currentRoute === 'news') {
+                container.innerHTML = renderNews();
             } else if(currentRoute === 'policies') {
                 container.innerHTML = renderPolicies();
             } else if(currentRoute === 'contact') {
@@ -1369,6 +1389,19 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                         </div>
                     </div>
                 </div>
+            `;
+        }
+
+        function renderNews() {
+            return `
+                <section class="min-h-[60vh] bg-ivory px-6 md:px-16 py-24">
+                    <div class="max-w-5xl mx-auto">
+                        <p class="text-gold text-xs font-mono tracking-[0.25em] uppercase">VISCAPE SPORT</p>
+                        <h1 class="font-display font-bold text-4xl md:text-6xl uppercase text-navy mt-3">Tin tức</h1>
+                        <p class="text-gray-600 mt-5 max-w-2xl">Tin tức và câu chuyện mới nhất từ VISCAPE SPORT sẽ được cập nhật tại đây.</p>
+                        <div class="mt-10 bg-white border border-gray-200 rounded-2xl p-8 text-gray-500">Nội dung tin tức đang được cập nhật.</div>
+                    </div>
+                </section>
             `;
         }
 
