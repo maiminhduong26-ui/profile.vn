@@ -282,7 +282,7 @@
                 <ul class="space-y-2 text-xs text-ivory/70">
                     <li><a href="#" onclick="router.navigate('about')" class="hover:text-gold">Câu chuyện thương hiệu</a></li>
                     <li><a href="#" onclick="router.navigate('collections')" class="hover:text-gold">Bộ sưu tập 01</a></li>
-                    <li><a href="#" class="hover:text-gold">Nhật ký vận động viên</a></li>
+                    <li><a href="#" onclick="router.navigate('athlete-journal')" class="hover:text-gold">Nhật ký vận động viên</a></li>
                 </ul>
             </div>
             <div>
@@ -898,6 +898,8 @@
                 container.innerHTML = renderAbout();
             } else if(currentRoute === 'news') {
                 container.innerHTML = renderNews();
+            } else if(currentRoute === 'athlete-journal') {
+                container.innerHTML = renderAthleteJournal();
             } else if(currentRoute === 'policies') {
                 container.innerHTML = renderPolicies();
             } else if(currentRoute === 'contact') {
@@ -1391,6 +1393,82 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                         </div>
                     </div>
                 </div>
+            `;
+        }
+
+        function renderAthleteJournal() {
+            const stories = [
+                {
+                    category: 'TRƯỚC TRẬN ĐẤU',
+                    title: 'Khoảng lặng trước cú giao bóng',
+                    text: 'Một trận đấu bắt đầu từ trước khi bóng rời tay. Vài nhịp thở sâu, ánh mắt tìm khoảng trống và lời nhắc: chơi chủ động, nhưng đừng vội.',
+                    image: 'https://d2ol7oe51mr4n9.cloudfront.net/user_2xcGquy3olJoRo3JNGnJxCxdQIc/42917a65-f8d4-43e8-8458-9219a16987ac.png',
+                    alt: 'Vận động viên chuẩn bị bước vào trận pickleball'
+                },
+                {
+                    category: 'NHỊP DI CHUYỂN',
+                    title: 'Chân đi trước, bóng sẽ theo sau',
+                    text: 'Giữ trọng tâm thấp, bước nhỏ và trở về vị trí sẵn sàng sau mỗi cú đánh. Di chuyển đúng nhịp giúp người chơi có thêm thời gian để chọn cú bóng của mình.',
+                    image: PRODUCTS.find(product => product.id === 'viscape-di-san-chinh-phuc')?.image || '',
+                    alt: 'Vợt pickleball VISCAPE SPORT trong bộ sưu tập Di Sản'
+                },
+                {
+                    category: 'TRÊN SÂN CÙNG NHAU',
+                    title: 'Một lời gọi bóng, thêm một nhịp tin nhau',
+                    text: 'Đánh đôi không chỉ là chia đôi mặt sân. Gọi bóng rõ ràng, giữ khoảng cách và động viên nhau sau một pha lỗi — đó cũng là một phần của chiến thuật.',
+                    image: PRODUCTS.find(product => product.id === 'viscape-lotus-performance-tee')?.image || '',
+                    alt: 'Trang phục thể thao VISCAPE SPORT cảm hứng Hoa Sen'
+                }
+            ];
+            return `
+                <main class="bg-ivory">
+                    <section class="relative min-h-[440px] md:min-h-[560px] bg-navy overflow-hidden flex items-end">
+                        <img src="${stories[0].image}" alt="${stories[0].alt}" class="absolute inset-0 w-full h-full object-cover object-center" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#07172b]/90 via-[#07172b]/50 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#07172b]/75 via-transparent to-transparent"></div>
+                        <div class="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-16 py-14 md:py-20">
+                            <p class="text-gold text-xs font-mono tracking-[0.28em] uppercase">VISCAPE SPORT · GHI CHÉP TRÊN SÂN</p>
+                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase text-white mt-4 max-w-3xl">Nhật ký vận động viên</h1>
+                            <p class="text-white/85 text-base md:text-lg leading-relaxed mt-5 max-w-xl">Những điều nhỏ làm nên một trận đấu đáng nhớ: chuẩn bị, chuyển động và tinh thần chơi cùng nhau.</p>
+                            <a href="#journal-stories" class="inline-flex items-center gap-2 mt-8 bg-gold text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Đọc câu chuyện <i data-lucide="arrow-down" class="w-4 h-4"></i></a>
+                        </div>
+                    </section>
+                    <section id="journal-stories" class="px-6 md:px-16 py-16 md:py-24">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
+                                <div>
+                                    <p class="text-gold text-xs font-mono tracking-[0.25em] uppercase">TỪ SÂN ĐẤU ĐẾN ĐỜI SỐNG</p>
+                                    <h2 class="font-display font-bold text-3xl md:text-5xl uppercase text-navy mt-3">Mỗi trận đấu, một câu chuyện</h2>
+                                </div>
+                                <p class="text-gray-600 text-sm leading-relaxed max-w-md">Góc nhìn dành cho người yêu vận động — để chơi tốt hơn, hiểu đồng đội hơn và tận hưởng từng điểm số.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                ${stories.map((story, index) => `
+                                    <article class="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all">
+                                        <div class="relative aspect-[4/3] bg-navy overflow-hidden">
+                                            <img src="${story.image}" alt="${story.alt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                            <span class="absolute top-4 left-4 bg-navy/90 text-gold text-[10px] font-bold tracking-[0.18em] px-3 py-2 rounded-full">${story.category}</span>
+                                            <span class="absolute bottom-4 right-4 text-white/80 font-display font-bold text-5xl">0${index + 1}</span>
+                                        </div>
+                                        <div class="p-6 md:p-7">
+                                            <h3 class="font-display font-bold text-xl md:text-2xl text-navy leading-tight">${story.title}</h3>
+                                            <p class="text-gray-600 text-sm leading-relaxed mt-4">${story.text}</p>
+                                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[10px] uppercase tracking-widest text-gray-400">
+                                                <span>VISCAPE SPORT</span><span>Ghi chép sân đấu</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>
+                    <section class="bg-white border-y border-gray-100 px-6 md:px-16 py-14">
+                        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                            <div><p class="text-gold text-xs font-mono tracking-[0.2em] uppercase">CHƠI THEO CÁCH CỦA BẠN</p><h2 class="font-display font-bold text-2xl md:text-3xl text-navy mt-2">Hẹn gặp bạn trên sân.</h2></div>
+                            <button onclick="router.navigate('shop', 'all')" class="bg-navy text-white px-7 py-4 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-navy transition-colors">Khám phá VISCAPE SPORT</button>
+                        </div>
+                    </section>
+                </main>
             `;
         }
 
