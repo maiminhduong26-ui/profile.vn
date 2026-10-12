@@ -143,11 +143,11 @@
         <!-- Logo --><div class="flex items-center cursor-pointer" onclick="router.navigate('home')"><img src="./assets/viscape-logo-user.jpg?v=20261008" alt="VISCAPE SPORT" class="w-[190px] h-auto text-white" decoding="async" draggable="false"></div>
 
         <!-- Navigation (Wireframe center) -->
-        <nav class="hidden lg:flex items-center gap-8 font-medium text-xs tracking-widest uppercase" aria-label="Điều hướng chính">
+        <nav class="hidden lg:flex flex-1 items-center justify-center gap-4 xl:gap-6 px-4 font-medium text-xs tracking-[0.12em] uppercase" aria-label="Điều hướng chính">
             <a href="#" onclick="router.navigate('home')" class="hover:text-gold transition-colors">Trang chủ</a>
             <a href="#" onclick="router.navigate('about')" class="hover:text-gold transition-colors">Câu chuyện thương hiệu</a>
             <div class="relative group">
-                <button type="button" onclick="router.navigate('shop', 'all')" class="hover:text-gold transition-colors inline-flex items-center gap-1" aria-haspopup="true">Tất cả sản phẩm <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <button type="button" onclick="router.navigate('shop', 'all')" class="hover:text-gold transition-colors inline-flex items-center gap-1 whitespace-nowrap uppercase" aria-haspopup="true">Tất cả sản phẩm <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
                 <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block normal-case tracking-normal z-50">
                     <div class="flex flex-col min-w-52 rounded-xl bg-white text-navy shadow-xl border border-gray-100 py-2">
                         <a href="#" onclick="router.navigate('shop', 'paddles')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Vợt</a>
@@ -156,6 +156,7 @@
                         <a href="#" onclick="router.navigate('shop', 'balls')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Bóng</a>
                         <a href="#" onclick="router.navigate('shop', 'bags')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Túi</a>
                         <a href="#" onclick="router.navigate('shop', 'accessories')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Phụ kiện</a>
+                        <a href="#" onclick="router.navigate('collections')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Bộ sưu tập</a>
                     </div>
                 </div>
             </div>
@@ -196,6 +197,7 @@
                     <a href="#" onclick="router.navigate('shop', 'balls'); toggleMobileMenu();">Bóng</a>
                     <a href="#" onclick="router.navigate('shop', 'bags'); toggleMobileMenu();">Túi</a>
                     <a href="#" onclick="router.navigate('shop', 'accessories'); toggleMobileMenu();">Phụ kiện</a>
+                    <a href="#" onclick="router.navigate('collections'); toggleMobileMenu();">Bộ sưu tập</a>
                 </div>
             </details>
             <a href="#" onclick="router.navigate('news'); toggleMobileMenu();">Tin tức</a>
