@@ -186,7 +186,7 @@
             </button>
         </div>
         <nav class="flex flex-col gap-6 text-xl font-display font-bold uppercase overflow-y-auto py-8" aria-label="Điều hướng chính">
-            <a href="#" onclick="router.navigate('home'); toggleMobileMenu();">Trang chủ</a>
+            <a href="#" onclick="router.navigate('home');">Trang chủ</a>
             <a href="#" onclick="router.navigate('about'); toggleMobileMenu();">Câu chuyện thương hiệu</a>
             <details class="group">
                 <summary class="cursor-pointer list-none flex items-center justify-between">Tất cả sản phẩm <i data-lucide="chevron-down" class="w-5 h-5"></i></summary>
@@ -696,14 +696,24 @@
             navigate: (route, param = null) => {
                 currentRoute = route;
                 routeParam = param;
+
+                // Close open layers before rendering the destination page.
+                const cartDrawer = document.getElementById('cart-drawer');
+                const cartPanel = document.getElementById('cart-panel');
+                if (cartDrawer) cartDrawer.classList.add('opacity-0', 'pointer-events-none');
+                if (cartPanel) cartPanel.classList.add('translate-x-full');
+
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu) mobileMenu.classList.add('translate-x-full');
+
+                const searchModal = document.getElementById('search-modal');
+                if (searchModal) searchModal.classList.add('opacity-0', 'pointer-events-none');
+
+                const aiWindow = document.getElementById('viscape-ai-window');
+                if (aiWindow) aiWindow.classList.remove('is-open');
+
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 render();
-                if(window.innerWidth < 1024) {
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if(mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
-                        toggleMobileMenu();
-                    }
-                }
             }
         };
 
