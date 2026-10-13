@@ -949,6 +949,8 @@
                 container.innerHTML = renderPickleballRulesArticle();
             } else if(currentRoute === 'pickleball-paddle-guide') {
                 container.innerHTML = renderPickleballPaddleArticle();
+            } else if(currentRoute === 'pickleball-habits') {
+                container.innerHTML = renderPickleballHabitsArticle();
             } else if(currentRoute === 'athlete-journal') {
                 container.innerHTML = renderAthleteJournal();
             } else if(currentRoute === 'policies') {
@@ -1727,11 +1729,11 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                     <section class="px-6 md:px-16 py-14 md:py-20">
                         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                             ${content.articles.map(article => `
-                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi'].includes(article[1]) ? 'cursor-pointer group' : ''}" ${article[1] === 'Luật cơ bản cho người mới' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-rules\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-rules\')}"' : article[1] === 'Chọn vợt theo lối chơi' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-paddle-guide\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-paddle-guide\')}"' : ''}>
+                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi', 'Ba thói quen giúp tiến bộ'].includes(article[1]) ? 'cursor-pointer group' : ''}" ${article[1] === 'Luật cơ bản cho người mới' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-rules\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-rules\')}"' : article[1] === 'Chọn vợt theo lối chơi' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-paddle-guide\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-paddle-guide\')}"' : article[1] === 'Ba thói quen giúp tiến bộ' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-habits\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-habits\')}"' : ''}>
                                     <span class="font-display font-bold text-5xl text-gold">${article[0]}</span>
                                     <h2 class="font-display font-bold text-xl md:text-2xl text-navy mt-5">${article[1]}</h2>
                                     <p class="text-gray-600 text-sm leading-relaxed mt-4">${article[2]}</p>
-                                    ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi'].includes(article[1]) ? '<span class="inline-flex items-center gap-2 mt-6 text-xs uppercase tracking-widest font-bold text-gold">Đọc bài viết <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>' : ''}
+                                    ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi', 'Ba thói quen giúp tiến bộ'].includes(article[1]) ? '<span class="inline-flex items-center gap-2 mt-6 text-xs uppercase tracking-widest font-bold text-gold">Đọc bài viết <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>' : ''}
                                 </article>
                             `).join('')}
                         </div>
@@ -1884,6 +1886,60 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                             <div class="mt-12 p-6 rounded-xl bg-navy text-white">
                                 <h2 class="font-display font-bold text-xl uppercase">Tìm cây vợt phù hợp với bạn</h2>
                                 <p class="text-white/75 leading-relaxed mt-2">Khám phá các mẫu vợt Pickleball của VISCAPE SPORT và chọn thiết bị phù hợp với cảm giác cầm cũng như mục tiêu luyện tập của bạn.</p>
+                                <button onclick="router.navigate('shop', 'paddles')" class="mt-5 bg-gold text-navy px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-xs">Khám phá vợt</button>
+                            </div>
+                        </div>
+                        <button onclick="router.navigate('pickleball-guide')" class="mt-8 border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white">Quay lại chuyên mục</button>
+                    </article>
+                </main>
+            `;
+        }
+
+        function renderPickleballHabitsArticle() {
+            const sections = [
+                { title: '1. Thói quen đầu tiên: giữ tư thế sẵn sàng', paragraphs: [
+                    'Trong Pickleball, bóng có thể đổi hướng rất nhanh. Hãy tập đứng với hai chân mở vừa phải, đầu gối hơi chùng, trọng tâm hướng về phía trước và vợt ở trước cơ thể. Tư thế này giúp bạn phản ứng chủ động hơn thay vì phải bắt đầu di chuyển từ trạng thái đứng thẳng.',
+                    'Sau mỗi cú đánh, đừng đứng nhìn bóng quá lâu. Hãy nhanh chóng trở về tư thế sẵn sàng, quan sát đối thủ và chuẩn bị cho pha tiếp theo. Khi tập, hãy ưu tiên giữ thăng bằng và thực hiện động tác đúng trước khi tăng tốc độ.'
+                ]},
+                { title: '2. Thói quen thứ hai: di chuyển bằng những bước nhỏ', paragraphs: [
+                    'Nhiều pha bóng hỏng không phải vì người chơi đánh yếu, mà vì họ đến bóng muộn hoặc mất thăng bằng khi tiếp xúc. Những bước chân nhỏ giúp bạn điều chỉnh khoảng cách, giữ cơ thể ổn định và chọn điểm chạm bóng tốt hơn.',
+                    'Hãy tập di chuyển sang hai bên, tiến lên khu vực kitchen line và lùi về khi cần. Tránh chạy quá đà hoặc vươn người đánh bóng trong tư thế mất cân bằng. Khi phối hợp đôi, hãy giao tiếp với đồng đội để tránh cả hai cùng lao vào một quả bóng.'
+                ]},
+                { title: '3. Thói quen thứ ba: tập có mục tiêu và nhìn lại sau buổi chơi', paragraphs: [
+                    'Thay vì chỉ chơi nhiều trận liên tiếp, hãy dành một phần thời gian cho một kỹ năng cụ thể: giao bóng sâu, trả giao bóng ổn định, dink qua lưới hoặc volley có kiểm soát. Chọn một mục tiêu nhỏ cho mỗi buổi tập sẽ giúp bạn nhận ra mình đang cải thiện điều gì.',
+                    'Sau buổi chơi, ghi lại một điều đã làm tốt và một điều muốn sửa ở lần tới. Ví dụ: “Trả giao bóng sâu hơn” hoặc “Trở về tư thế sẵn sàng sau mỗi cú đánh”. Đừng đánh giá tiến bộ chỉ bằng thắng thua; số pha bóng ổn định và quyết định đúng cũng là dấu hiệu quan trọng.'
+                ]},
+                { title: '4. Một lịch tập đơn giản cho người mới', paragraphs: [
+                    '• 5–10 phút khởi động nhẹ, làm nóng vai, cổ tay, hông, đầu gối và cổ chân.\n• 10 phút luyện giao bóng và trả giao bóng với mục tiêu rõ ràng.\n• 10–15 phút luyện dink, volley hoặc di chuyển tùy mục tiêu của buổi tập.\n• 10 phút chơi điểm, tập trung áp dụng kỹ năng vừa luyện.\n• 2–3 phút thả lỏng và ghi lại điều cần cải thiện.',
+                    'Hãy điều chỉnh thời lượng theo thể lực và kinh nghiệm của bạn. Nếu cảm thấy đau bất thường, chóng mặt hoặc quá sức, hãy dừng lại và nghỉ ngơi.'
+                ]},
+                { title: '5. Kiên trì với những tiến bộ nhỏ', paragraphs: [
+                    'Tiến bộ không phải lúc nào cũng xuất hiện sau một trận đấu. Đôi khi, đó là việc bạn bớt đánh bóng ra ngoài, chọn vị trí hợp lý hơn hoặc bình tĩnh hơn khi bị đối thủ gây áp lực. Những thay đổi nhỏ này tích lũy thành nền tảng vững chắc.',
+                    'Hãy chơi với tinh thần học hỏi, tôn trọng đồng đội và đối thủ, đồng thời duy trì nhịp tập luyện phù hợp. Ba thói quen quan trọng nhất là sẵn sàng trước pha bóng, di chuyển có kiểm soát và tập luyện có mục tiêu — đơn giản, nhưng cần được lặp lại đều đặn.'
+                ]}
+            ];
+            return `
+                <main class="bg-ivory min-h-screen">
+                    <section class="bg-navy text-white px-6 md:px-16 py-14 md:py-20">
+                        <div class="max-w-4xl mx-auto">
+                            <button onclick="router.navigate('pickleball-guide')" class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest hover:text-white"><i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại Cẩm nang Pickleball</button>
+                            <p class="text-gold text-xs font-mono tracking-[.22em] uppercase mt-9">VISCAPE SPORT · KIẾN THỨC & KỸ THUẬT</p>
+                            <h1 class="font-display font-bold text-4xl md:text-6xl uppercase leading-tight mt-4">BA THÓI QUEN GIÚP TIẾN BỘ</h1>
+                            <p class="text-white/75 leading-relaxed mt-6 text-base md:text-lg">Những thay đổi nhỏ trong tư thế, bước chân và cách tập luyện có thể giúp bạn chơi chủ động hơn, giữ bóng ổn định hơn và tận hưởng hành trình Pickleball lâu dài.</p>
+                        </div>
+                    </section>
+                    <article class="max-w-4xl mx-auto px-6 md:px-10 py-12 md:py-16">
+                        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
+                            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">Bạn không cần thay đổi mọi thứ cùng lúc để chơi tốt hơn. Hãy bắt đầu từ ba thói quen cơ bản, tập trung vào chất lượng của từng pha bóng và cho bản thân thời gian để tiến bộ.</p>
+                            ${sections.map(section => `
+                                <section class="mt-10 first:mt-0">
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy leading-snug">${section.title}</h2>
+                                    <div class="mt-4 space-y-4">${section.paragraphs.map(p => `<p class="text-gray-700 text-sm md:text-base leading-8 whitespace-pre-line">${p}</p>`).join('')}</div>
+                                </section>
+                            `).join('')}
+                            <div class="mt-12 p-6 rounded-xl bg-navy text-white">
+                                <h2 class="font-display font-bold text-xl uppercase">Bắt đầu từ buổi tập tiếp theo</h2>
+                                <p class="text-white/75 leading-relaxed mt-2">Chọn một thói quen để luyện tập hôm nay, ghi lại cảm nhận và kiên trì lặp lại. Sự ổn định được xây dựng từ những điều nhỏ nhất.</p>
                                 <button onclick="router.navigate('shop', 'paddles')" class="mt-5 bg-gold text-navy px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-xs">Khám phá vợt</button>
                             </div>
                         </div>
