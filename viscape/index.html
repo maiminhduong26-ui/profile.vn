@@ -944,6 +944,8 @@
                 container.innerHTML = renderNews();
             } else if(currentRoute === 'pickleball-guide' || currentRoute === 'style-heritage') {
                 container.innerHTML = renderNewsCategory(currentRoute);
+            } else if(currentRoute === 'pickleball-rules') {
+                container.innerHTML = renderPickleballRulesArticle();
             } else if(currentRoute === 'athlete-journal') {
                 container.innerHTML = renderAthleteJournal();
             } else if(currentRoute === 'policies') {
@@ -1623,16 +1625,112 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                     <section class="px-6 md:px-16 py-14 md:py-20">
                         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                             ${content.articles.map(article => `
-                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors">
+                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors ${article[1] === 'Luật cơ bản cho người mới' ? 'cursor-pointer group' : ''}" ${article[1] === 'Luật cơ bản cho người mới' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-rules\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-rules\')}"' : ''}>
                                     <span class="font-display font-bold text-5xl text-gold">${article[0]}</span>
                                     <h2 class="font-display font-bold text-xl md:text-2xl text-navy mt-5">${article[1]}</h2>
                                     <p class="text-gray-600 text-sm leading-relaxed mt-4">${article[2]}</p>
+                                    ${article[1] === 'Luật cơ bản cho người mới' ? '<span class="inline-flex items-center gap-2 mt-6 text-xs uppercase tracking-widest font-bold text-gold">Đọc bài viết <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>' : ''}
                                 </article>
                             `).join('')}
                         </div>
                         <div class="max-w-6xl mx-auto mt-10"><button onclick="router.navigate('news')" class="border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white transition-colors">Quay lại Tin tức</button></div>
                     </section>
                 </div>
+            `;
+        }
+
+        function renderPickleballRulesArticle() {
+            const sections = [
+                { title: 'Pickleball là gì?', paragraphs: [
+                    'Pickleball là một môn thể thao sử dụng vợt và bóng nhựa có lỗ, kết hợp một số đặc điểm quen thuộc của tennis, cầu lông và bóng bàn. Môn thể thao này có thể chơi trong nhà hoặc ngoài trời, theo hình thức đánh đơn hoặc đánh đôi.',
+                    'Đối với người mới, việc nắm được những kiến thức cơ bản ngay từ đầu sẽ giúp quá trình làm quen và luyện tập dễ dàng hơn. Từ nguồn gốc, sân đấu, dụng cụ, luật chơi cho đến cách chơi và các kỹ thuật cơ bản đều là những nội dung quan trọng cần tìm hiểu.',
+                    'Một trận Pickleball có thể được tổ chức theo hình thức đánh đơn hoặc đánh đôi. Với đánh đơn, mỗi bên có một người chơi; còn đánh đôi, mỗi bên có hai người.',
+                    'Điểm đặc trưng của Pickleball không chỉ nằm ở việc đưa bóng qua lưới mà còn ở khả năng kiểm soát lực, hướng bóng và vị trí. Người chơi cần kết hợp giữa phản xạ, di chuyển và chiến thuật thay vì chỉ tập trung vào những cú đánh mạnh.',
+                    'Vì vậy, Pickleball có thể phù hợp với nhiều cấp độ người chơi khác nhau, từ người mới bắt đầu làm quen cho đến những người muốn phát triển kỹ năng và thi đấu.'
+                ]},
+                { title: 'Nguồn gốc và lịch sử Pickleball', paragraphs: [
+                    'Nguồn gốc Pickleball bắt đầu từ năm 1965 tại Bainbridge Island, Washington, Mỹ. Môn thể thao này được hình thành bởi Joel Pritchard, Bill Bell và Barney McCallum.',
+                    'Ban đầu, trò chơi được tạo ra như một hoạt động giải trí dành cho gia đình. Những dụng cụ ban đầu khá đơn giản, gồm vợt bóng bàn, bóng nhựa và lưới cầu lông được hạ thấp. Từ những thiết bị có sẵn này, một trò chơi mới dần được hình thành.',
+                    'Theo thời gian, Pickleball tiếp tục phát triển cùng với sự hoàn thiện về luật chơi, sân đấu và dụng cụ. Từ một trò chơi mang tính gia đình, Pickleball dần phát triển thành một môn thể thao có tổ chức với các quy định và tiêu chuẩn thiết bị rõ ràng.',
+                    'Quá trình phát triển này cũng tạo nên những đặc điểm riêng của Pickleball ngày nay. Môn thể thao này vẫn giữ được một số yếu tố quen thuộc của các môn dùng vợt khác nhưng có hệ thống sân, bóng, vợt và luật chơi riêng.'
+                ]},
+                { title: 'Sân Pickleball có gì đặc biệt?', paragraphs: [
+                    'Sân có kích thước 20 feet × 44 feet, tương đương khoảng 6,10 m × 13,41 m, và được sử dụng cho cả đánh đơn lẫn đánh đôi.',
+                    'Lưới cao 36 inch ở hai bên và 34 inch tại vị trí giữa sân. Trên sân có các đường và khu vực giúp xác định vị trí thi đấu cũng như những quy định liên quan đến giao bóng và volley.',
+                    'Khu vực đáng chú ý nhất là Non-Volley Zone, thường được gọi là Kitchen. Đây là khu vực nằm gần lưới, kéo dài 7 feet tính từ lưới ở mỗi bên sân.',
+                    'Người chơi có thể đứng trong khu vực này để thực hiện cú đánh sau khi bóng đã nảy, nhưng không được thực hiện volley khi đang đứng trong khu vực Non-Volley Zone.',
+                    'Kitchen tạo ra nhiều tình huống chiến thuật đặc trưng. Khi tiến gần lưới, người chơi cần kiểm soát lực đánh, hướng bóng và vị trí cơ thể để vừa duy trì lợi thế vừa tránh mắc lỗi.',
+                    'Vì vậy, khi bắt đầu chơi, người mới nên làm quen với kích thước sân, vị trí lưới và khu vực Kitchen trước khi tập trung vào những chiến thuật phức tạp hơn.'
+                ]},
+                { title: 'Dụng cụ chơi Pickleball gồm những gì?', paragraphs: [
+                    'Để bắt đầu chơi, người mới cần chuẩn bị những dụng cụ Pickleball cơ bản gồm vợt, bóng, giày và trang phục thể thao.',
+                    'Vợt Pickleball thường được gọi là paddle. Khác với vợt tennis hay cầu lông, vợt Pickleball có mặt vợt đặc và được thiết kế để đánh bóng nhựa có lỗ.',
+                    'Khi lựa chọn vợt, người mới nên quan tâm đến trọng lượng, kích thước mặt vợt, chiều dài cán, cảm giác cầm và khả năng kiểm soát bóng. Một chiếc vợt phù hợp không nhất thiết phải có thông số cao nhất mà cần phù hợp với thể lực và trình độ của người sử dụng.',
+                    'Người mới có thể ưu tiên những mẫu tạo cảm giác cầm chắc tay, dễ điều khiển và hỗ trợ kiểm soát bóng tốt. Không nên chỉ lựa chọn dựa trên thiết kế hoặc giá thành.',
+                    'Bóng Pickleball được làm từ nhựa và có nhiều lỗ tròn trên bề mặt. Theo nội dung được cung cấp, bóng thi đấu được phê duyệt có từ 26 đến 40 lỗ.',
+                    'Người chơi cũng nên chuẩn bị giày và trang phục thể thao phù hợp. Pickleball có nhiều tình huống di chuyển ngang và thay đổi hướng nên giày cần tạo cảm giác ổn định, trong khi trang phục nên thoải mái để hỗ trợ vận động.',
+                    'Cách cầm vợt cũng ảnh hưởng đến khả năng kiểm soát hướng bóng. Người mới nên giữ vợt chắc nhưng không quá căng để có thể chuyển đổi giữa các cú đánh một cách linh hoạt.'
+                ]},
+                { title: 'Luật chơi Pickleball cơ bản', paragraphs: [
+                    'Để bắt đầu chơi, người mới cần nắm những quy định cơ bản về luật chơi, đặc biệt là luật giao bóng, trình tự nảy bóng, khu vực Kitchen và cách tính điểm.',
+                    'Cú giao bóng được thực hiện theo đường chéo sang ô giao bóng đối diện. Với kiểu giao bóng volley serve, điểm tiếp xúc bóng phải ở dưới thắt lưng và đầu vợt không được cao hơn phần cao nhất của cổ tay tại thời điểm tiếp xúc. Luật cũng cho phép hình thức drop serve.',
+                    'Vì vậy, giao bóng không chỉ yêu cầu đưa bóng sang phần sân đối diện mà còn phải bảo đảm cú giao bóng đúng quy định.',
+                    'Một quy tắc quan trọng khác là Two-Bounce Rule. Sau khi giao bóng, bên nhận phải để bóng nảy một lần trước khi trả bóng. Sau đó, bên giao bóng cũng phải để bóng trả lại nảy một lần trước khi đánh tiếp. Khi điều kiện này đã được đáp ứng, người chơi mới có thể thực hiện volley.',
+                    'Người chơi không được thực hiện volley khi đang đứng trong khu vực Non-Volley Zone (Kitchen).',
+                    'Về cách tính điểm truyền thống, chỉ bên giao bóng mới có thể ghi điểm. Một ván thường kết thúc khi một bên đạt 11 điểm và dẫn trước ít nhất 2 điểm. Một số thể thức thi đấu có thể sử dụng mốc 15 hoặc 21 điểm.',
+                    'Người mới nên nắm rõ những quy định trên trước khi tham gia một trận đấu để hạn chế những lỗi cơ bản liên quan đến giao bóng, nảy bóng, Kitchen và tính điểm.'
+                ]},
+                { title: 'Cách chơi Pickleball cho người mới', paragraphs: [
+                    'Với người mới, cách tiếp cận phù hợp là làm quen từng bước thay vì cố gắng học quá nhiều kỹ thuật cùng lúc.',
+                    'Trước tiên, người chơi nên làm quen với vợt và bóng. Có thể thực hiện những cú đánh nhẹ ở khoảng cách ngắn để cảm nhận trọng lượng vợt, độ nảy của bóng và lực cần sử dụng.',
+                    'Tiếp theo là học cách cầm vợt. Vợt nên được giữ chắc nhưng không quá căng, đồng thời duy trì tư thế sẵn sàng để có thể phản ứng với hướng bóng.',
+                    'Sau đó, người mới có thể tập giao bóng. Ở giai đoạn đầu, nên ưu tiên độ chính xác thay vì cố gắng đánh bóng thật mạnh. Mục tiêu là đưa bóng đúng khu vực giao bóng theo đường chéo và tạo nền tảng cho pha bóng tiếp theo.',
+                    'Khi đã thực hiện được cú giao bóng ổn định, hãy tập trả bóng. Người mới nên ưu tiên đưa bóng trở lại sân thay vì cố gắng kết thúc điểm ngay từ những cú đánh đầu tiên.',
+                    'Di chuyển cũng là một phần quan trọng. Người chơi cần quan sát vị trí của đối thủ, giữ khoảng cách hợp lý và chủ động điều chỉnh vị trí sau mỗi cú đánh.',
+                    'Cuối cùng, người mới nên làm quen với Kitchen. Khu vực này có vai trò lớn trong các pha bóng gần lưới nên người chơi cần học cách kiểm soát lực và điểm rơi của bóng khi tiến vào khu vực này.'
+                ]},
+                { title: 'Các kỹ thuật Pickleball cơ bản', paragraphs: [
+                    'Sau khi nắm được cách chơi, người mới có thể bắt đầu luyện những kỹ thuật cơ bản như forehand, backhand, dink, volley, serve và return.',
+                    'Forehand là cú đánh được thực hiện ở phía thuận tay. Đây thường là một trong những kỹ thuật đầu tiên người mới làm quen vì chuyển động tương đối tự nhiên.',
+                    'Backhand được thực hiện ở phía trái hoặc phía không thuận tay. Kỹ thuật này yêu cầu khả năng kiểm soát mặt vợt, cổ tay và điểm tiếp xúc bóng. Luyện backhand thường xuyên giúp người chơi xử lý tốt hơn những tình huống bóng đi về phía không thuận tay.',
+                    'Dink là cú đánh nhẹ thường được sử dụng ở khu vực gần Kitchen. Mục tiêu là đưa bóng qua lưới với quỹ đạo thấp và hạn chế cơ hội tấn công trực tiếp của đối thủ.',
+                    'Volley là cú đánh bóng trước khi bóng chạm đất. Sau khi đáp ứng điều kiện của Two-Bounce Rule, người chơi có thể thực hiện volley ở những khu vực được phép. Kỹ thuật này yêu cầu phản xạ và khả năng kiểm soát mặt vợt.',
+                    'Serve và return cũng là hai kỹ năng xuất hiện ngay từ đầu mỗi pha bóng. Người mới nên ưu tiên sự ổn định và độ chính xác trước khi phát triển tốc độ, góc đánh và chiến thuật nâng cao.'
+                ]},
+                { title: 'Kết luận', paragraphs: [
+                    'Để bắt đầu chơi Pickleball, người mới nên nắm được những kiến thức nền tảng về sân, dụng cụ, luật giao bóng, Two-Bounce Rule, Kitchen, cách tính điểm và các kỹ thuật cơ bản như forehand, backhand, dink, volley, serve và return.',
+                    'Nếu bạn đang tìm kiếm vợt Pickleball, bóng và những dụng cụ phù hợp để bắt đầu làm quen với môn thể thao này, hãy tham khảo các sản phẩm phù hợp tại VISCAPE SPORT.',
+                    'Hãy bắt đầu từ những kỹ năng cơ bản, luyện tập đúng cách và lựa chọn dụng cụ phù hợp để từng bước tự tin hơn khi ra sân.'
+                ]}
+            ];
+            return `
+                <main class="bg-ivory min-h-screen">
+                    <section class="bg-navy text-white px-6 md:px-16 py-14 md:py-20">
+                        <div class="max-w-4xl mx-auto">
+                            <button onclick="router.navigate('pickleball-guide')" class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest hover:text-white"><i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại Cẩm nang Pickleball</button>
+                            <p class="text-gold text-xs font-mono tracking-[.22em] uppercase mt-9">VISCAPE SPORT · KIẾN THỨC & KỸ THUẬT</p>
+                            <h1 class="font-display font-bold text-4xl md:text-6xl uppercase leading-tight mt-4">LUẬT CƠ BẢN CHO NGƯỜI MỚI</h1>
+                            <p class="text-white/75 leading-relaxed mt-6 text-base md:text-lg">Pickleball là gì? Cùng VISCAPE SPORT tìm hiểu từ A–Z về nguồn gốc, sân đấu, dụng cụ, luật chơi và các kỹ thuật cơ bản.</p>
+                        </div>
+                    </section>
+                    <article class="max-w-4xl mx-auto px-6 md:px-10 py-12 md:py-16">
+                        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
+                            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">Pickleball là môn thể thao sử dụng vợt và bóng nhựa có lỗ, kết hợp một số đặc điểm quen thuộc của tennis, cầu lông và bóng bàn. Bài viết dưới đây dành cho người mới bắt đầu tìm hiểu môn thể thao này.</p>
+                            ${sections.map(section => `
+                                <section class="mt-10 first:mt-0">
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy leading-snug">${section.title}</h2>
+                                    <div class="mt-4 space-y-4">${section.paragraphs.map(p => `<p class="text-gray-700 text-sm md:text-base leading-8">${p}</p>`).join('')}</div>
+                                </section>
+                            `).join('')}
+                            <div class="mt-12 p-6 rounded-xl bg-navy text-white">
+                                <h2 class="font-display font-bold text-xl uppercase">Sẵn sàng ra sân?</h2>
+                                <p class="text-white/75 leading-relaxed mt-2">Khám phá vợt, bóng và trang phục Pickleball của VISCAPE SPORT để tìm dụng cụ phù hợp với lối chơi của bạn.</p>
+                                <button onclick="router.navigate('shop')" class="mt-5 bg-gold text-navy px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-xs">Khám phá sản phẩm</button>
+                            </div>
+                        </div>
+                        <button onclick="router.navigate('pickleball-guide')" class="mt-8 border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white">Quay lại chuyên mục</button>
+                    </article>
+                </main>
             `;
         }
 
