@@ -947,6 +947,8 @@
                 container.innerHTML = renderNewsCategory(currentRoute);
             } else if(currentRoute === 'pickleball-rules') {
                 container.innerHTML = renderPickleballRulesArticle();
+            } else if(currentRoute === 'pickleball-paddle-guide') {
+                container.innerHTML = renderPickleballPaddleArticle();
             } else if(currentRoute === 'athlete-journal') {
                 container.innerHTML = renderAthleteJournal();
             } else if(currentRoute === 'policies') {
@@ -1725,11 +1727,11 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                     <section class="px-6 md:px-16 py-14 md:py-20">
                         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                             ${content.articles.map(article => `
-                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors ${article[1] === 'Luật cơ bản cho người mới' ? 'cursor-pointer group' : ''}" ${article[1] === 'Luật cơ bản cho người mới' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-rules\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-rules\')}"' : ''}>
+                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi'].includes(article[1]) ? 'cursor-pointer group' : ''}" ${article[1] === 'Luật cơ bản cho người mới' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-rules\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-rules\')}"' : article[1] === 'Chọn vợt theo lối chơi' ? 'role="link" tabindex="0" onclick="router.navigate(\'pickleball-paddle-guide\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();router.navigate(\'pickleball-paddle-guide\')}"' : ''}>
                                     <span class="font-display font-bold text-5xl text-gold">${article[0]}</span>
                                     <h2 class="font-display font-bold text-xl md:text-2xl text-navy mt-5">${article[1]}</h2>
                                     <p class="text-gray-600 text-sm leading-relaxed mt-4">${article[2]}</p>
-                                    ${article[1] === 'Luật cơ bản cho người mới' ? '<span class="inline-flex items-center gap-2 mt-6 text-xs uppercase tracking-widest font-bold text-gold">Đọc bài viết <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>' : ''}
+                                    ${['Luật cơ bản cho người mới', 'Chọn vợt theo lối chơi'].includes(article[1]) ? '<span class="inline-flex items-center gap-2 mt-6 text-xs uppercase tracking-widest font-bold text-gold">Đọc bài viết <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>' : ''}
                                 </article>
                             `).join('')}
                         </div>
@@ -1826,6 +1828,63 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                                 <h2 class="font-display font-bold text-xl uppercase">Sẵn sàng ra sân?</h2>
                                 <p class="text-white/75 leading-relaxed mt-2">Khám phá vợt, bóng và trang phục Pickleball của VISCAPE SPORT để tìm dụng cụ phù hợp với lối chơi của bạn.</p>
                                 <button onclick="router.navigate('shop')" class="mt-5 bg-gold text-navy px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-xs">Khám phá sản phẩm</button>
+                            </div>
+                        </div>
+                        <button onclick="router.navigate('pickleball-guide')" class="mt-8 border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white">Quay lại chuyên mục</button>
+                    </article>
+                </main>
+            `;
+        }
+
+        function renderPickleballPaddleArticle() {
+            const sections = [
+                { title: '1. Hiểu lối chơi của bạn trước khi chọn vợt', paragraphs: [
+                    'Một cây vợt phù hợp không nhất thiết là cây vợt đắt nhất, nặng nhất hay tạo ra lực đánh lớn nhất. Điều quan trọng là vợt giúp bạn kiểm soát bóng ổn định, di chuyển tự nhiên và tự tin xử lý những tình huống thường gặp trên sân.',
+                    'Nếu bạn mới chơi, hãy ưu tiên sự cân bằng giữa kiểm soát và sức mạnh. Khi kỹ thuật đã rõ ràng hơn, bạn có thể chọn vợt thiên về tốc độ, độ chính xác hoặc khả năng tạo xoáy theo nhu cầu riêng.'
+                ]},
+                { title: '2. Chọn theo phong cách thi đấu', paragraphs: [
+                    'Thiên về kiểm soát và đặt bóng: hãy tìm cây vợt cho cảm giác tiếp xúc ổn định, điểm ngọt dễ sử dụng và độ dày lõi phù hợp. Kiểm soát tốt giúp bạn thực hiện cú dink, block và đặt bóng vào khoảng trống với sự tự tin hơn.',
+                    'Thiên về tấn công và tốc độ: người chơi đã có kỹ thuật có thể cân nhắc vợt cho phản hồi nhanh và lực đánh phù hợp. Tuy nhiên, vợt mạnh hơn không tự động làm cú đánh chính xác hơn; bạn vẫn cần điều chỉnh lực, thời điểm tiếp xúc và hướng mặt vợt.',
+                    'Lối chơi toàn diện: nếu bạn thường xuyên thay đổi giữa điều bóng, phòng thủ và tấn công, hãy thử các mẫu cân bằng. Đây thường là điểm bắt đầu dễ thích nghi cho người chưa xác định rõ sở trường.'
+                ]},
+                { title: '3. Bốn yếu tố cần kiểm tra', paragraphs: [
+                    'Trọng lượng và độ cân bằng: cầm thử vợt ở tư thế sẵn sàng, mô phỏng vài cú thuận tay, trái tay và volley. Vợt nên đủ linh hoạt để phản ứng nhanh nhưng không khiến cổ tay, khuỷu tay hoặc vai nhanh mỏi.',
+                    'Độ dày lõi: lõi dày thường được cân nhắc khi ưu tiên cảm giác kiểm soát và độ ổn định; lõi mỏng có thể cho phản hồi nhanh hoặc cảm giác bật bóng rõ hơn tùy cấu trúc từng mẫu. Độ dày không quyết định tất cả, vì vật liệu và thiết kế tổng thể cũng ảnh hưởng đến hiệu suất.',
+                    'Bề mặt vợt: vật liệu và kết cấu bề mặt có thể ảnh hưởng đến cảm giác chạm bóng và khả năng tạo xoáy. Đừng chỉ dựa vào vẻ ngoài hoặc một thông số quảng cáo; hãy thử đánh những cú bóng ngắn, drive và trả giao bóng.',
+                    'Cán vợt và chu vi tay cầm: cán cần nằm chắc trong lòng bàn tay mà không phải siết quá chặt. Tay cầm quá lớn có thể làm giảm sự linh hoạt; quá nhỏ có thể khiến bạn phải nắm chặt hơn. Hãy ưu tiên sự thoải mái và khả năng đổi hướng mặt vợt.'
+                ]},
+                { title: '4. Người mới nên bắt đầu từ đâu?', paragraphs: [
+                    'Hãy chọn một cây vợt dễ kiểm soát, có trọng lượng bạn cầm thoải mái và cán vừa tay. Nếu có điều kiện, mượn hoặc thử một vài mẫu trước khi mua; đánh thử giao bóng, trả giao bóng, dink và volley sẽ hữu ích hơn việc chỉ cầm vợt vài giây.',
+                    'Trong buổi thử, hãy chú ý ba điều: bóng có đi đúng hướng dự định không, bạn có dễ điều chỉnh lực không, và tay có bị mỏi sau một khoảng thời gian ngắn không. Ghi lại cảm nhận để so sánh giữa các mẫu.'
+                ]},
+                { title: '5. Checklist trước khi quyết định', paragraphs: [
+                    '• Cầm vợt chắc chắn nhưng không phải siết tay quá mức.\n• Có thể vung vợt và chuyển từ thuận tay sang trái tay một cách tự nhiên.\n• Dễ kiểm soát bóng ngắn, bóng bổng và cú đánh ở tốc độ vừa.\n• Thông số, vật liệu và tình trạng sản phẩm rõ ràng; kiểm tra quy định của giải nếu bạn dự định thi đấu chính thức.',
+                    'Hãy nhớ: thiết bị tốt là thiết bị phù hợp với cơ thể, kỹ thuật và mục tiêu của bạn. Luyện tập đúng cách vẫn là yếu tố quan trọng nhất để nâng cao chất lượng cú đánh.'
+                ]}
+            ];
+            return `
+                <main class="bg-ivory min-h-screen">
+                    <section class="bg-navy text-white px-6 md:px-16 py-14 md:py-20">
+                        <div class="max-w-4xl mx-auto">
+                            <button onclick="router.navigate('pickleball-guide')" class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest hover:text-white"><i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại Cẩm nang Pickleball</button>
+                            <p class="text-gold text-xs font-mono tracking-[.22em] uppercase mt-9">VISCAPE SPORT · KIẾN THỨC & KỸ THUẬT</p>
+                            <h1 class="font-display font-bold text-4xl md:text-6xl uppercase leading-tight mt-4">CHỌN VỢT THEO LỐI CHƠI</h1>
+                            <p class="text-white/75 leading-relaxed mt-6 text-base md:text-lg">Không có cây vợt hoàn hảo cho tất cả mọi người. Tìm hiểu cách chọn trọng lượng, lõi, bề mặt và tay cầm theo kỹ năng cũng như phong cách chơi của bạn.</p>
+                        </div>
+                    </section>
+                    <article class="max-w-4xl mx-auto px-6 md:px-10 py-12 md:py-16">
+                        <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm">
+                            <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8">Chọn vợt Pickleball là tìm ra sự phù hợp giữa cảm giác cầm, khả năng kiểm soát và cách bạn muốn chơi. Đừng vội chọn mẫu có lực đánh mạnh nhất; hãy bắt đầu từ cảm giác ổn định và khả năng xử lý bóng của chính mình.</p>
+                            ${sections.map(section => `
+                                <section class="mt-10 first:mt-0">
+                                    <h2 class="font-display font-bold text-2xl md:text-3xl uppercase text-navy leading-snug">${section.title}</h2>
+                                    <div class="mt-4 space-y-4">${section.paragraphs.map(p => `<p class="text-gray-700 text-sm md:text-base leading-8 whitespace-pre-line">${p}</p>`).join('')}</div>
+                                </section>
+                            `).join('')}
+                            <div class="mt-12 p-6 rounded-xl bg-navy text-white">
+                                <h2 class="font-display font-bold text-xl uppercase">Tìm cây vợt phù hợp với bạn</h2>
+                                <p class="text-white/75 leading-relaxed mt-2">Khám phá các mẫu vợt Pickleball của VISCAPE SPORT và chọn thiết bị phù hợp với cảm giác cầm cũng như mục tiêu luyện tập của bạn.</p>
+                                <button onclick="router.navigate('shop', 'paddles')" class="mt-5 bg-gold text-navy px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-xs">Khám phá vợt</button>
                             </div>
                         </div>
                         <button onclick="router.navigate('pickleball-guide')" class="mt-8 border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white">Quay lại chuyên mục</button>
