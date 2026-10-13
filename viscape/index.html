@@ -1518,22 +1518,30 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                 {
                     no: '01',
                     title: 'TỪ SÀI GÒN, ĐI RA THẾ GIỚI',
-                    text: 'VISCAPE SPORT bắt đầu từ tinh thần sống nhanh, chơi hết mình và luôn muốn tạo ra dấu ấn riêng của Sài Gòn. Chúng tôi đưa tinh thần ấy vào từng sản phẩm để thể thao Việt Nam có một diện mạo tự tin, hiện đại và có câu chuyện.'
+                    text: 'VISCAPE SPORT bắt đầu từ tinh thần sống nhanh, chơi hết mình và luôn muốn tạo ra dấu ấn riêng của Sài Gòn. Chúng tôi đưa tinh thần ấy vào từng sản phẩm để thể thao Việt Nam có một diện mạo tự tin, hiện đại và có câu chuyện.',
+                    image: './assets/story-saigon-brand.jpg',
+                    imageAlt: 'VISCAPE SPORT trong khung cảnh Sài Gòn và tinh thần thể thao Việt Nam'
                 },
                 {
                     no: '02',
                     title: 'DI SẢN KHÔNG ĐỨNG YÊN',
-                    text: 'Trống đồng Đông Sơn, hoa sen, đường nét thủ công và những biểu tượng quen thuộc của Việt Nam được tái diễn giải bằng ngôn ngữ thiết kế đương đại. Di sản với VISCAPE SPORT không phải là thứ để cất giữ, mà là nguồn cảm hứng để tiếp tục chuyển động.'
+                    text: 'Trống đồng Đông Sơn, hoa sen, đường nét thủ công và những biểu tượng quen thuộc của Việt Nam được tái diễn giải bằng ngôn ngữ thiết kế đương đại. Di sản với VISCAPE SPORT không phải là thứ để cất giữ, mà là nguồn cảm hứng để tiếp tục chuyển động.',
+                    image: './assets/story-heritage-lotus.jpg',
+                    imageAlt: 'Trang phục VISCAPE SPORT lấy cảm hứng từ hoa sen và di sản Việt'
                 },
                 {
                     no: '03',
                     title: 'MỖI TRẬN ĐẤU, MỘT CÂU CHUYỆN',
-                    text: 'Pickleball là cuộc chơi của phản xạ, chiến thuật và kết nối. Chúng tôi tin rằng mỗi cú đánh đều có cá tính riêng vì vậy sản phẩm phải giúp người chơi cảm thấy thoải mái, tự tin và được là chính mình trên sân.'
+                    text: 'Pickleball là cuộc chơi của phản xạ, chiến thuật và kết nối. Chúng tôi tin rằng mỗi cú đánh đều có cá tính riêng vì vậy sản phẩm phải giúp người chơi cảm thấy thoải mái, tự tin và được là chính mình trên sân.',
+                    image: './assets/story-doubles-match.jpg',
+                    imageAlt: 'Người chơi VISCAPE SPORT thi đấu pickleball đôi trên sân'
                 },
                 {
                     no: '04',
                     title: 'MÀU ÁO VIỆT',
-                    text: 'Trang phục VISCAPE SPORT lấy cảm hứng từ nhịp sống Việt Nam: năng động, gần gũi và đầy năng lượng. Từ chất liệu, phom dáng đến chi tiết nhận diện, mọi thứ được tạo ra để đồng hành cùng chuyển động thay vì cản trở nó.'
+                    text: 'Trang phục VISCAPE SPORT lấy cảm hứng từ nhịp sống Việt Nam: năng động, gần gũi và đầy năng lượng. Từ chất liệu, phom dáng đến chi tiết nhận diện, mọi thứ được tạo ra để đồng hành cùng chuyển động thay vì cản trở nó.',
+                    image: './assets/story-performance-kit.jpg',
+                    imageAlt: 'Vận động viên mặc trang phục VISCAPE SPORT trong một pha bóng'
                 },
                 {
                     no: '05',
@@ -1561,13 +1569,16 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 ${stories.map((story, index) => `
-                                    <article class="group bg-white border border-gray-200 rounded-2xl p-7 md:p-9 hover:border-gold hover:-translate-y-1 transition-all ${index === stories.length - 1 ? 'md:col-span-2 md:max-w-2xl' : ''}">
-                                        <div class="flex items-start justify-between gap-6">
-                                            <span class="font-mono text-gold text-xs tracking-[0.2em]">${story.no}</span>
-                                            <span class="text-navy/10 font-display font-bold text-5xl leading-none">V</span>
+                                    <article class="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-gold hover:-translate-y-1 transition-all ${index === stories.length - 1 ? 'md:col-span-2 md:max-w-2xl' : ''}">
+                                        ${story.image ? `<div class="aspect-[16/9] overflow-hidden bg-navy"><img src="${story.image}" alt="${story.imageAlt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"></div>` : ''}
+                                        <div class="p-7 md:p-9">
+                                            <div class="flex items-start justify-between gap-6">
+                                                <span class="font-mono text-gold text-xs tracking-[0.2em]">${story.no}</span>
+                                                <span class="text-navy/10 font-display font-bold text-5xl leading-none">V</span>
+                                            </div>
+                                            <h3 class="font-display font-bold text-xl md:text-2xl text-navy uppercase mt-5 mb-4">${story.title}</h3>
+                                            <p class="text-gray-600 leading-relaxed text-sm md:text-base">${story.text}</p>
                                         </div>
-                                        <h3 class="font-display font-bold text-xl md:text-2xl text-navy uppercase mt-8 mb-4">${story.title}</h3>
-                                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">${story.text}</p>
                                     </article>
                                 `).join('')}
                             </div>
