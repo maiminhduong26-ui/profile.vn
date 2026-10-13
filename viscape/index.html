@@ -926,6 +926,8 @@
                 container.innerHTML = renderAbout();
             } else if(currentRoute === 'news') {
                 container.innerHTML = renderNews();
+            } else if(currentRoute === 'pickleball-guide' || currentRoute === 'style-heritage') {
+                container.innerHTML = renderNewsCategory(currentRoute);
             } else if(currentRoute === 'athlete-journal') {
                 container.innerHTML = renderAthleteJournal();
             } else if(currentRoute === 'policies') {
@@ -1501,15 +1503,120 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
         }
 
         function renderNews() {
+            const categories = [
+                {
+                    number: '01',
+                    title: 'Nhật ký vận động viên',
+                    kicker: 'GHI CHÉP TRÊN SÂN',
+                    description: 'Những khoảnh khắc trước trận, nhịp di chuyển, chiến thuật và tinh thần đồng đội qua góc nhìn của người chơi.',
+                    image: './assets/journal-athlete-match.jpg',
+                    route: 'athlete-journal',
+                    action: 'Đọc nhật ký'
+                },
+                {
+                    number: '02',
+                    title: 'Cẩm nang Pickleball',
+                    kicker: 'KIẾN THỨC & KỸ THUẬT',
+                    description: 'Tìm hiểu luật chơi, cách chọn vợt, kỹ thuật cơ bản và những mẹo thực hành giúp bạn tự tin hơn sau mỗi buổi tập.',
+                    image: PRODUCTS.find(product => product.id === 'viscape-di-san-chinh-phuc')?.image || './assets/journal-athlete-match.jpg',
+                    route: 'pickleball-guide',
+                    action: 'Khám phá cẩm nang'
+                },
+                {
+                    number: '03',
+                    title: 'Phong cách & Di sản',
+                    kicker: 'VĂN HÓA THỂ THAO VIỆT',
+                    description: 'Những câu chuyện phía sau họa tiết, màu sắc, trang phục và cảm hứng Việt Nam trong ngôn ngữ thiết kế của VISCAPE SPORT.',
+                    image: './assets/story-heritage-lotus.jpg',
+                    route: 'style-heritage',
+                    action: 'Khám phá câu chuyện'
+                }
+            ];
             return `
-                <section class="min-h-[60vh] bg-ivory px-6 md:px-16 py-24">
-                    <div class="max-w-5xl mx-auto">
-                        <p class="text-gold text-xs font-mono tracking-[0.25em] uppercase">VISCAPE SPORT</p>
-                        <h1 class="font-display font-bold text-4xl md:text-6xl uppercase text-navy mt-3">Tin tức</h1>
-                        <p class="text-gray-600 mt-5 max-w-2xl">Tin tức và câu chuyện mới nhất từ VISCAPE SPORT sẽ được cập nhật tại đây.</p>
-                        <div class="mt-10 bg-white border border-gray-200 rounded-2xl p-8 text-gray-500">Nội dung tin tức đang được cập nhật.</div>
-                    </div>
-                </section>
+                <div class="bg-ivory min-h-screen">
+                    <section class="relative overflow-hidden bg-navy text-white px-6 md:px-16 py-20 md:py-28">
+                        <div class="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_78%_15%,#dc982a_0,transparent_32%),radial-gradient(circle_at_8%_90%,#2b6f55_0,transparent_30%)]"></div>
+                        <div class="relative max-w-7xl mx-auto">
+                            <p class="text-gold text-xs font-mono tracking-[0.3em] uppercase">VISCAPE SPORT · TẠP CHÍ THƯƠNG HIỆU</p>
+                            <h1 class="font-display font-bold text-5xl md:text-8xl uppercase mt-4 leading-[0.95]">TIN TỨC &<br><span class="text-gold">CÂU CHUYỆN.</span></h1>
+                            <p class="text-white/75 text-base md:text-lg mt-7 max-w-2xl leading-relaxed">Ba góc nhìn về hành trình chơi thể thao: con người trên sân, kiến thức giúp chơi tốt hơn và bản sắc tạo nên phong cách riêng.</p>
+                        </div>
+                    </section>
+                    <section class="px-6 md:px-16 py-14 md:py-20">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-9">
+                                <div><p class="text-gold text-xs font-mono tracking-[0.25em] uppercase">KHÁM PHÁ THEO CHỦ ĐỀ</p><h2 class="font-display font-bold text-3xl md:text-5xl text-navy uppercase mt-3">Ba chuyên mục chính</h2></div>
+                                <p class="text-gray-600 text-sm max-w-md leading-relaxed">Chọn một chuyên mục để đọc những nội dung được tuyển chọn dành cho cộng đồng VISCAPE SPORT.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                ${categories.map(category => `
+                                    <article class="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gold hover:-translate-y-1 transition-all duration-300">
+                                        <div class="relative aspect-[4/3] overflow-hidden bg-navy">
+                                            <img src="${category.image}" alt="${category.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                            <span class="absolute top-4 left-4 bg-navy/90 text-gold text-[10px] font-bold tracking-[0.18em] px-3 py-2 rounded-full">${category.kicker}</span>
+                                            <span class="absolute bottom-3 right-5 font-display font-bold text-6xl text-white/80">${category.number}</span>
+                                        </div>
+                                        <div class="p-6 md:p-7">
+                                            <h3 class="font-display font-bold text-2xl text-navy">${category.title}</h3>
+                                            <p class="text-gray-600 text-sm leading-relaxed mt-3">${category.description}</p>
+                                            <button onclick="router.navigate('${category.route}')" class="mt-6 inline-flex items-center gap-3 bg-navy text-white px-5 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-navy transition-colors">${category.action}<i data-lucide="arrow-up-right" class="w-4 h-4"></i></button>
+                                        </div>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderNewsCategory(route) {
+            const content = {
+                'pickleball-guide': {
+                    eyebrow: 'KIẾN THỨC & KỸ THUẬT',
+                    title: 'Cẩm nang Pickleball',
+                    intro: 'Bắt đầu từ nền tảng vững chắc, luyện tập có mục tiêu và từng bước tìm ra lối chơi phù hợp với bạn.',
+                    articles: [
+                        ['01', 'Luật cơ bản cho người mới', 'Làm quen với cách giao bóng, tính điểm, khu vực non-volley zone (kitchen) và những lỗi thường gặp. Hãy kiểm tra luật thi đấu của giải bạn tham gia để nắm các quy định áp dụng cụ thể.'],
+                        ['02', 'Chọn vợt theo lối chơi', 'Ưu tiên cảm giác cầm thoải mái, độ dày lõi và bề mặt phù hợp. Người mới nên cân bằng giữa khả năng kiểm soát và lực đánh thay vì chỉ chọn cây vợt nặng hoặc mạnh nhất.'],
+                        ['03', 'Ba thói quen giúp tiến bộ', 'Giữ tư thế sẵn sàng, dùng bước chân nhỏ để điều chỉnh vị trí và trở về trung tâm sau cú đánh. Tập đều, tăng độ khó từ từ và khởi động trước khi vào sân.']
+                    ]
+                },
+                'style-heritage': {
+                    eyebrow: 'VĂN HÓA THỂ THAO VIỆT',
+                    title: 'Phong cách & Di sản',
+                    intro: 'Khám phá cách cảm hứng Việt Nam bước vào thiết kế thể thao đương đại qua họa tiết, màu sắc và câu chuyện cộng đồng.',
+                    articles: [
+                        ['01', 'Di sản chuyển động cùng thời đại', 'Những họa tiết gợi nhớ trống đồng và văn hóa Việt được diễn giải bằng ngôn ngữ thị giác hiện đại, để di sản hiện diện tự nhiên trong đời sống hôm nay.'],
+                        ['02', 'Màu áo kể câu chuyện riêng', 'Trang phục thể thao không chỉ là lớp áo khi thi đấu. Màu sắc, phom dáng và chi tiết nhận diện còn thể hiện cá tính, sự tự tin và tinh thần của người mặc.'],
+                        ['03', 'Bản sắc trên sân đấu', 'Một cộng đồng thể thao được tạo nên từ những người chơi có nhiều xuất phát điểm khác nhau nhưng cùng chia sẻ sự tôn trọng, tinh thần học hỏi và niềm vui vận động.']
+                    ]
+                }
+            }[route];
+            if (!content) return renderNews();
+            return `
+                <div class="bg-ivory min-h-screen">
+                    <section class="bg-navy text-white px-6 md:px-16 py-16 md:py-24">
+                        <div class="max-w-6xl mx-auto">
+                            <button onclick="router.navigate('news')" class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest hover:text-white transition-colors"><i data-lucide="arrow-left" class="w-4 h-4"></i> Tất cả chuyên mục</button>
+                            <p class="text-gold text-xs font-mono tracking-[0.25em] uppercase mt-10">VISCAPE SPORT · ${content.eyebrow}</p>
+                            <h1 class="font-display font-bold text-4xl md:text-7xl uppercase mt-4 leading-tight">${content.title}</h1>
+                            <p class="text-white/75 text-base md:text-lg leading-relaxed mt-6 max-w-2xl">${content.intro}</p>
+                        </div>
+                    </section>
+                    <section class="px-6 md:px-16 py-14 md:py-20">
+                        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                            ${content.articles.map(article => `
+                                <article class="bg-white border border-gray-200 rounded-2xl p-7 md:p-8 hover:border-gold transition-colors">
+                                    <span class="font-display font-bold text-5xl text-gold">${article[0]}</span>
+                                    <h2 class="font-display font-bold text-xl md:text-2xl text-navy mt-5">${article[1]}</h2>
+                                    <p class="text-gray-600 text-sm leading-relaxed mt-4">${article[2]}</p>
+                                </article>
+                            `).join('')}
+                        </div>
+                        <div class="max-w-6xl mx-auto mt-10"><button onclick="router.navigate('news')" class="border border-navy text-navy px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-navy hover:text-white transition-colors">Quay lại Tin tức</button></div>
+                    </section>
+                </div>
             `;
         }
 
