@@ -1488,35 +1488,37 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
             ];
             return `
                 <div class="bg-ivory" data-athlete-journal-page>
-                    <script>
-                        (function () {
-                            const initAthleteCarousel = () => {
-                                document.querySelectorAll('[data-athlete-carousel]:not([data-carousel-ready])').forEach((carousel) => {
-                                    carousel.setAttribute('data-carousel-ready', 'true');
-                                    const slides = Array.from(carousel.querySelectorAll('.athlete-carousel-slide'));
-                                    const dots = Array.from(carousel.querySelectorAll('.athlete-carousel-dot'));
-                                    if (slides.length < 2) return;
-                                    let current = 0;
-                                    const show = (next) => {
-                                        slides.forEach((slide, index) => {
-                                            slide.classList.toggle('opacity-100', index === next);
-                                            slide.classList.toggle('opacity-0', index !== next);
-                                        });
-                                        dots.forEach((dot, index) => {
-                                            dot.classList.toggle('bg-gold', index === next);
-                                            dot.classList.toggle('bg-white/60', index !== next);
-                                            dot.classList.toggle('ring-2', index === next);
-                                            dot.classList.toggle('ring-white/70', index === next);
-                                        });
-                                        current = next;
-                                    };
-                                    window.setInterval(() => show((current + 1) % slides.length), 4000);
-                                });
-                            };
-                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAthleteCarousel, { once: true });
-                            window.setTimeout(initAthleteCarousel, 0);
-                        })();
-                    </script>
+                    <style>
+                        @keyframes viscapeAthleteSlideOne {
+                            0%, 44% { opacity: 1; }
+                            50%, 94% { opacity: 0; }
+                            100% { opacity: 1; }
+                        }
+                        @keyframes viscapeAthleteSlideTwo {
+                            0%, 44% { opacity: 0; }
+                            50%, 94% { opacity: 1; }
+                            100% { opacity: 0; }
+                        }
+                        .athlete-carousel-slide[data-slide="0"] { animation: viscapeAthleteSlideOne 8s ease-in-out infinite; }
+                        .athlete-carousel-slide[data-slide="1"] { animation: viscapeAthleteSlideTwo 8s ease-in-out infinite; }
+                        .athlete-carousel-dot[data-dot="0"] { animation: viscapeAthleteDotOne 8s linear infinite; }
+                        .athlete-carousel-dot[data-dot="1"] { animation: viscapeAthleteDotTwo 8s linear infinite; }
+                        @keyframes viscapeAthleteDotOne {
+                            0%, 44% { background-color: #dc982a; box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
+                            50%, 94% { background-color: rgba(255,255,255,.6); box-shadow: none; }
+                            100% { background-color: #dc982a; box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
+                        }
+                        @keyframes viscapeAthleteDotTwo {
+                            0%, 44% { background-color: rgba(255,255,255,.6); box-shadow: none; }
+                            50%, 94% { background-color: #dc982a; box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
+                            100% { background-color: rgba(255,255,255,.6); box-shadow: none; }
+                        }
+                        @media (prefers-reduced-motion: reduce) {
+                            .athlete-carousel-slide, .athlete-carousel-dot { animation: none !important; }
+                            .athlete-carousel-slide[data-slide="0"] { opacity: 1 !important; }
+                            .athlete-carousel-slide[data-slide="1"] { opacity: 0 !important; }
+                        }
+                    </style>
                     <section class="relative min-h-[440px] md:min-h-[560px] bg-navy overflow-hidden flex items-end">
                         <img src="${stories[0].image}" alt="${stories[0].alt}" class="absolute inset-0 w-full h-full object-cover object-center" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-r from-[#07172b]/90 via-[#07172b]/50 to-transparent"></div>
