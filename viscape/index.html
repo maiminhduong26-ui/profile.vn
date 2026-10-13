@@ -1590,6 +1590,25 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                             </article>
                         </div>
                     </section>
+                    <section id="submit-athlete-journal" class="px-6 md:px-16 py-14 md:py-20 bg-[#f7f4ed]">
+                        <div class="max-w-5xl mx-auto">
+                            <div class="max-w-2xl mb-9">
+                                <p class="text-gold text-xs font-mono tracking-[0.25em] uppercase font-bold">Cùng kể câu chuyện của bạn</p>
+                                <h2 class="font-display font-bold text-3xl md:text-5xl uppercase text-navy mt-3">Thêm nhật ký của bạn</h2>
+                                <p class="text-gray-600 leading-relaxed mt-4">Chia sẻ khoảnh khắc trên sân, điều bạn học được sau trận đấu hoặc hành trình làm quen với pickleball. Bài gửi sẽ ở trạng thái chờ xét duyệt trước khi được đăng công khai.</p>
+                            </div>
+                            <form id="athlete-journal-submit-form" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-5" onsubmit="submitAthleteJournal(event)">
+                                <div><label for="athlete-journal-name" class="block text-sm font-bold text-navy mb-2">Tên vận động viên *</label><input id="athlete-journal-name" required maxlength="80" placeholder="Nhập tên của bạn" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#dc982a]"></div>
+                                <div><label for="athlete-journal-title" class="block text-sm font-bold text-navy mb-2">Tiêu đề nhật ký *</label><input id="athlete-journal-title" required maxlength="120" placeholder="Ví dụ: Trận đấu đầu tiên của tôi" class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#dc982a]"></div>
+                                <div class="md:col-span-2"><label for="athlete-journal-content" class="block text-sm font-bold text-navy mb-2">Nội dung nhật ký *</label><textarea id="athlete-journal-content" required minlength="20" maxlength="3000" rows="5" placeholder="Kể về trải nghiệm, cảm xúc hoặc bài học bạn nhận được trên sân..." class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#dc982a]"></textarea><p class="text-xs text-gray-400 mt-2">Tối đa 3.000 ký tự.</p></div>
+                                <div class="md:col-span-2"><label for="athlete-journal-image" class="block text-sm font-bold text-navy mb-2">Hình ảnh đi kèm *</label><input id="athlete-journal-image" type="file" accept="image/jpeg,image/png,image/webp" required class="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-navy file:px-4 file:py-3 file:text-xs file:font-bold file:uppercase file:tracking-wider file:text-white hover:file:bg-[#dc982a]"><p class="text-xs text-gray-400 mt-2">JPG, PNG hoặc WebP, tối đa 10 MB. Ảnh được thu gọn trước khi lưu.</p><div id="athlete-journal-image-preview" class="hidden mt-4 max-w-sm overflow-hidden rounded-xl border border-gray-200"></div></div>
+                                <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-100 pt-5"><p class="text-xs text-gray-500 leading-relaxed max-w-lg">Khi gửi, bài viết được đánh dấu <strong class="text-amber-700">Chờ xét duyệt</strong> và chưa đăng công khai.</p><button type="submit" id="athlete-journal-submit-button" class="shrink-0 bg-navy text-white px-7 py-4 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-[#dc982a] hover:text-navy transition-colors">Gửi nhật ký xét duyệt</button></div>
+                                <div id="athlete-journal-submit-result" class="hidden md:col-span-2 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900" role="status" aria-live="polite"></div>
+                            </form>
+                            <div id="athlete-journal-pending-list" class="mt-8 space-y-3"></div>
+                            <p class="text-xs text-gray-400 mt-4 max-w-3xl">Lưu ý: website hiện chưa kết nối hệ thống quản trị/bộ lưu trữ dùng chung. Bài gửi được lưu chờ duyệt trên trình duyệt đang sử dụng, chưa tự động chuyển đến quản trị viên hoặc hiển thị trên thiết bị khác.</p>
+                        </div>
+                    </section>
                     <section class="bg-white border-y border-gray-100 px-6 md:px-16 py-14">
                         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                             <div><p class="text-gold text-xs font-mono tracking-[0.2em] uppercase">CHƠI THEO CÁCH CỦA BẠN</p><h2 class="font-display font-bold text-2xl md:text-3xl text-navy mt-2">Hẹn gặp bạn trên sân.</h2></div>
@@ -2168,6 +2187,96 @@ aiMsg("Mình chưa nhận diện chính xác câu hỏi này. Bạn có thể h�
 aiQuick([["🏓 Chọn vợt","paddle"],["📏 Tư vấn size","size"],["👕 Trang phục","apparel"],["🎾 Bóng pickleball","balls"],["📖 Luật chơi","rules"],["🧼 Bảo quản vợt","care"]]);
 },300);
 }
+
+
+function escapeAthleteJournalText(value) {
+    return String(value || '').replace(/[&<>"']/g, function(char) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
+    });
+}
+function getAthleteJournalSubmissions() {
+    try { return JSON.parse(localStorage.getItem('viscape_athlete_journal_submissions') || '[]'); }
+    catch (error) { return []; }
+}
+function renderAthleteJournalPending() {
+    var list = document.getElementById('athlete-journal-pending-list');
+    if (!list) return;
+    var items = getAthleteJournalSubmissions();
+    if (!items.length) { list.innerHTML = ''; return; }
+    list.innerHTML = '<div class="mb-3"><h3 class="font-display font-bold text-xl text-navy">Bài gửi từ trình duyệt này</h3><p class="text-xs text-gray-500 mt-1">Các bài dưới đây đang chờ xét duyệt, chưa được đăng công khai.</p></div>' + items.map(function(item) {
+        return '<article class="bg-white border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row gap-4">' +
+            (item.image ? '<img src="' + item.image + '" alt="" class="w-full sm:w-28 h-32 sm:h-24 object-cover rounded-lg bg-gray-100">' : '') +
+            '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center rounded-full bg-amber-100 text-amber-800 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Chờ xét duyệt</span><span class="text-xs text-gray-400">' + new Date(item.createdAt).toLocaleString('vi-VN') + '</span></div><h4 class="font-bold text-navy mt-2">' + escapeAthleteJournalText(item.title) + '</h4><p class="text-xs text-gray-500 mt-1">Tác giả: ' + escapeAthleteJournalText(item.author) + '</p><p class="text-sm text-gray-600 mt-2 whitespace-pre-line">' + escapeAthleteJournalText(item.content) + '</p></div></article>';
+    }).join('');
+}
+function compressAthleteJournalImage(file) {
+    return new Promise(function(resolve, reject) {
+        if (!file || !/^image\/(jpeg|png|webp)$/.test(file.type)) { reject(new Error('Vui lòng chọn ảnh JPG, PNG hoặc WebP.')); return; }
+        if (file.size > 10 * 1024 * 1024) { reject(new Error('Ảnh vượt quá 10 MB.')); return; }
+        var reader = new FileReader();
+        reader.onerror = function() { reject(new Error('Không đọc được tệp ảnh.')); };
+        reader.onload = function() {
+            var img = new Image();
+            img.onerror = function() { reject(new Error('Tệp ảnh không hợp lệ.')); };
+            img.onload = function() {
+                var scale = Math.min(1, 1400 / Math.max(img.width, img.height));
+                var canvas = document.createElement('canvas');
+                canvas.width = Math.max(1, Math.round(img.width * scale));
+                canvas.height = Math.max(1, Math.round(img.height * scale));
+                var ctx = canvas.getContext('2d');
+                if (!ctx) { reject(new Error('Trình duyệt không hỗ trợ xử lý ảnh.')); return; }
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL('image/jpeg', 0.72));
+            };
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+async function submitAthleteJournal(event) {
+    if (event) event.preventDefault();
+    var form = document.getElementById('athlete-journal-submit-form');
+    var result = document.getElementById('athlete-journal-submit-result');
+    var button = document.getElementById('athlete-journal-submit-button');
+    if (!form || !result || !button) return;
+    var author = document.getElementById('athlete-journal-name').value.trim();
+    var title = document.getElementById('athlete-journal-title').value.trim();
+    var content = document.getElementById('athlete-journal-content').value.trim();
+    var input = document.getElementById('athlete-journal-image');
+    if (!author || !title || content.length < 20 || !input.files || !input.files[0]) {
+        result.classList.remove('hidden'); result.textContent = 'Vui lòng điền đủ tên, tiêu đề, nội dung (ít nhất 20 ký tự) và hình ảnh.'; return;
+    }
+    button.disabled = true; button.textContent = 'Đang xử lý ảnh...';
+    result.classList.remove('hidden'); result.textContent = 'Đang chuẩn bị bài gửi...';
+    try {
+        var image = await compressAthleteJournalImage(input.files[0]);
+        var items = getAthleteJournalSubmissions();
+        items.unshift({id:'journal-'+Date.now(),author:author,title:title,content:content,image:image,status:'pending_review',createdAt:new Date().toISOString()});
+        try { localStorage.setItem('viscape_athlete_journal_submissions', JSON.stringify(items.slice(0, 8))); }
+        catch (storageError) { throw new Error('Trình duyệt không còn đủ dung lượng lưu tạm. Hãy thử ảnh nhỏ hơn.'); }
+        form.reset();
+        var preview = document.getElementById('athlete-journal-image-preview');
+        if (preview) { preview.innerHTML = ''; preview.classList.add('hidden'); }
+        result.innerHTML = '<strong>Đã lưu bài gửi trên trình duyệt này.</strong><br>Trạng thái: <strong>Chờ xét duyệt</strong>. Bài chưa được đăng công khai.';
+        renderAthleteJournalPending();
+    } catch (error) {
+        result.textContent = error && error.message ? error.message : 'Chưa thể lưu bài gửi. Vui lòng thử lại.';
+    } finally { button.disabled = false; button.textContent = 'Gửi nhật ký xét duyệt'; }
+}
+document.addEventListener('change', function(event) {
+    if (!event.target || event.target.id !== 'athlete-journal-image') return;
+    var preview = document.getElementById('athlete-journal-image-preview');
+    if (!preview) return;
+    var file = event.target.files && event.target.files[0];
+    if (!file) { preview.innerHTML = ''; preview.classList.add('hidden'); return; }
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size > 10 * 1024 * 1024) {
+        preview.innerHTML = '<p class="p-3 text-sm text-red-700">Chọn ảnh JPG, PNG hoặc WebP tối đa 10 MB.</p>'; preview.classList.remove('hidden'); return;
+    }
+    var reader = new FileReader();
+    reader.onload = function() { preview.innerHTML = '<img src="' + reader.result + '" alt="Xem trước ảnh nhật ký" class="block w-full h-auto max-h-72 object-contain">'; preview.classList.remove('hidden'); };
+    reader.readAsDataURL(file);
+});
+document.addEventListener('DOMContentLoaded', renderAthleteJournalPending);
 
 </script>
 </body>
