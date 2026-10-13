@@ -160,7 +160,16 @@
                     </div>
                 </div>
             </div>
-            <a href="#" onclick="router.navigate('news')" class="hover:text-gold transition-colors">Tin tức</a>
+            <div class="relative group">
+                <button type="button" onclick="router.navigate('news')" class="hover:text-gold transition-colors inline-flex items-center gap-1 whitespace-nowrap uppercase" aria-haspopup="true">Tin tức <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block normal-case tracking-normal z-50">
+                    <div class="flex flex-col min-w-64 rounded-xl bg-white text-navy shadow-xl border border-gray-100 py-2">
+                        <a href="#" onclick="router.navigate('athlete-journal')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Nhật ký của vận động viên</a>
+                        <a href="#" onclick="router.navigate('pickleball-guide')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Kiến thức Pickleball</a>
+                        <a href="#" onclick="router.navigate('style-heritage')" class="px-5 py-3 hover:bg-ivory hover:text-gold">Phong cách &amp; Di sản</a>
+                    </div>
+                </div>
+            </div>
         </nav>
 
         <!-- Right Icons -->
@@ -200,7 +209,14 @@
                     <a href="#" onclick="router.navigate('collections')">Bộ sưu tập</a>
                 </div>
             </details>
-            <a href="#" onclick="router.navigate('news')">Tin tức</a>
+            <details class="group">
+                <summary class="cursor-pointer list-none flex items-center justify-between">Tin tức <i data-lucide="chevron-down" class="w-5 h-5"></i></summary>
+                <div class="flex flex-col gap-4 pl-5 pt-5 text-base font-medium normal-case tracking-wide">
+                    <a href="#" onclick="router.navigate('athlete-journal')">Nhật ký của vận động viên</a>
+                    <a href="#" onclick="router.navigate('pickleball-guide')">Kiến thức Pickleball</a>
+                    <a href="#" onclick="router.navigate('style-heritage')">Phong cách &amp; Di sản</a>
+                </div>
+            </details>
         </nav>
         <div class="text-xs text-ivory/60 border-t border-white/10 pt-4 flex justify-between">
             <span>SÀI GÒN, VIỆT NAM</span>
