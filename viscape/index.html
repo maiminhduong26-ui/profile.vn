@@ -1563,6 +1563,11 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                                     <p class="text-navy font-display font-bold text-lg">“Chơi hết mình, giữ sự bình tĩnh và tiến bộ từng ngày.”</p>
                                     <p class="text-gray-400 text-xs mt-2">Tinh thần nhật ký · VISCAPE SPORT</p>
                                 </div>
+
+                                <div class="mt-7 pt-5 border-t border-gray-100 flex flex-wrap items-center gap-4 text-sm" data-journal-engagement="khuong" data-base-views="1284" data-base-likes="96">
+                                    <span class="inline-flex items-center gap-2 text-gray-500"><i data-lucide="eye" class="w-4 h-4"></i><span><strong class="text-navy" data-journal-views>1284</strong> lượt xem</span></span>
+                                    <button type="button" onclick="toggleAthleteJournalLike('khuong')" class="inline-flex items-center gap-2 rounded-full border border-rose-100 px-4 py-2 text-rose-600 hover:bg-rose-50 transition-colors" data-journal-like="khuong" aria-pressed="false"><i data-lucide="heart" class="w-4 h-4"></i><span><strong data-journal-likes>96</strong> yêu thích</span></button>
+                                </div>
                             </article>
                         </div>
                     </section>
@@ -1591,6 +1596,11 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                                 <div class="mt-7 border-l-2 border-gold pl-5">
                                     <p class="text-navy font-display font-bold text-lg">“Giữ nhịp bình tĩnh, tin vào từng cú đánh và tiến bộ theo cách của mình.”</p>
                                     <p class="text-gray-400 text-xs mt-2">Tinh thần nhật ký · VISCAPE SPORT</p>
+                                </div>
+
+                                <div class="mt-7 pt-5 border-t border-gray-100 flex flex-wrap items-center gap-4 text-sm" data-journal-engagement="nghi" data-base-views="967" data-base-likes="74">
+                                    <span class="inline-flex items-center gap-2 text-gray-500"><i data-lucide="eye" class="w-4 h-4"></i><span><strong class="text-navy" data-journal-views>967</strong> lượt xem</span></span>
+                                    <button type="button" onclick="toggleAthleteJournalLike('nghi')" class="inline-flex items-center gap-2 rounded-full border border-rose-100 px-4 py-2 text-rose-600 hover:bg-rose-50 transition-colors" data-journal-like="nghi" aria-pressed="false"><i data-lucide="heart" class="w-4 h-4"></i><span><strong data-journal-likes>74</strong> yêu thích</span></button>
                                 </div>
                             </article>
                         </div>
@@ -2338,6 +2348,56 @@ aiQuick([["🏓 Chọn vợt","paddle"],["📏 Tư vấn size","size"],["👕 Tr
 }
 
 
+
+function getAthleteJournalEngagement() {
+    try { return JSON.parse(localStorage.getItem('viscape_athlete_journal_engagement') || '{}'); }
+    catch (error) { return {}; }
+}
+function initAthleteJournalEngagement() {
+    document.querySelectorAll('[data-journal-engagement]').forEach(function(card) {
+        var id = card.getAttribute('data-journal-engagement');
+        var baseViews = Number(card.getAttribute('data-base-views')) || 0;
+        var baseLikes = Number(card.getAttribute('data-base-likes')) || 0;
+        var data = getAthleteJournalEngagement();
+        data[id] = data[id] || { views: 0, liked: false, viewed: false };
+        if (!data[id].viewed) { data[id].views = (Number(data[id].views) || 0) + 1; data[id].viewed = true; }
+        try { localStorage.setItem('viscape_athlete_journal_engagement', JSON.stringify(data)); } catch (error) {}
+        var views = card.querySelector('[data-journal-views]');
+        var likes = card.querySelector('[data-journal-likes]');
+        var button = card.querySelector('[data-journal-like]');
+        if (views) views.textContent = (baseViews + (Number(data[id].views) || 0)).toLocaleString('vi-VN');
+        if (likes) likes.textContent = (baseLikes + (data[id].liked ? 1 : 0)).toLocaleString('vi-VN');
+        if (button) {
+            button.setAttribute('aria-pressed', data[id].liked ? 'true' : 'false');
+            button.classList.toggle('bg-rose-50', !!data[id].liked);
+            button.classList.toggle('border-rose-300', !!data[id].liked);
+            var icon = button.querySelector('i');
+            if (icon) { icon.setAttribute('data-lucide', data[id].liked ? 'heart' : 'heart'); icon.style.fill = data[id].liked ? 'currentColor' : 'none'; }
+        }
+    });
+    if (window.lucide) lucide.createIcons();
+}
+function toggleAthleteJournalLike(id) {
+    var data = getAthleteJournalEngagement();
+    data[id] = data[id] || { views: 0, liked: false, viewed: true };
+    data[id].liked = !data[id].liked;
+    try { localStorage.setItem('viscape_athlete_journal_engagement', JSON.stringify(data)); } catch (error) {}
+    var card = document.querySelector('[data-journal-engagement="' + id + '"]');
+    if (card) {
+        var likes = card.querySelector('[data-journal-likes]');
+        var button = card.querySelector('[data-journal-like]');
+        var baseLikes = Number(card.getAttribute('data-base-likes')) || 0;
+        if (likes) likes.textContent = (baseLikes + (data[id].liked ? 1 : 0)).toLocaleString('vi-VN');
+        if (button) {
+            button.setAttribute('aria-pressed', data[id].liked ? 'true' : 'false');
+            button.classList.toggle('bg-rose-50', !!data[id].liked);
+            button.classList.toggle('border-rose-300', !!data[id].liked);
+            var icon = button.querySelector('i');
+            if (icon) icon.style.fill = data[id].liked ? 'currentColor' : 'none';
+        }
+    }
+}
+
 function escapeAthleteJournalText(value) {
     return String(value || '').replace(/[&<>"']/g, function(char) {
         return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
@@ -2425,7 +2485,7 @@ document.addEventListener('change', function(event) {
     reader.onload = function() { preview.innerHTML = '<img src="' + reader.result + '" alt="Xem trước ảnh nhật ký" class="block w-full h-auto max-h-72 object-contain">'; preview.classList.remove('hidden'); };
     reader.readAsDataURL(file);
 });
-document.addEventListener('DOMContentLoaded', renderAthleteJournalPending);
+document.addEventListener('DOMContentLoaded', function() { renderAthleteJournalPending(); initAthleteJournalEngagement(); });
 
 </script>
 </body>
