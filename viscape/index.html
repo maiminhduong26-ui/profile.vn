@@ -730,7 +730,7 @@
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 render();
-                window.setTimeout(renderAthleteJournalPending, 0);
+                window.setTimeout(() => { renderAthleteJournalPending(); initAthleteJournalEngagement(); }, 0);
             }
         };
 
