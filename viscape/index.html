@@ -2053,6 +2053,7 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
             e.preventDefault();
             const form = e.currentTarget;
             const data = new FormData(form);
+            const createdAt = new Date();
             checkoutOrder = {
                 reference: checkoutOrderRef,
                 name: String(data.get('customerName') || '').trim(),
@@ -2060,12 +2061,28 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
                 email: String(data.get('email') || '').trim(),
                 address: String(data.get('address') || '').trim(),
                 payment: String(data.get('payment') || 'bank'),
-                items: cart.map(item => ({ name: item.name, quantity: item.quantity, price: item.price, currency: item.currency, variant: item.variant, size: item.size })),
+                items: cart.map(item => ({ name: item.name, image: item.image, quantity: item.quantity, price: item.price, currency: item.currency, variant: item.variant, size: item.size })),
                 total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
                 currency: cart[0]?.currency || 'VND',
-                createdAt: new Date().toISOString()
+                createdAt: createdAt.toISOString(),
+                estimatedDeliveryStart: new Date(createdAt.getTime() + 3 * 86400000).toISOString(),
+                estimatedDeliveryEnd: new Date(createdAt.getTime() + 5 * 86400000).toISOString()
             };
-            checkoutStatus = 'awaiting';
+            if (checkoutOrder.payment === 'cod') {
+                checkoutStatus = 'success';
+                try {
+                    const savedOrders = JSON.parse(localStorage.getItem('viscape_orders') || '[]');
+                    savedOrders.unshift({ ...checkoutOrder, status: 'ordered_cod' });
+                    localStorage.setItem('viscape_orders', JSON.stringify(savedOrders.slice(0, 20)));
+                    cart = [];
+                    localStorage.setItem('viscape_cart', JSON.stringify(cart));
+                    updateCartUI();
+                } catch (error) {
+                    console.warn('Could not save COD order locally.', error);
+                }
+            } else {
+                checkoutStatus = 'awaiting';
+            }
             render();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -2098,7 +2115,20 @@ function selectVariant(btn, variantName = null, imageUrl = null) {
             const items = order ? order.items : cart;
             const subtotal = order ? order.total : cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
             const currency = order ? order.currency : (cart[0]?.currency || 'VND');
-            const statusPanel = checkoutStatus === 'awaiting' ? `
+            const formatDeliveryDate = value => new Date(value).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const statusPanel = checkoutStatus === 'success' && order && order.payment === 'cod' ? `
+                <div class="mt-8 rounded-2xl border border-emerald-300 bg-emerald-50 p-5" role="status" aria-live="polite">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center"><i data-lucide="check-circle-2" class="w-6 h-6"></i></div>
+                        <div><p class="font-bold text-emerald-900 text-lg">Đặt hàng thành công!</p><p class="text-sm text-emerald-800 mt-1">Cảm ơn bạn đã đặt hàng tại VISCAPE SPORT.</p></div>
+                    </div>
+                    <div class="mt-5 space-y-3 text-sm text-emerald-950">
+                        <p class="flex justify-between gap-4"><span>Mã đơn hàng</span><strong>${order.reference}</strong></p>
+                        <p class="flex justify-between gap-4"><span>Số tiền thanh toán khi nhận hàng</span><strong class="text-base">${formatMoney(order.total, order.currency)}</strong></p>
+                        <p class="flex justify-between gap-4"><span>Dự kiến giao hàng</span><strong class="text-right">${formatDeliveryDate(order.estimatedDeliveryStart)} – ${formatDeliveryDate(order.estimatedDeliveryEnd)}</strong></p>
+                    </div>
+                    <p class="text-xs text-emerald-800 mt-4">Bạn thanh toán khi nhận hàng. Thời gian giao dự kiến có thể thay đổi tùy khu vực và đơn vị vận chuyển.</p>
+                </div>` : checkoutStatus === 'awaiting' ? `
                 <div class="mt-8 rounded-2xl border border-amber-300 bg-amber-50 p-5" role="status" aria-live="polite">
                     <p class="font-bold text-amber-900">Trạng thái: Chờ thanh toán</p>
                     <p class="text-sm text-amber-900/80 mt-2">Đơn hàng đã được tạo trên trình duyệt này. Chuyển khoản theo thông tin do cửa hàng xác nhận; QR dưới đây chỉ là khu vực minh họa, chưa phải mã thanh toán có thể quét.</p>
